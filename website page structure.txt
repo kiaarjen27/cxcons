@@ -1,0 +1,112 @@
+@echo off
+REM Navigate to your working directory
+cd "C:\Users\User\OneDrive\Desktop\Work\CircleX Consultancy\Website"
+
+REM Create root project folder
+mkdir cxcons
+cd cxcons
+
+REM Base folders
+mkdir _layouts
+mkdir assets
+mkdir assets\css
+mkdir assets\images
+
+REM Base files
+echo. > _config.yml
+echo. > _layouts\default.html
+echo. > index.html
+echo. > contact.html
+echo. > about.html
+echo. > public-and-in-house-programs.html
+echo. > request-custom-programs.html
+echo. > join-our-team.html
+echo. > hr-appreciation-program.html
+echo. > news-and-articles.html
+echo. > campaign-terms-and-conditions.html
+echo. > resources.html
+echo. > privacy-statement.html
+
+REM Solutions section
+mkdir solutions
+echo. > solutions\index.html
+echo. > solutions\annual-dinners.html
+echo. > solutions\corporate-learning.html
+echo. > solutions\team-building.html
+echo. > solutions\csr-events.html
+echo. > solutions\networking-events.html
+echo. > solutions\workshops-seminars.html
+echo. > solutions\product-launches.html
+echo. > solutions\awards-ceremonies.html
+
+REM HRD Corp section
+mkdir hrdcorp
+echo. > hrdcorp\index.html
+echo. > hrdcorp\hrdcorp-hub.html
+echo. > hrdcorp\registered-companies.html
+echo. > hrdcorp\employer-guide.html
+echo. > hrdcorp\evaluation-process.html
+
+REM Services section
+mkdir services
+echo. > services\index.html
+echo. > services\event-design-theme.html
+echo. > services\web-development-design.html
+echo. > services\vendor-management.html
+echo. > services\budget-management.html
+echo. > services\marketing-promotion.html
+echo. > services\event-logistics.html
+echo. > services\risk-management.html
+echo. > services\advertisement-marketing.html
+echo. > services\product-launch-execution.html
+echo. > services\local-crm-service.html
+
+REM Industry Pulse section
+mkdir industry-pulse
+echo. > industry-pulse\index.html
+echo. > industry-pulse\negotiation-mastery.html
+echo. > industry-pulse\handling-misconduct.html
+echo. > industry-pulse\safety-leadership.html
+echo. > industry-pulse\modernize-training-alat.html
+echo. > industry-pulse\train-to-hire.html
+echo. > industry-pulse\scaling-internships.html
+echo. > industry-pulse\first-line-defense.html
+echo. > industry-pulse\inspector-toolkit.html
+echo. > industry-pulse\lawful-deductions.html
+echo. > industry-pulse\on-the-job-training.html
+echo. > industry-pulse\e-learning-claims.html
+echo. > industry-pulse\certification-courses.html
+echo. > industry-pulse\chain-of-responsibility.html
+echo. > industry-pulse\maternity-rights.html
+echo. > industry-pulse\future-workers-training.html
+echo. > industry-pulse\enhanced-industrial-training.html
+echo. > industry-pulse\safety-by-design.html
+echo. > industry-pulse\strikes-lockouts.html
+echo. > industry-pulse\workplace-integrity.html
+echo. > industry-pulse\osh-coordinator.html
+echo. > industry-pulse\union-representation.html
+echo. > industry-pulse\flexible-working-rights.html
+echo. > industry-pulse\new-standards-safety.html
+echo. > industry-pulse\industrial-harmony.html
+echo. > industry-pulse\employment-act-1955.html
+echo. > industry-pulse\internal-learning-alat-cbt.html
+echo. > industry-pulse\strategic-upskilling.html
+echo. > industry-pulse\hrdcorp-acm-enhancements.html
+echo. > industry-pulse\allowable-cost-matrix.html
+echo. > industry-pulse\online-training-guidelines.html
+echo. > industry-pulse\claimable-courses-hcc.html
+echo. > industry-pulse\supporting-documents.html
+echo. > industry-pulse\meal-vs-trainee-allowance.html
+echo. > industry-pulse\attendance-rule.html
+echo. > industry-pulse\overseas-training-claims.html
+echo. > industry-pulse\allowable-cost-matrix-guide.html
+echo. > industry-pulse\key-updates-course-fees.html
+echo. > industry-pulse\essential-rules-claims.html
+echo. > industry-pulse\hcc-vs-sbl.html
+echo. > industry-pulse\in-house-training-costs.html
+echo. > industry-pulse\local-public-training.html
+echo. > industry-pulse\focus-area-courses.html
+echo. > industry-pulse\trainers-claims.html
+
+echo Website structure created successfully!
+pause

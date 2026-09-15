@@ -1,0 +1,18 @@
+title: Circlex Consultancy
+description: Circlex Consultancy (CXCons) is a registered HRDC training provider offering tailored corporate learning solutions, HRDC claimable programs, and professional development services in Malaysia.
+url: "https://www.cxcons.com"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+# Sitemap
+plugins:
+  - jekyll-sitemap
+
+# Exclude files from build
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
