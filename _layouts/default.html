@@ -258,6 +258,35 @@ input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-r
       font-size: 0.95em;
     }
 
+.social-icons {
+  display: flex;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;               /* smaller */
+  height: 28px;
+  border-radius: 4px;
+  background-color: #e5e7eb; /* light gray background */
+  color: #4b5563;            /* gray icon */
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.social-icon:hover {
+  background-color: #d1d5db;
+  color: #1f2937;
+}
+
+.social-icon svg {
+  width: 14px;               /* smaller icon */
+  height: 14px;
+}
+
 /* ---------- Mobile overrides ---------- */
 @media (max-width: 768px) {
 
