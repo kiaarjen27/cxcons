@@ -17,7 +17,8 @@
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 
- <style>
+<style>
+
 /* ---------- General styles (desktop defaults) ---------- */
 body {
   font-family: 'Open Sans', Arial, sans-serif;
@@ -27,6 +28,7 @@ body {
   background-color: #fff;
   font-size: 0.9em;
 }
+
 header {
   background-color: #fff;
   padding: 8px 15px;
@@ -37,14 +39,15 @@ header {
   align-items: center;
   z-index: 1100;
 }
+
 .hamburger-button {
   display: none;
   background: none;
   border: none;
   padding: 10px;
   cursor: pointer;
-  z-index: 1100;
-  position: relative;
+  z-index: 1100; /* Increased from 1002 to 1100 */
+  position: relative; /* Ensures z-index is applied */
 }
 .hamburger-button .hamburger-line {
   display: block;
@@ -54,19 +57,27 @@ header {
   margin: 4px 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
+
+
+/* Navigation (desktop defaults) */
 nav { flex-grow: 1; }
 nav ul { list-style: none; margin: 0; padding: 0; text-align: center; }
 nav li { display: inline-block; margin: 0; position: relative; padding: 0 10px 10px 10px; border-bottom: none !important; }
 nav a { text-decoration: none; color: #333; font-size: 11px; font-weight: normal; transition: color 0.3s ease; display: inline-block; padding: 10px 0; }
+
+/* Logo Styling */
 .site-logo img {
-  height: 40px;
-  width: auto;
+  height: 40px;    /* Adjust this height to fit your bar */
+  width: auto;     /* Keeps the logo from stretching */
   display: block;
   transition: transform 0.3s ease;
 }
+
 .site-logo:hover img {
-  transform: scale(1.05);
+  transform: scale(1.05); /* Slight zoom when hovering */
 }
+
+/* Submenu (desktop) */
 .submenu {
   position: fixed;
   top: 56px;
@@ -97,30 +108,66 @@ nav li:hover > .submenu, .submenu:hover {
 }
 .submenu li { display: inline; margin: 0 20px; padding: 0; border-bottom: none !important; }
 .submenu a { display: inline-block; padding: 5px 15px; color: #333; text-decoration: none; white-space: nowrap; }
+
+/* Main content, hero, lists, footer (desktop defaults) */
 main { padding: 0px; }
 .content-wrapper { max-width: 1100px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+
 #hero {
   text-align: center;
   padding: 100px 20px;
-  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.6)), url('https://raw.githubusercontent.com/kiaarjen27/cxcons-assets/main/hero.webp');
+background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.6)), 
+              url('https://raw.githubusercontent.com/kiaarjen27/cxcons-assets/main/hero.webp');
   background-size: cover;
   background-position: center;
   color: white;
   margin-bottom: 40px;
 }
-#hero h1 { font-size: 2.8em; margin-bottom: 15px; color: #ffffff; }
-#hero p { font-size: 1.3em; color: #e0e0e0; max-width: 800px; margin-left: auto; margin-right: auto; }
+#hero h1 {
+  font-size: 5em;            /* Massive size for desktop (default was 2.8) */
+  font-weight: 800;          /* Extra bold for impact */
+  line-height: 1.1;          /* Tightens the gap between the 2 lines */
+  margin-bottom: 20px;
+  color: #ffffff;
+  letter-spacing: -1px;      /* Professional "tight" typography look */
+}
+
+#hero p {
+  font-size: 1.2em;      /* Slightly smaller font helps it fit on one line */
+  line-height: 1.6;
+  max-width: 1050px;     /* INCREASED: This allows more words per line */
+  margin: 0 auto 30px;   /* Centers the text block */
+  color: #e0e0e0;
+  font-weight: 400;
+  text-align: center;
+}
+
 h1 { text-align: center; margin-bottom: 15px; color: #2c3e50; font-size: 1.5em; }
 .button { display: inline-block; padding: 10px 20px; background-color: #000; color: white; text-decoration: none; border-radius: 20px; margin-top: 20px; transition: background-color 0.3s ease; }
+
+h2 { text-align: center; margin-bottom: 15px; color: #2c3e50; font-size: 1.5em; }
+.button { display: inline-block; padding: 10px 20px; background-color: #000; color: white; text-decoration: none; border-radius: 20px; margin-top: 20px; transition: background-color 0.3s ease; }
+
 .courseListContainer { max-height: 400px; overflow-y: auto; border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 30px; background-color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 #courseList { list-style: none; padding: 0; margin: 0; }
-#courseList li { padding: 10px 15px; border-bottom: 1px solid #eee; cursor: pointer; font-size: 0.8em; transition: background-color 0.3s ease; }
+
+#courseList li { 
+  padding: 10px 10px; /* Increased from 10px to 15px */
+  border-bottom: 1px solid #eee; 
+  cursor: pointer; 
+  font-size: 11px; /* Slightly larger for easier reading on phones */
+  transition: background-color 0.3s ease; 
+}
+
 #courseList li:hover { background-color: #f0f0f0; }
+
 .hidden { display: none !important; }
 #searchArea { text-align: center; margin-bottom: 30px; }
 input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 1em; }
 .trending { font-size: 0.9em; color: #777; margin-bottom: 15px; text-align: center; }
 .searchDetails { font-size: 0.9em; color: #888; text-align: center; }
+
+/* Footer defaults */
 .site-footer { background-color: #fff; border-top: 1px solid #ddd; padding: 40px 0 20px; font-family: 'Open Sans', sans-serif; }
 .footer-expandable { display: none; max-width: 1100px; margin: 0 auto 40px; padding: 0 20px; flex-wrap: wrap; justify-content: space-between; }
 .footer-expandable.show { display: flex; }
@@ -136,6 +183,8 @@ input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-r
 #exploreBtn { background: none; border: none; cursor: pointer; font-size: 14px; color: #333; display: flex; align-items: center; gap: 8px; font-weight: 600; }
 .chevron { display: inline-block; border: solid #333; border-width: 0 2px 2px 0; padding: 3px; transform: rotate(45deg); transition: transform 0.3s; margin-bottom: 3px; }
 #exploreBtn.active .chevron { transform: rotate(-135deg); margin-bottom: -3px; }
+
+/* ---------- Desktop subscribe button ---------- */
 .subscribe-btn {
   display: inline-block;
   background-color: #fd000c;
@@ -155,6 +204,8 @@ input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-r
   background-color: #444444;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
+
+/* Footer subscribe variations (desktop) */
 .footer-column .subscribe-btn {
   display: inline-block;
   background: none;
@@ -185,98 +236,104 @@ input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-r
 }
 .footer-buttons { display: flex; justify-content: flex-start; gap: 10px; flex-wrap: wrap; margin: 15px 0; }
 
-/* Contact form styles */
-.container {
-  max-width: 1100px;
-  margin: 40px auto 60px;
-  padding: 0 20px;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 40px;
-  box-sizing: border-box;
-}
-.form-section, .info-section {
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-.form-section h2, .info-section h3 {
-  margin-top: 0;
-  color: #2c3e50;
-  font-size: 1.6em;
-}
-#contactForm {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-#contactForm input, #contactForm select, #contactForm textarea {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 0.95em;
-}
-#contactForm button[type="submit"] {
-  background-color: #12425c;
-  color: #fff;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  align-self: flex-start;
-}
-.info-section h4 {
-  margin: 20px 0 6px;
-  color: #12425c;
-  font-size: 0.95em;
-}
-
-/* Mobile styles */
+/* ---------- Mobile overrides ---------- */
 @media (max-width: 768px) {
-  .container { grid-template-columns: 1fr; gap: 24px; margin-top: 20px; }
+
+.container { grid-template-columns: 1fr; gap: 24px; margin-top: 20px; }
+
+  #hero h1 {
+    font-size: 3em;        /* Prevents the text from overlapping on phones */
+    line-height: 1.2;
+    padding: 0 10px;         /* Keeps text away from screen edges */
+  }
+
+  #hero h2 {
+    font-size: 3em;        /* Prevents the text from overlapping on phones */
+    line-height: 1.2;
+    padding: 0 10px;         /* Keeps text away from screen edges */
+  }
+
+  #hero p {
+    font-size: 1.1em;
+    max-width: 90%;      /* Let it be 3-4 lines on small phone screens */
+  }
+
+/* This prevents text and search bars from touching the screen edges on phones */
+  .search-section {
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  /* Make the search input look better on mobile */
+  #searchArea input[type="text"] {
+    width: 100% !important; /* Full width within the padded container */
+    font-size: 16px; /* Prevents iPhone from auto-zooming on focus */
+  }
+  
+  /* Ensure the course list container also respects the same side padding */
+  .courseListContainer {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
   .site-logo {
-    position: fixed;
+    position: fixed; /* Ensures it stays visible on the fixed header */
     left: 15px;
     top: 10px;
-    z-index: 2200;
+    z-index: 2200; /* Stays above everything */
   }
-  .site-logo img { height: 35px; }
+  
+  .site-logo img {
+    height: 35px; /* Slightly smaller on phones */
+  }
+
   header { 
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 60px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    height: 60px; /* Fixed height for consistency */
+    background-color: #ffffff; /* Solid background */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Subtle shadow to lift it off the page */
     justify-content: flex-end; 
-    z-index: 1100;
+    z-index: 1100; /* Stays above the main page content */
     box-sizing: border-box;
   }
-  main { padding-top: 60px !important; }
+
+  /* 2. Push the main content down so it doesn't get cut off by the fixed header */
+  main {
+    padding-top: 60px !important; 
+  }
+
   .hamburger-button {
     display: block;
-    position: fixed;
-    top: 10px;
-    right: 15px;
-    z-index: 2200;
+    position: fixed;  /* Changed from relative to fixed */
+    top: 10px;        /* Distance from top of screen */
+    right: 15px;      /* Distance from right of screen */
+    z-index: 1300;    /* Higher than nav (1200) and overlay (1050) */
     background: none;
     border: none;
     padding: 10px;
     cursor: pointer;
   }
-  #navOverlay { z-index: 1050 !important; }
+
+  /* Dimmed background overlay */
+  #navOverlay {
+    z-index: 1050 !important; /* Middle Layer */
+  }
+
+  /* Mobile hero */
   #hero {
-    background: linear-gradient(rgba(30,30,30,0.5), rgba(30,30,30,0.25)),
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.6)),
                 url('https://raw.githubusercontent.com/kiaarjen27/cxcons-assets/main/hero-mobile.webp');
     background-size: cover;
     background-position: center;
     padding: 60px 20px;
   }
+
+  /* Slide-out nav panel */
   nav {
     display: none;
     position: fixed !important;
@@ -289,23 +346,28 @@ input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-r
     -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
     border-right: 1px solid rgba(255,255,255,0.3);
     box-shadow: -8px 0 30px rgba(0,0,0,0.2);
-    z-index: 2100 !important;
+    z-index: 1200 !important; /* Highest layer */
     overflow-y: auto;
-    padding-top: 70px;
+    padding-top: 70px; /* Space for the button */
   }
   nav.nav-open { display: block; }
+
   nav ul { text-align: left; padding: 0; margin: 0; }
   nav > ul > li { display: block; padding: 0; border-bottom: 1px solid #eee; }
+
+  /* Main menu items */
   nav > ul > li > a {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 90%;
     box-sizing: border-box;
-    padding: 10px 22px;
-    margin: 2px auto;
-    font-size: 12px;
-    min-height: 40px;
+    /* REDUCE THESE VALUES */
+    padding: 10px 22px;  /* Changed from 18px to 10px */
+    margin: 2px auto;    /* Changed from 8px to 2px */
+    font-size: 12px;     /* Optional: slightly smaller font */
+    min-height: 40px;    /* Changed from 48px to 40px */
+    /* ------------------- */
     font-weight: 700;
     color: #333;
     text-align: center;
@@ -313,6 +375,8 @@ input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-r
     background: transparent;
     border-radius: 6px;
   }
+
+  /* Contact / Subscribe button on mobile (Scraped higher specificity for footer) */
   .subscribe-btn,
   .footer-column .subscribe-btn {
     display: flex !important;
@@ -330,6 +394,7 @@ input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-r
     color: #fff !important;
     border: none !important;
   }
+
   nav a[style*="background-color:#12425c"] {
     display: flex !important;
     align-items: center;
@@ -343,16 +408,22 @@ input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-r
     border-radius: 6px;
     text-align: center;
     color: #fff !important;
-    min-height: 40px !important;
+min-height: 40px !important;
   }
+
+
+  /* mobile tap/hover highlight for links only */
   nav > ul > li > a:active,
   nav > ul > li > a:hover {
     background-color: rgba(0,0,0,0.06);
   }
+  
   .subscribe-btn:active,
   .subscribe-btn:hover {
-    background-color: #cc000a !important;
+    background-color: #cc000a !important; /* Darker red for active state instead of gray transparent */
   }
+
+  /* Chevron for submenu (Safely handled for older browsers & supports :has) */
   nav > ul > li.has-submenu > a::after {
     content: "›";
     position: absolute;
@@ -364,7 +435,10 @@ input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-r
     transition: transform 0.25s ease;
     color: #666;
   }
+
   nav > ul > li.open > a::after { transform: translateY(-50%) rotate(-90deg); }
+
+  /* Submenu behavior on mobile */
   .submenu {
     position: static;
     display: none !important;
@@ -379,19 +453,25 @@ input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-r
   }
   nav li.open > .submenu,
   nav li.open .submenu { display: block !important; }
+
   .submenu li { border-bottom: none !important; display: block; }
   .submenu li a {
-    padding: 6px 24px 6px 22px !important;
-    min-height: 35px;
+    /* REDUCE THESE VALUES */
+    padding: 6px 24px 6px 22px !important; /* Changed from 14px to 6px */
+    min-height: 35px; /* Reduced height */
     font-size: 12px;
+    /* ------------------- */
     color: #555;
     font-weight: 400;
     display: block;
     white-space: normal;
   }
+
+  /* Footer adjustments on mobile */
   .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
   .footer-bottom-right { flex-direction: column; gap: 12px; }
-  .footer-buttons a,
+
+.footer-buttons a,
   .subscribe-btn,
   .footer-column .subscribe-btn,
   .custom-btn {
@@ -400,6 +480,7 @@ input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-r
     padding: 12px 20px;
   }
 }
+
 @supports selector(:has(*)) {
   @media (max-width: 768px) {
     nav > ul > li:not(.has-submenu):has(> .submenu) > a::after {
@@ -415,6 +496,8 @@ input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-r
     }
   }
 }
+
+/* ---------- Extra small phones ---------- */
 @media (max-width: 480px) {
   .footer-buttons { flex-direction: column; align-items: center; }
   .footer-column .custom-btn,
@@ -427,6 +510,8 @@ input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-r
     text-overflow: ellipsis; 
   }
 }
+
+/* ---------- Force cross styles LAST ---------- */
 .hamburger-button.active .hamburger-line:nth-child(1) {
   transform: translateY(6px) rotate(45deg) !important;
 }
@@ -437,107 +522,8 @@ input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-r
   transform: translateY(-6px) rotate(-45deg) !important;
 }
 
-/* Card & content styles */
-.content-wrapper { 
-  max-width: 1100px; 
-  margin: 40px auto; 
-  padding: 0 20px; 
-}
-.grid { 
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-  gap: 25px; 
-}
-.card {
-  background: #fff;
-  border-radius: 10px;
-  border: 1px solid #eee;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  padding: 25px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.card:hover { 
-  transform: translateY(-5px); 
-  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-}
-.card h2 { 
-  color: #12425c; 
-  margin-top: 0;
-  margin-bottom: 15px; 
-  font-size: 1.4em; 
-}
-.card p { 
-  color: #555; 
-  font-size: 0.9em; 
-  margin-bottom: 15px; 
-  line-height: 1.5;
-}
-.card a { 
-  display: inline-block; 
-  background: #12425c; 
-  color: #fff !important; 
-  padding: 8px 16px; 
-  border-radius: 6px; 
-  text-decoration: none; 
-  font-size: 0.85em; 
-  font-weight: 600;
-  transition: 0.3s; 
-  margin-top: auto;
-}
-.card a:hover { 
-  background: #444444; 
-}
-.hero-button {
-  display: inline-block;
-  padding: 12px 24px;
-  background: #ff6600;
-  color: #fff !important;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
-}
-.hero-button:hover {
-  background: #e05500;
-}
-.related { 
-  margin-top: 40px; 
-}
-.related h2 {
-  font-size: 1.4em;
-  margin-bottom: 20px;
-}
-.related ul { 
-  list-style: none; 
-  padding: 0; 
-  display: flex; 
-  flex-wrap: wrap; 
-  gap: 15px; 
-}
-.related a { 
-  display: inline-block;
-  background: #12425c; 
-  color: #fff !important; 
-  padding: 10px 18px; 
-  border-radius: 6px; 
-  text-decoration: none; 
-  font-size: 0.9em; 
-  transition: 0.3s; 
-}
-.related a:hover { 
-  background: #0d3144; 
-}
 
-.search-section {
-  text-align: center;
-}
-
-
- </style>
+</style>
 </head>
 <body>
 
@@ -712,9 +698,11 @@ input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-r
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
+   <div class="footer-bottom">
     <div class="footer-bottom-links">
-      <a href="/privacy-statement.html">Privacy</a>
+      <a href="http://192.168.100.9:5000">Connect</a>
+      <a href="https://sites.google.com/view/geusers/forms">Employee Hub</a>
+      <a href="https://www.cxcons.com/Privacy-Statement">Privacy</a>
     </div>
     <div class="footer-bottom-right">
       <span>Copyright © 2026, CircleX Consultancy</span>
