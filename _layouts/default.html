@@ -529,6 +529,145 @@ min-height: 40px !important;
   transform: translateY(-6px) rotate(-45deg) !important;
 }
 
+/* --- CONTACT Us CARDS DESIGN --- */
+.contact-card {
+  background-color: #f5f9ff;   /* subtle highlight */
+  border: 2px solid #0073e6;   /* accent border */
+  text-align: center;          /* center content */
+}
+
+.contact-card h2 {
+  color: #0073e6;              /* accent heading */
+}
+
+.contact-card a {
+  font-weight: bold;
+  color: #0073e6;
+}
+
+.card.contact-card {
+  background-color: #f5f9ff !important;
+  border: 2px solid #0073e6 !important;
+  text-align: center;
+}
+
+
+/* --- CONTACT CARDS DESIGN --- */
+    .container {
+      max-width: 1100px;
+      margin: 40px auto 60px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      box-sizing: border-box;
+    }
+    .form-section, .info-section {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .form-section h2, .info-section h3 {
+      margin-top: 0;
+      color: #2c3e50;
+      font-size: 1.6em;
+    }
+    #contactForm {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    #contactForm input, #contactForm select, #contactForm textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 0.95em;
+    }
+    #contactForm button[type="submit"] {
+      background-color: #12425c;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      align-self: flex-start;
+    }
+    .info-section h4 {
+      margin: 20px 0 6px;
+      color: #12425c;
+      font-size: 0.95em;
+    }
+
+/* --- GRID & CARD SYSTEM --- */
+.content-wrapper { 
+  max-width: 1100px; 
+  margin: 40px auto; 
+  padding: 0 20px; 
+}
+
+.grid { 
+  display: grid; 
+  /* This automatically makes the cards responsive */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 25px; 
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  padding: 25px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* The "Lift" effect when you hover over a card */
+.card:hover { 
+  transform: translateY(-5px); 
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+.card h2 { 
+  color: #12425c; 
+  margin-top: 0;
+  margin-bottom: 15px; 
+  font-size: 1.4em; 
+}
+
+.card p { 
+  color: #555; 
+  font-size: 0.9em; 
+  margin-bottom: 15px; 
+  line-height: 1.5;
+}
+
+.card a { 
+  display: inline-block; 
+  background: #12425c; 
+  color: #fff !important; 
+  padding: 8px 16px; 
+  border-radius: 6px; 
+  text-decoration: none; 
+  font-size: 0.85em; 
+  font-weight: 600;
+  transition: 0.3s; 
+  margin-top: auto; /* Keeps buttons aligned at the bottom */
+}
+
+.card a:hover { 
+  background: #444444; 
+}
+
+
+
 
 </style>
 </head>
