@@ -113,6 +113,13 @@ nav li:hover > .submenu, .submenu:hover {
 main { padding: 0px; }
 .content-wrapper { max-width: 1100px; margin: 0 auto; width: 100%; box-sizing: border-box; }
 
+.grid { 
+  display: grid; 
+  /* This automatically makes the cards responsive */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 25px; 
+}
+
 #hero {
   text-align: center;
   padding: 100px 20px;
