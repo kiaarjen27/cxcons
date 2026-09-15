@@ -847,12 +847,29 @@ min-height: 40px !important;
 </footer>
 
 <script>
+
+// --- FORM SUBMISSION LOGIC ---
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwlygUNCTJltOgXx0B5wtntQKb34e3Ufpu9aDBVWItoyNfI34ALwruNCuIX0B2QVQA/exec";
+    const form = document.getElementById("contactForm");
+    if(form) {
+      form.addEventListener("submit", e => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then(() => {
+            alert("Message sent successfully!");
+            form.reset();
+          })
+          .catch(error => alert("Error sending message. Please try again."));
+      });
+    }
+// --- SELECTORS ---
 const hamburgerButton = document.getElementById('hamburgerButton');
 const mainNav = document.getElementById('mainNav');
 const navOverlay = document.getElementById('navOverlay');
 const exploreBtn = document.getElementById('exploreBtn');
 const footerExpandable = document.getElementById('footerExpandable');
 
+// --- MOBILE MENU FUNCTIONS ---
 function closeMenu() {
     mainNav.classList.remove('nav-open');
     hamburgerButton.classList.remove('active');
@@ -860,6 +877,7 @@ function closeMenu() {
     document.querySelectorAll('nav li.open').forEach(li => li.classList.remove('open'));
 }
 
+// 1. Hamburger Toggle
 if(hamburgerButton) {
     hamburgerButton.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -869,10 +887,12 @@ if(hamburgerButton) {
     });
 }
 
+// 2. Click Outside (Overlay)
 if(navOverlay) {
     navOverlay.addEventListener('click', closeMenu);
 }
 
+// 3. Submenu Accordion
 document.querySelectorAll('nav > ul > li > a').forEach(link => {
     link.addEventListener('click', function(e) {
         if (window.innerWidth > 768) return;
@@ -888,6 +908,7 @@ document.querySelectorAll('nav > ul > li > a').forEach(link => {
     });
 });
 
+// --- FOOTER TOGGLE ---
 if(exploreBtn && footerExpandable) {
     exploreBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -895,7 +916,27 @@ if(exploreBtn && footerExpandable) {
         exploreBtn.classList.toggle('active');
     });
 }
-</script>
 
+// --- SEARCH LOGIC (IF YOU RESTORE THE HTML) ---
+const searchInput = document.getElementById('searchInput');
+if(searchInput) {
+    searchInput.addEventListener('input', function() {
+        const term = this.value.toLowerCase();
+        document.querySelectorAll('#courseList li').forEach(li => {
+            li.style.display = li.textContent.toLowerCase().includes(term) ? "block" : "none";
+        });
+    });
+
+// Optional: Subtle fade-in effect for cards
+document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach((card, index) => {
+        card.style.opacity = "0";
+        card.style.transition = "opacity 0.5s ease " + (index * 0.1) + "s";
+        setTimeout(() => card.style.opacity = "1", 100);
+    });
+});
+}
+</script>
 </body>
 </html> 
