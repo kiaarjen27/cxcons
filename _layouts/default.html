@@ -706,6 +706,141 @@ min-height: 40px !important;
   text-align: center;
 }
 
+/* ========== Extra styles used on other pages ========== */
+
+/* Social icons (Contact page) */
+.social-icons {
+  display: flex;
+  gap: 8px;
+  margin-top: 40px;
+}
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  background-color: #e5e7eb;
+  color: #4b5563;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.social-icon:hover {
+  background-color: #d1d5db;
+  color: #1f2937;
+}
+.social-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Industry Pulse / Blog post styles */
+.post-title {
+  display: block;
+  font-size: 1.15em;
+  font-weight: 700;
+  color: #12425c;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.chevron-toggle {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  margin-top: 10px;
+}
+.chevron-toggle .chevron {
+  display: inline-block;
+  border: solid #12425c;
+  border-width: 0 2px 2px 0;
+  padding: 4px;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+}
+.chevron-toggle[aria-expanded="true"] .chevron {
+  transform: rotate(-135deg);
+}
+
+.expandable-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.expandable-content:not(.hidden) {
+  max-height: 2000px; /* large enough for content */
+}
+.expandable-content.hidden {
+  display: none;
+}
+
+.inline-gif {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 15px 0;
+  display: block;
+}
+
+.center-link {
+  text-align: center;
+  margin: 40px 0;
+}
+.pulse-btn {
+  display: inline-block;
+  background: #12425c;
+  color: #fff !important;
+  padding: 10px 22px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9em;
+  font-weight: 600;
+  transition: background 0.25s ease;
+}
+.pulse-btn:hover {
+  background: #0d3144;
+}
+
+/* Small utility used on some pages */
+.related {
+  margin-top: 40px;
+}
+.related h2 {
+  font-size: 1.4em;
+  margin-bottom: 20px;
+  color: #12425c;
+}
+.related ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.related a {
+  display: inline-block;
+  background: #12425c;
+  color: #fff !important;
+  padding: 10px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: 0.3s;
+}
+.related a:hover {
+  background: #0d3144;
+}
+
+.card.contact-card {
+  border: 2px solid #12425c;
+  background: #f8fafc;
+}
+.card.contact-card h2 {
+  color: #12425c;
+}
+
 
 </style>
 
@@ -987,6 +1122,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 }
+
+// --- EXPANDABLE ARTICLES (Industry Pulse) ---
+document.querySelectorAll('.chevron-toggle').forEach(toggle => {
+  toggle.addEventListener('click', function() {
+    const content = this.nextElementSibling;
+    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+    this.setAttribute('aria-expanded', !isExpanded);
+    
+    if (content && content.classList.contains('expandable-content')) {
+      content.classList.toggle('hidden');
+    }
+  });
+});
+
 </script>
 </body>
 </html> 
