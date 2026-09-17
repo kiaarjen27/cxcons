@@ -130,6 +130,16 @@ background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.6)),           
 }
 #hero h1 { font-size: 2.8em; margin-bottom: 15px; color: #ffffff; }
 
+/* Only for Homepage */
+.home-hero-title {
+  font-size: 5em;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  color: #ffffff;
+  letter-spacing: -1px;
+}
+
 .home-hero-title {
   font-size: 5em;            /* Massive size for desktop */
   font-weight: 800;          /* Extra bold */
@@ -337,6 +347,13 @@ input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-r
     justify-content: flex-end; 
     z-index: 1100; /* Stays above the main page content */
     box-sizing: border-box;
+  }
+
+/* Mobile version - only for homepage */
+  .home-hero-title {
+    font-size: 3em;
+    line-height: 1.2;
+    padding: 0 10px;
   }
 
   /* 2. Push the main content down so it doesn't get cut off by the fixed header */
