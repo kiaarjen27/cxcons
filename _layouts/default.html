@@ -130,15 +130,15 @@ background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.6)),           
 }
 #hero h1 { font-size: 2.8em; margin-bottom: 15px; color: #ffffff; }
 
-/* Only for Homepage */
-.home-hero-title {
-  font-size: 5em;            /* Massive size for desktop */
-  font-weight: 800;          /* Extra bold */
-  line-height: 1.1;          /* Tight spacing */
+/* Only for Homepage - higher specificity */
+#hero .home-hero-title {
+  font-size: 5em;
+  font-weight: 800;
+  line-height: 1.1;
   margin-bottom: 20px;
   color: #ffffff;
-  letter-spacing: -1px;      /* Professional typography */
-  text-align: center;        /* Centered for impact */
+  letter-spacing: -1px;
+  text-align: center;
 }
 
 #hero p { font-size: 1.3em; color: #e0e0e0; max-width: 800px; margin-left: auto; margin-right: auto; }
@@ -310,10 +310,10 @@ input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-r
 
 .container { grid-template-columns: 1fr; gap: 24px; margin-top: 20px; }
 
-  .home-hero-title {
-    font-size: 3em;          /* Scales down on mobile */
+#hero .home-hero-title {
+    font-size: 3em;
     line-height: 1.2;
-    padding: 0 10px;         /* Keeps text away from edges */
+    padding: 0 10px;
   }
 
   .site-logo {
