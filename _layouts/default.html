@@ -226,56 +226,76 @@ input[type="text"] { width: 80%; padding: 12px; border: 2px solid #ddd; border-r
 }
 .footer-buttons { display: flex; justify-content: flex-start; gap: 10px; flex-wrap: wrap; margin: 15px 0; }
 
-/* --- CONTACT CARDS DESIGN --- */
-    .container {
-      max-width: 1100px;
-      margin: 40px auto 60px;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 40px;
-      box-sizing: border-box;
-    }
-    .form-section, .info-section {
-      background: #fff;
-      border: 1px solid #eee;
-      border-radius: 10px;
-      padding: 30px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-    .form-section h2, .info-section h3 {
-      margin-top: 0;
-      color: #2c3e50;
-      font-size: 1.6em;
-    }
-    #contactForm {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    #contactForm input, #contactForm select, #contactForm textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 0.95em;
-    }
-    #contactForm button[type="submit"] {
-      background-color: #12425c;
-      color: #fff;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
-      align-self: flex-start;
-    }
-    .info-section h4 {
-      margin: 20px 0 6px;
-      color: #12425c;
-      font-size: 0.95em;
-    }
+/* 1. Add this universal reset at the top of your CSS to fix sizing globally */
+* {
+    box-sizing: border-box;
+}
 
+/* --- CONTACT CARDS DESIGN --- */
+.container {
+  max-width: 1100px;
+  margin: 40px auto 60px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+}
+
+.form-section, .info-section {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.form-section h2, .info-section h3 {
+  margin-top: 0;
+  color: #2c3e50;
+  font-size: 1.6em;
+}
+
+#contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 2. Updated styling for inputs/select/textarea */
+#contactForm input, 
+#contactForm select, 
+#contactForm textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95em;
+  display: block; /* Ensures elements respect width correctly */
+}
+
+/* 3. Give the textarea a fixed height so it isn't "long" */
+#contactForm textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+#contactForm button[type="submit"] {
+  background-color: #12425c;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-start;
+  width: 100%; /* Making button 100% width often looks better in this layout */
+}
+
+.info-section h4 {
+  margin: 20px 0 6px;
+  color: #12425c;
+  font-size: 0.95em;
+}
 .social-icons {
   display: flex;
   gap: 8px;
