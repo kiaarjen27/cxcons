@@ -7,98 +7,179 @@ description: Circlex Consultancy builds resilient teams through HRDC-registered 
 <main>
 
   <!-- HERO -->
-  <section id="hero">
-    <h1 class="home-hero-title">Resilient teams.<br>Stronger organizations.</h1>
-    <p style="max-width: 620px; margin: 0 auto 35px; font-size: 1.15em; color: #e8e8e8; line-height: 1.6;">
-      HRDC-registered programs and strategic events built for capability under pressure.
-    </p>
+  <section id="hero" style="position: relative; overflow: hidden;">
+    <!-- Soft moving light layer (CSS only, no heavy media) -->
+    <div style="
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse at 30% 20%, rgba(253,0,12,0.18), transparent 50%),
+                  radial-gradient(ellipse at 80% 70%, rgba(18,66,92,0.25), transparent 45%);
+      animation: heroGlow 12s ease-in-out infinite alternate;
+    "></div>
 
-    <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
-      <a href="/programs/"
-         style="background: #fd000c; color: #fff; padding: 13px 28px; border-radius: 2px; text-decoration: none; font-weight: 700; letter-spacing: 0.3px;">
-        View Programs
-      </a>
-      <a href="/contact/"
-         style="background: transparent; border: 1px solid rgba(255,255,255,0.85); color: #fff; padding: 13px 28px; border-radius: 2px; text-decoration: none; font-weight: 700; letter-spacing: 0.3px;">
-        Request Briefing
-      </a>
+    <div style="position: relative; z-index: 1;">
+      <p style="
+        font-size: 0.72em; letter-spacing: 3px; text-transform: uppercase;
+        color: rgba(255,255,255,0.7); margin-bottom: 18px;
+      ">
+        Circlex Consultancy
+      </p>
+
+      <h1 class="home-hero-title" style="margin-bottom: 18px;">
+        Resilient teams.<br>Stronger organizations.
+      </h1>
+
+      <p style="
+        max-width: 620px; margin: 0 auto 34px;
+        font-size: 1.12em; color: #e8e8e8; line-height: 1.65;
+      ">
+        HRDC-registered programs and strategic events built for capability under pressure.
+      </p>
+
+      <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+        <a href="/programs/"
+           style="
+             background: #fd000c; color: #fff; padding: 14px 30px;
+             border-radius: 2px; text-decoration: none; font-weight: 700;
+             box-shadow: 0 10px 30px rgba(253,0,12,0.25);
+             transition: transform 0.25s ease, box-shadow 0.25s ease;
+           "
+           onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 14px 34px rgba(253,0,12,0.35)';"
+           onmouseout="this.style.transform='none'; this.style.boxShadow='0 10px 30px rgba(253,0,12,0.25)';">
+          View Programs
+        </a>
+
+        <a href="/contact/"
+           style="
+             background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.85);
+             color: #fff; padding: 14px 30px; border-radius: 2px; text-decoration: none; font-weight: 700;
+             backdrop-filter: blur(6px);
+           ">
+          Request Briefing
+        </a>
+      </div>
     </div>
   </section>
 
   <div class="content-wrapper">
 
     <!-- CAPABILITY STRIP -->
-    <div style="text-align: center; padding: 35px 0 40px; border-bottom: 1px solid #ececec; margin-bottom: 60px;">
-      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; font-size: 0.92em;">
-        <a href="/programs/" style="color: #12425c; text-decoration: none; font-weight: 600;">Programs</a>
-        <a href="/programs/coaching/" style="color: #12425c; text-decoration: none; font-weight: 600;">Coaching</a>
-        <a href="/programs/certification/" style="color: #12425c; text-decoration: none; font-weight: 600;">Certification</a>
-        <a href="/solutions/" style="color: #12425c; text-decoration: none; font-weight: 600;">Solutions</a>
-        <a href="/services/" style="color: #12425c; text-decoration: none; font-weight: 600;">Services</a>
-        <a href="/hrdcorp/" style="color: #12425c; text-decoration: none; font-weight: 600;">HRD Corp</a>
+    <div style="
+      text-align: center; padding: 28px 0 36px;
+      border-bottom: 1px solid #ececec; margin-bottom: 70px;
+    ">
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 30px; font-size: 0.92em;">
+        <a href="/programs/" style="color:#12425c; text-decoration:none; font-weight:600;">Programs</a>
+        <a href="/programs/coaching/" style="color:#12425c; text-decoration:none; font-weight:600;">Coaching</a>
+        <a href="/programs/certification/" style="color:#12425c; text-decoration:none; font-weight:600;">Certification</a>
+        <a href="/solutions/" style="color:#12425c; text-decoration:none; font-weight:600;">Solutions</a>
+        <a href="/services/" style="color:#12425c; text-decoration:none; font-weight:600;">Services</a>
+        <a href="/hrdcorp/" style="color:#12425c; text-decoration:none; font-weight:600;">HRD Corp</a>
       </div>
     </div>
 
     <!-- STATEMENT -->
-    <div style="max-width: 780px; margin: 0 auto 70px;">
-      <p style="font-size: 0.72em; letter-spacing: 2.5px; color: #999; text-transform: uppercase; margin-bottom: 18px;">
+    <div style="max-width: 820px; margin: 0 auto 80px;">
+      <p style="font-size: 0.72em; letter-spacing: 2.5px; color: #999; text-transform: uppercase; margin-bottom: 16px;">
         [ Built for the work ]
       </p>
-      <h2 style="color: #12425c; font-size: 2.3em; line-height: 1.2; margin-bottom: 20px; font-weight: 700;">
-        One team for learning and events.
+      <h2 style="
+        color: #12425c; font-size: clamp(1.8em, 4vw, 2.5em);
+        line-height: 1.15; margin-bottom: 18px; font-weight: 700;
+      ">
+        One architecture for learning and events.
       </h2>
       <p style="color: #555; font-size: 1.08em; line-height: 1.75; max-width: 640px;">
-        We design HRDC claimable programs and execute corporate events with the same standard:
-        clear objectives, controlled delivery, and practical outcomes.
+        We design HRDC claimable programs and execute corporate events through one coordinated pipeline —
+        clear objectives, controlled delivery, practical outcomes.
       </p>
     </div>
 
-    <!-- SYSTEMS / PILLARS -->
-    <div style="margin-bottom: 70px;">
-      <p style="font-size: 0.72em; letter-spacing: 2.5px; color: #999; text-transform: uppercase; margin-bottom: 30px;">
+    <!-- SYSTEMS -->
+    <div style="margin-bottom: 80px;">
+      <p style="font-size: 0.72em; letter-spacing: 2.5px; color: #999; text-transform: uppercase; margin-bottom: 28px;">
         [ Systems ]
       </p>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 40px;">
-        <div>
-          <h3 style="color: #12425c; font-size: 1.25em; margin-bottom: 10px;">Programs</h3>
-          <p style="color: #555; font-size: 0.95em; line-height: 1.7; margin-bottom: 14px;">
-            Public schedules. In-house pathways. Coaching. Certification. Built for workplace performance.
-          </p>
-          <a href="/programs/" style="color: #12425c; font-weight: 700; text-decoration: none; font-size: 0.92em;">Open Programs →</a>
-        </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px;">
+        
+        <a href="/programs/" style="text-decoration:none; color:inherit;">
+          <div style="
+            background: #fff; border: 1px solid #eee; border-radius: 10px;
+            padding: 28px; height: 100%;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+          "
+          onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 16px 40px rgba(18,66,92,0.08)'; this.style.borderColor='#dbe4ea';"
+          onmouseout="this.style.transform='none'; this.style.boxShadow='none'; this.style.borderColor='#eee';">
+            <div style="font-size: 0.72em; letter-spacing: 1.5px; color: #fd000c; margin-bottom: 10px;">01</div>
+            <h3 style="color:#12425c; font-size:1.25em; margin-bottom:10px;">Programs</h3>
+            <p style="color:#555; font-size:0.95em; line-height:1.7; margin-bottom:16px;">
+              Public schedules. In-house pathways. Coaching. Certification.
+            </p>
+            <span style="color:#12425c; font-weight:700; font-size:0.9em;">Open →</span>
+          </div>
+        </a>
 
-        <div>
-          <h3 style="color: #12425c; font-size: 1.25em; margin-bottom: 10px;">Solutions</h3>
-          <p style="color: #555; font-size: 0.95em; line-height: 1.7; margin-bottom: 14px;">
-            Corporate learning, team building, launches, networking, and ceremonies designed around outcomes.
-          </p>
-          <a href="/solutions/" style="color: #12425c; font-weight: 700; text-decoration: none; font-size: 0.92em;">Open Solutions →</a>
-        </div>
+        <a href="/solutions/" style="text-decoration:none; color:inherit;">
+          <div style="
+            background: #fff; border: 1px solid #eee; border-radius: 10px;
+            padding: 28px; height: 100%;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+          "
+          onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 16px 40px rgba(18,66,92,0.08)'; this.style.borderColor='#dbe4ea';"
+          onmouseout="this.style.transform='none'; this.style.boxShadow='none'; this.style.borderColor='#eee';">
+            <div style="font-size: 0.72em; letter-spacing: 1.5px; color: #fd000c; margin-bottom: 10px;">02</div>
+            <h3 style="color:#12425c; font-size:1.25em; margin-bottom:10px;">Solutions</h3>
+            <p style="color:#555; font-size:0.95em; line-height:1.7; margin-bottom:16px;">
+              Learning, team building, launches, networking, and ceremonies.
+            </p>
+            <span style="color:#12425c; font-weight:700; font-size:0.9em;">Open →</span>
+          </div>
+        </a>
 
-        <div>
-          <h3 style="color: #12425c; font-size: 1.25em; margin-bottom: 10px;">Services</h3>
-          <p style="color: #555; font-size: 0.95em; line-height: 1.7; margin-bottom: 14px;">
-            Design, logistics, media, materials, and operational support under one delivery line.
-          </p>
-          <a href="/services/" style="color: #12425c; font-weight: 700; text-decoration: none; font-size: 0.92em;">Open Services →</a>
-        </div>
+        <a href="/services/" style="text-decoration:none; color:inherit;">
+          <div style="
+            background: #fff; border: 1px solid #eee; border-radius: 10px;
+            padding: 28px; height: 100%;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+          "
+          onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 16px 40px rgba(18,66,92,0.08)'; this.style.borderColor='#dbe4ea';"
+          onmouseout="this.style.transform='none'; this.style.boxShadow='none'; this.style.borderColor='#eee';">
+            <div style="font-size: 0.72em; letter-spacing: 1.5px; color: #fd000c; margin-bottom: 10px;">03</div>
+            <h3 style="color:#12425c; font-size:1.25em; margin-bottom:10px;">Services</h3>
+            <p style="color:#555; font-size:0.95em; line-height:1.7; margin-bottom:16px;">
+              Design, logistics, media, materials, and operational control.
+            </p>
+            <span style="color:#12425c; font-weight:700; font-size:0.9em;">Open →</span>
+          </div>
+        </a>
+
       </div>
     </div>
 
-    <!-- DARK BAND -->
-    <div style="background: #0b1220; color: #fff; border-radius: 8px; padding: 55px 35px; margin-bottom: 70px;">
+    <!-- DARK MISSION BAND -->
+    <div style="
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(253,0,12,0.18), transparent 45%),
+        radial-gradient(ellipse at 90% 100%, rgba(30,64,100,0.35), transparent 40%),
+        #0b1220;
+      color: #fff; border-radius: 14px; padding: 58px 36px; margin-bottom: 80px;
+      box-shadow: 0 20px 50px rgba(11,18,32,0.18);
+    ">
       <p style="font-size: 0.72em; letter-spacing: 2.5px; color: #8b9bb4; text-transform: uppercase; margin-bottom: 16px;">
         [ Mission profile ]
       </p>
-      <h2 style="color: #ffffff; font-size: 1.9em; line-height: 1.25; margin-bottom: 28px; max-width: 700px;">
+      <h2 style="
+        color: #ffffff; font-size: clamp(1.6em, 3.5vw, 2.1em);
+        line-height: 1.2; margin-bottom: 18px; max-width: 700px;
+      ">
         Capability where teams are tested.
       </h2>
-      <p style="color: #c5d0e0; font-size: 1.02em; line-height: 1.7; max-width: 620px; margin-bottom: 35px;">
-        Training that holds up at work. Events that run with control. Support that stays practical from planning to delivery.
+      <p style="color: #c5d0e0; font-size: 1.02em; line-height: 1.7; max-width: 600px; margin-bottom: 36px;">
+        Training that holds up at work. Events that run with control.
+        Support that stays practical from planning to delivery.
       </p>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 24px; max-width: 820px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 24px; max-width: 860px;">
         <div>
           <div style="font-size: 0.95em; font-weight: 700; margin-bottom: 4px;">HRDC Ready</div>
           <div style="font-size: 0.85em; color: #8b9bb4;">Claimable pathways</div>
@@ -119,21 +200,32 @@ description: Circlex Consultancy builds resilient teams through HRDC-registered 
     </div>
 
     <!-- CONTACT -->
-    <div style="padding-bottom: 20px;">
+    <div style="padding-bottom: 10px;">
       <p style="font-size: 0.72em; letter-spacing: 2.5px; color: #999; text-transform: uppercase; margin-bottom: 14px;">
         [ Contact ]
       </p>
-      <h2 style="color: #12425c; font-size: 2.2em; margin-bottom: 12px; line-height: 1.2;">
+      <h2 style="color: #12425c; font-size: clamp(1.9em, 4vw, 2.4em); margin-bottom: 12px; line-height: 1.15;">
         Let’s talk.
       </h2>
-      <p style="color: #555; font-size: 1.05em; margin-bottom: 28px; max-width: 480px;">
+      <p style="color: #555; font-size: 1.05em; margin-bottom: 28px; max-width: 460px;">
         Programs, coaching, certification, or full event support.
       </p>
       <a href="/contact/"
-         style="background: #fd000c; color: #fff; padding: 14px 30px; border-radius: 2px; text-decoration: none; font-weight: 700; display: inline-block;">
+         style="
+           background: #fd000c; color: #fff; padding: 15px 32px; border-radius: 2px;
+           text-decoration: none; font-weight: 700; display: inline-block;
+           box-shadow: 0 12px 30px rgba(253,0,12,0.22);
+         ">
         Contact Us
       </a>
     </div>
 
   </div>
 </main>
+
+<style>
+@keyframes heroGlow {
+  0% { opacity: 0.7; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.05); }
+}
+</style>
