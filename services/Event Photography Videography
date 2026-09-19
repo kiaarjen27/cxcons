@@ -1,0 +1,146 @@
+---
+layout: default
+title: Event Photography & Videography
+description: Professional event photography and videography services by Circlex Consultancy — capturing key moments, brand presence, and high-quality visual content for corporate events in Malaysia.
+---
+
+<main>
+  <section id="hero">
+    <h1>Event Photography & Videography</h1>
+    <p>Capture the moments that matter. Professional visual coverage designed to document your event, elevate your brand, and create content you can use long after the day ends.</p>
+  </section>
+
+  <div class="content-wrapper">
+
+    <!-- Overview -->
+    <div class="card" style="border-left: 5px solid #12425c; text-align: left; margin-bottom: 40px;">
+      <h2 style="color: #12425c; font-size: 1.4em; border-bottom: 2px solid #eee; padding-bottom: 10px;">Professional Visual Coverage for Corporate Events</h2>
+      <p style="font-size: 0.95em; color: #555; line-height: 1.7;">
+        Strong events deserve strong documentation. Our photography and videography services are designed for corporate environments — from formal conferences and training sessions to product launches, award nights, and internal company celebrations.
+      </p>
+      <p style="font-size: 0.95em; color: #555; line-height: 1.7;">
+        We focus on clear storytelling, brand-aligned framing, and usable deliverables so your organization can share highlights internally, support marketing campaigns, and retain a professional record of the event.
+      </p>
+    </div>
+
+    <!-- Why Visual Coverage Matters -->
+    <div class="card" style="text-align: left;">
+      <h2 style="color: #12425c; font-size: 1.4em; border-bottom: 2px solid #eee; padding-bottom: 10px;">Why Event Visuals Matter</h2>
+      <ul style="padding-left: 20px; font-size: 0.95em; line-height: 1.9; color: #444;">
+        <li>Preserve key moments, speeches, and milestones for internal communication</li>
+        <li>Support post-event marketing with ready-to-use photo and video assets</li>
+        <li>Strengthen brand presence across social media, websites, and reports</li>
+        <li>Create a professional record for stakeholders, sponsors, and leadership teams</li>
+        <li>Increase the long-term value of every event investment</li>
+      </ul>
+    </div>
+
+    <!-- Service Capabilities Grid -->
+    <h2 style="text-align: center; color: #12425c; margin: 40px 0 20px;">Our Service Capabilities</h2>
+    <div class="grid">
+
+      <div class="card" style="text-align: center;">
+        <div style="font-size: 2em; margin-bottom: 10px;">📸</div>
+        <h3 style="margin-bottom: 10px; color: #12425c;">Event Photography</h3>
+        <p style="font-size: 0.9em; color: #555;">High-quality coverage of stage moments, audience engagement, VIP interactions, branding setups, and candid networking scenes.</p>
+      </div>
+
+      <div class="card" style="text-align: center;">
+        <div style="font-size: 2em; margin-bottom: 10px;">🎥</div>
+        <h3 style="margin-bottom: 10px; color: #12425c;">Event Videography</h3>
+        <p style="font-size: 0.9em; color: #555;">Full event documentation, highlight reels, speech coverage, and short-form content suitable for internal and external use.</p>
+      </div>
+
+      <div class="card" style="text-align: center;">
+        <div style="font-size: 2em; margin-bottom: 10px;">🎬</div>
+        <h3 style="margin-bottom: 10px; color: #12425c;">Highlight Films</h3>
+        <p style="font-size: 0.9em; color: #555;">Concise edited videos that capture the energy, key messages, and best moments of your event for faster sharing.</p>
+      </div>
+
+      <div class="card" style="text-align: center;">
+        <div style="font-size: 2em; margin-bottom: 10px;">🎤</div>
+        <h3 style="margin-bottom: 10px; color: #12425c;">Speaker & Stage Coverage</h3>
+        <p style="font-size: 0.9em; color: #555;">Clear capture of presentations, panel discussions, award moments, and official stage proceedings.</p>
+      </div>
+
+      <div class="card" style="text-align: center;">
+        <div style="font-size: 2em; margin-bottom: 10px;">🏢</div>
+        <h3 style="margin-bottom: 10px; color: #12425c;">Brand & Venue Documentation</h3>
+        <p style="font-size: 0.9em; color: #555;">Visual coverage of stage design, booth setups, signage, product displays, and branded environments.</p>
+      </div>
+
+      <div class="card" style="text-align: center;">
+        <div style="font-size: 2em; margin-bottom: 10px;">📱</div>
+        <h3 style="margin-bottom: 10px; color: #12425c;">Social-Ready Content</h3>
+        <p style="font-size: 0.9em; color: #555;">Selected stills and short clips prepared for LinkedIn, websites, internal newsletters, and campaign use.</p>
+      </div>
+
+    </div>
+
+    <!-- Suitable Events -->
+    <div class="card" style="text-align: left; margin-top: 40px;">
+      <h2 style="color: #12425c; font-size: 1.4em; border-bottom: 2px solid #eee; padding-bottom: 10px;">Ideal For</h2>
+      <ul style="padding-left: 20px; font-size: 0.95em; line-height: 1.9; color: #444;">
+        <li>Corporate conferences and leadership summits</li>
+        <li>Training programs, workshops, and seminars</li>
+        <li>Product launches and brand activations</li>
+        <li>Award ceremonies and recognition nights</li>
+        <li>Annual dinners, networking events, and internal celebrations</li>
+        <li>CSR events and community engagement activities</li>
+      </ul>
+    </div>
+
+    <!-- Deliverables -->
+    <div class="card" style="text-align: left;">
+      <h2 style="color: #12425c; font-size: 1.4em; border-bottom: 2px solid #eee; padding-bottom: 10px;">What You Receive</h2>
+      <ul style="padding-left: 20px; font-size: 0.95em; line-height: 1.9; color: #444;">
+        <li>Professionally captured event photographs</li>
+        <li>Edited highlight video or event summary film</li>
+        <li>Selected images optimized for web and social media use</li>
+        <li>Organized media delivery for easy internal distribution</li>
+        <li>Optional coverage packages based on event size and duration</li>
+      </ul>
+    </div>
+
+    <!-- Process -->
+    <div class="card" style="text-align: left;">
+      <h2 style="color: #12425c; font-size: 1.4em; border-bottom: 2px solid #eee; padding-bottom: 10px;">Our Process</h2>
+      <ol style="padding-left: 20px; font-size: 0.95em; line-height: 1.9; color: #444;">
+        <li>Briefing on event objectives, schedule, and priority moments</li>
+        <li>Coverage planning for stage, audience, branding, and key interactions</li>
+        <li>On-site photography and/or videography during the event</li>
+        <li>Selection and editing of final visual assets</li>
+        <li>Delivery of photos and videos ready for internal or marketing use</li>
+      </ol>
+    </div>
+
+    <!-- Why Work With Us -->
+    <div class="card" style="text-align: left;">
+      <h2 style="color: #12425c; font-size: 1.4em; border-bottom: 2px solid #eee; padding-bottom: 10px;">Why Work With Us</h2>
+      <ul style="padding-left: 20px; font-size: 0.95em; line-height: 1.9; color: #444;">
+        <li>Corporate-focused coverage with attention to brand presentation</li>
+        <li>Clear communication before, during, and after the event</li>
+        <li>Visual assets prepared for practical business use</li>
+        <li>Flexible packages for small sessions through large-scale events</li>
+        <li>One coordinated service team for smoother event execution</li>
+      </ul>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="card" style="text-align: center;">
+      <h2 style="color: #12425c; font-size: 1.3em; margin-bottom: 15px;">Let’s Capture Your Next Event</h2>
+      <p style="font-size: 0.95em; color: #555; margin-bottom: 20px;">
+        Share your event details and we will recommend a photography and videography package that fits your schedule and objectives.
+      </p>
+      <div style="text-align: center; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+        <a href="/contact/" class="subscribe-btn" style="background:#12425c; display:inline-block; padding: 12px 24px; color: white; text-decoration: none; border-radius: 4px; font-weight: 600;">
+          Contact Us
+        </a>
+        <a href="/request-custom-programs/" class="subscribe-btn" style="background:#334155; display:inline-block; padding: 12px 24px; color: white; text-decoration: none; border-radius: 4px; font-weight: 600;">
+          Request a Package
+        </a>
+      </div>
+    </div>
+
+  </div>
+</main>
