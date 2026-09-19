@@ -1,0 +1,257 @@
+---
+layout: default
+title: Program Finder
+description: Search CXCons corporate training modules and request program brochures. HRDC claimable learning pathways for Malaysian organizations.
+---
+
+<main>
+  <section id="hero">
+    <h1>Program Finder</h1>
+    <p>Search our training library. Request the brochure for any module in one step.</p>
+  </section>
+
+  <div class="content-wrapper">
+
+    <!-- Search -->
+    <div class="card" style="text-align: center; margin-bottom: 30px;">
+      <h2 style="color: #12425c; font-size: 1.4em; margin-bottom: 8px;">Find a Module</h2>
+      <p style="color: #666; font-size: 0.95em; margin-bottom: 20px;">
+        Type a keyword — title, topic, or skill area.
+      </p>
+      <input
+        type="text"
+        id="moduleSearch"
+        placeholder="e.g. Employment Act, Leadership, Supply Chain, ESG..."
+        style="
+          width: 100%;
+          max-width: 560px;
+          padding: 14px 18px;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          font-size: 1em;
+          outline: none;
+        "
+      >
+      <p id="searchStatus" style="margin-top: 12px; font-size: 0.85em; color: #888;"></p>
+    </div>
+
+    <!-- Featured / Sample modules (10–15 visible by default) -->
+    <div id="moduleGrid" class="grid" style="margin-bottom: 40px;">
+      <!-- filled by JS -->
+    </div>
+
+    <!-- Empty state -->
+    <div id="noResults" style="display: none; text-align: center; padding: 40px 20px; color: #777;">
+      <p style="font-size: 1.05em; margin-bottom: 8px;">No modules matched your search.</p>
+      <p style="font-size: 0.9em;">Try a broader keyword, or request a custom program below.</p>
+    </div>
+
+    <!-- Request form (same page) -->
+    <div id="requestPanel" class="card" style="display: none; border-left: 5px solid #12425c; text-align: left;">
+      <h2 style="color: #12425c; font-size: 1.35em; margin-bottom: 8px;">Request Brochure</h2>
+      <p style="color: #555; font-size: 0.95em; margin-bottom: 18px;">
+        Selected module: <strong id="selectedModuleName">—</strong>
+      </p>
+
+      <form id="brochureForm" style="display: grid; gap: 14px; max-width: 560px;">
+        <input type="hidden" id="moduleTitleField" name="module_title" value="">
+
+        <div>
+          <label style="display:block; font-size:0.85em; color:#444; margin-bottom:6px;">Full Name *</label>
+          <input type="text" name="full_name" required
+            style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:6px; font-size:0.95em;">
+        </div>
+
+        <div>
+          <label style="display:block; font-size:0.85em; color:#444; margin-bottom:6px;">Company *</label>
+          <input type="text" name="company" required
+            style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:6px; font-size:0.95em;">
+        </div>
+
+        <div>
+          <label style="display:block; font-size:0.85em; color:#444; margin-bottom:6px;">Corporate Email *</label>
+          <input type="email" name="email" required
+            style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:6px; font-size:0.95em;">
+        </div>
+
+        <div>
+          <label style="display:block; font-size:0.85em; color:#444; margin-bottom:6px;">Contact Number *</label>
+          <input type="tel" name="phone" required
+            style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:6px; font-size:0.95em;">
+        </div>
+
+        <div>
+          <label style="display:block; font-size:0.85em; color:#444; margin-bottom:6px;">Message (optional)</label>
+          <textarea name="message" rows="3"
+            style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:6px; font-size:0.95em; resize:vertical;"
+            placeholder="Preferred dates, group size, or other notes"></textarea>
+        </div>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:6px;">
+          <button type="submit"
+            style="background:#12425c; color:#fff; border:none; padding:12px 22px; border-radius:6px; font-weight:600; cursor:pointer;">
+            Send Brochure Request
+          </button>
+          <button type="button" id="cancelRequest"
+            style="background:#f3f4f6; color:#333; border:1px solid #ddd; padding:12px 18px; border-radius:6px; cursor:pointer;">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="card" style="text-align: center; margin-top: 30px;">
+      <h2 style="color: #12425c; font-size: 1.25em; margin-bottom: 10px;">Can’t find the right module?</h2>
+      <p style="color: #555; font-size: 0.95em; margin-bottom: 18px;">
+        We can design a custom program around your team’s objectives.
+      </p>
+      <a href="/request-custom-programs/"
+         style="background:#334155; color:#fff; padding:12px 24px; border-radius:6px; text-decoration:none; font-weight:600; display:inline-block;">
+        Request Custom Program
+      </a>
+    </div>
+
+  </div>
+</main>
+
+<script>
+/* =========================
+   DUMMY MODULE LIBRARY
+   Replace this list with your full ~600 titles later
+   ========================= */
+const ALL_MODULES = [
+  "Human Resources (HR) Advanced",
+  "Executive / Personal Assistant (PA) Advanced",
+  "21st Century Sales for Elite Achievers",
+  "Finance for Non-Finance Executives",
+  "Customer Service Coaching",
+  "Malaysia Mastering Employment Act",
+  "Strategic Supply Chain Management",
+  "Social & Emotional Intelligence",
+  "High Performance Team Building (1 Day)",
+  "High Performance Team Building (2 Days)",
+  "Communicate with Conviction",
+  "Safety Handling of Forklift Truck",
+  "OSHA Amendment Act 2022 Implementation",
+  "Executive Coaching – One to One",
+  "Introduction to Sustainability & ESG 101",
+  "Corporate Financial Modelling",
+  "Project Management Fundamentals",
+  "Stress Management at the Workplace",
+  "Corporate Governance & Risk Management",
+  "Sales Warrior Mindset",
+  "Effective Management of Discipline",
+  "5 Why Analysis",
+  "5S Internal Audit",
+  "Fatigue Management",
+  "Ergonomics Awareness",
+  "8D Problem Solving & GD&T",
+  "MSA and Statistical Process Control",
+  "FMEA and Control Plan",
+  "IFRS Sustainability Disclosure Standards",
+  "Prompt Engineering for Automotive Industry",
+  "Waste Management",
+  "5S & Workplace Organisation",
+  "7 QC Tools",
+  "CAPA & Root Cause Analysis",
+  "Chemical Handling & Spillage Control",
+  "Emergency Response Plan (ERP) & ERT",
+  "HACCP Awareness & Internal Audit",
+  "ISO 9001:2015 & Internal Audit",
+  "KAIZEN Continuous Improvement",
+  "HAZMAT Handling & Emergency Response",
+  "Employment Act & Statutory Deduction",
+  "Empowered Leadership",
+  "Benefits in Kind (BIK)",
+  "ISO 13485 MD-QMS Internal Auditor"
+];
+
+/* Show only 12 featured modules by default */
+const FEATURED_COUNT = 12;
+
+const grid = document.getElementById("moduleGrid");
+const searchInput = document.getElementById("moduleSearch");
+const searchStatus = document.getElementById("searchStatus");
+const noResults = document.getElementById("noResults");
+const requestPanel = document.getElementById("requestPanel");
+const selectedModuleName = document.getElementById("selectedModuleName");
+const moduleTitleField = document.getElementById("moduleTitleField");
+const cancelRequest = document.getElementById("cancelRequest");
+const brochureForm = document.getElementById("brochureForm");
+
+function pickFeatured() {
+  // simple stable sample from the list
+  return ALL_MODULES.slice(0, FEATURED_COUNT);
+}
+
+function renderModules(list) {
+  grid.innerHTML = "";
+  if (!list.length) {
+    noResults.style.display = "block";
+    return;
+  }
+  noResults.style.display = "none";
+
+  list.forEach(title => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.style.textAlign = "left";
+    card.innerHTML = `
+      <h3 style="color:#12425c; font-size:1.05em; margin:0 0 10px; line-height:1.35;">${title}</h3>
+      <p style="color:#666; font-size:0.88em; margin:0 0 16px;">HRDC claimable module · Brochure available on request</p>
+      <button type="button"
+        style="background:#12425c; color:#fff; border:none; padding:8px 14px; border-radius:6px; font-size:0.85em; font-weight:600; cursor:pointer;">
+        Request Brochure
+      </button>
+    `;
+    card.querySelector("button").addEventListener("click", () => openRequest(title));
+    grid.appendChild(card);
+  });
+}
+
+function openRequest(title) {
+  selectedModuleName.textContent = title;
+  moduleTitleField.value = title;
+  requestPanel.style.display = "block";
+  requestPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function closeRequest() {
+  requestPanel.style.display = "none";
+  brochureForm.reset();
+  moduleTitleField.value = "";
+  selectedModuleName.textContent = "—";
+}
+
+cancelRequest.addEventListener("click", closeRequest);
+
+searchInput.addEventListener("input", function () {
+  const term = this.value.trim().toLowerCase();
+
+  if (!term) {
+    renderModules(pickFeatured());
+    searchStatus.textContent = `Showing ${FEATURED_COUNT} featured modules`;
+    return;
+  }
+
+  const results = ALL_MODULES.filter(m => m.toLowerCase().includes(term));
+  renderModules(results);
+  searchStatus.textContent = results.length
+    ? `${results.length} module${results.length > 1 ? "s" : ""} found`
+    : "No matches";
+});
+
+/* Form submit – replace with your Google Apps Script URL later */
+brochureForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const data = new FormData(brochureForm);
+  // Temporary success behaviour
+  alert("Request received for: " + data.get("module_title") + "\nWe will send the brochure shortly.");
+  closeRequest();
+});
+
+/* Initial load */
+renderModules(pickFeatured());
+searchStatus.textContent = `Showing ${FEATURED_COUNT} featured modules · Search to explore the full library`;
+</script>
