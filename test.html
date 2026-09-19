@@ -7,56 +7,50 @@ description: Circlex Consultancy builds resilient teams through HRDC-registered 
 <main>
 
   <!-- ================= HERO ================= -->
-  <section id="hero" style="position: relative; overflow: hidden; min-height: 88vh; display: flex; align-items: center; justify-content: center;">
-    
-    <!-- Ambient light layers (CSS only) -->
+  <section id="hero" style="
+    position: relative; overflow: hidden;
+    min-height: 92vh; display: flex; align-items: center; justify-content: center;
+  ">
+
+    <!-- Layered ambient light -->
     <div style="
       position: absolute; inset: 0; pointer-events: none;
       background:
-        radial-gradient(ellipse at 20% 15%, rgba(253,0,12,0.22), transparent 42%),
-        radial-gradient(ellipse at 85% 75%, rgba(18,66,92,0.28), transparent 46%),
-        radial-gradient(ellipse at 50% 100%, rgba(0,0,0,0.35), transparent 55%);
-      animation: ambientShift 14s ease-in-out infinite alternate;
+        radial-gradient(ellipse at 18% 12%, rgba(253,0,12,0.26), transparent 40%),
+        radial-gradient(ellipse at 82% 70%, rgba(18,66,92,0.32), transparent 44%),
+        radial-gradient(ellipse at 50% 110%, rgba(0,0,0,0.45), transparent 55%);
+      animation: ambientShift 16s ease-in-out infinite alternate;
     "></div>
 
-    <div style="position: relative; z-index: 2; text-align: center; padding: 40px 20px; max-width: 980px;">
+    <!-- Fine grain overlay for expensive texture -->
+    <div style="
+      position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%22120%22 height=%22120%22 filter=%22url(%23n)%22 opacity=%220.55%22/></svg>');
+    "></div>
+
+    <div style="position: relative; z-index: 2; text-align: center; padding: 50px 20px; max-width: 1000px;">
       <p style="
-        font-size: 0.7em; letter-spacing: 3.5px; text-transform: uppercase;
-        color: rgba(255,255,255,0.65); margin-bottom: 22px; font-weight: 500;
+        font-size: 0.68em; letter-spacing: 4px; text-transform: uppercase;
+        color: rgba(255,255,255,0.62); margin-bottom: 26px; font-weight: 500;
       ">
         Circlex Consultancy · Malaysia
       </p>
 
-      <h1 class="home-hero-title" style="margin-bottom: 22px;">
+      <h1 class="home-hero-title" style="margin-bottom: 24px; letter-spacing: -1.5px;">
         Resilient teams.<br>Stronger organizations.
       </h1>
 
       <p style="
-        max-width: 640px; margin: 0 auto 38px;
-        font-size: 1.15em; color: #e9e9e9; line-height: 1.7;
+        max-width: 600px; margin: 0 auto 42px;
+        font-size: 1.12em; color: rgba(255,255,255,0.88); line-height: 1.7;
+        font-weight: 400;
       ">
-        HRDC-registered programs and strategic events designed for capability under real workplace pressure.
+        HRDC-registered programs and strategic events designed for capability under pressure.
       </p>
 
       <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
-        <a href="/programs/"
-           style="
-             background: #fd000c; color: #fff; padding: 15px 32px;
-             border-radius: 2px; text-decoration: none; font-weight: 700;
-             box-shadow: 0 12px 36px rgba(253,0,12,0.28);
-           ">
-          View Programs
-        </a>
-        <a href="/contact/"
-           style="
-             background: rgba(255,255,255,0.07);
-             border: 1px solid rgba(255,255,255,0.85);
-             color: #fff; padding: 15px 32px; border-radius: 2px;
-             text-decoration: none; font-weight: 700;
-             backdrop-filter: blur(8px);
-           ">
-          Request Briefing
-        </a>
+        <a href="/programs/" class="btn-primary-lux">View Programs</a>
+        <a href="/contact/" class="btn-ghost-lux">Request Briefing</a>
       </div>
     </div>
   </section>
@@ -66,33 +60,32 @@ description: Circlex Consultancy builds resilient teams through HRDC-registered 
 
     <!-- ================= CAPABILITY STRIP ================= -->
     <div style="
-      text-align: center; padding: 34px 0 42px;
-      border-bottom: 1px solid #ececec; margin-bottom: 80px;
+      text-align: center; padding: 38px 0 46px;
+      border-bottom: 1px solid #ececec; margin-bottom: 90px;
     ">
-      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 34px; font-size: 0.93em;">
-        <a href="/programs/" style="color:#12425c; text-decoration:none; font-weight:600;">Programs</a>
-        <a href="/programs/coaching/" style="color:#12425c; text-decoration:none; font-weight:600;">Coaching</a>
-        <a href="/programs/certification/" style="color:#12425c; text-decoration:none; font-weight:600;">Certification</a>
-        <a href="/solutions/" style="color:#12425c; text-decoration:none; font-weight:600;">Solutions</a>
-        <a href="/services/" style="color:#12425c; text-decoration:none; font-weight:600;">Services</a>
-        <a href="/hrdcorp/" style="color:#12425c; text-decoration:none; font-weight:600;">HRD Corp</a>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 36px; font-size: 0.92em;">
+        <a href="/programs/" class="nav-lux">Programs</a>
+        <a href="/programs/coaching/" class="nav-lux">Coaching</a>
+        <a href="/programs/certification/" class="nav-lux">Certification</a>
+        <a href="/solutions/" class="nav-lux">Solutions</a>
+        <a href="/services/" class="nav-lux">Services</a>
+        <a href="/hrdcorp/" class="nav-lux">HRD Corp</a>
       </div>
     </div>
 
 
     <!-- ================= POSITIONING ================= -->
-    <div style="max-width: 860px; margin: 0 auto 90px;">
-      <p style="font-size: 0.72em; letter-spacing: 2.8px; color: #999; text-transform: uppercase; margin-bottom: 18px;">
-        [ Built for the work ]
-      </p>
+    <div style="max-width: 880px; margin: 0 auto 100px;">
+      <p class="label-lux">[ Built for the work ]</p>
       <h2 style="
         color: #12425c;
-        font-size: clamp(1.9em, 4.2vw, 2.7em);
-        line-height: 1.12; margin-bottom: 22px; font-weight: 700;
+        font-size: clamp(2em, 4.4vw, 2.9em);
+        line-height: 1.1; margin: 0 0 24px; font-weight: 700;
+        letter-spacing: -0.8px;
       ">
         One architecture for learning and events.
       </h2>
-      <p style="color: #555; font-size: 1.1em; line-height: 1.8; max-width: 680px;">
+      <p style="color: #555; font-size: 1.12em; line-height: 1.8; max-width: 680px;">
         CXCons designs HRDC claimable programs and executes corporate events through a single coordinated pipeline —
         clear objectives, controlled delivery, and practical outcomes that hold up after the session ends.
       </p>
@@ -100,43 +93,35 @@ description: Circlex Consultancy builds resilient teams through HRDC-registered 
 
 
     <!-- ================= SYSTEMS ================= -->
-    <div style="margin-bottom: 90px;">
-      <p style="font-size: 0.72em; letter-spacing: 2.8px; color: #999; text-transform: uppercase; margin-bottom: 28px;">
-        [ Systems ]
-      </p>
+    <div style="margin-bottom: 100px;">
+      <p class="label-lux">[ Systems ]</p>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px;">
 
         <a href="/programs/" style="text-decoration:none; color:inherit;">
-          <div class="premium-card">
-            <div style="font-size: 0.72em; letter-spacing: 1.6px; color: #fd000c; margin-bottom: 12px;">01</div>
-            <h3 style="color:#12425c; font-size:1.3em; margin-bottom:12px;">Programs</h3>
-            <p style="color:#555; font-size:0.96em; line-height:1.7; margin-bottom:18px;">
-              Public schedules. In-house pathways. Coaching. Certification. Built for measurable capability growth.
-            </p>
-            <span style="color:#12425c; font-weight:700; font-size:0.9em;">Open Programs →</span>
+          <div class="lux-card">
+            <div class="lux-index">01</div>
+            <h3>Programs</h3>
+            <p>Public schedules. In-house pathways. Coaching. Certification. Built for measurable capability growth.</p>
+            <span class="lux-link">Open Programs →</span>
           </div>
         </a>
 
         <a href="/solutions/" style="text-decoration:none; color:inherit;">
-          <div class="premium-card">
-            <div style="font-size: 0.72em; letter-spacing: 1.6px; color: #fd000c; margin-bottom: 12px;">02</div>
-            <h3 style="color:#12425c; font-size:1.3em; margin-bottom:12px;">Solutions</h3>
-            <p style="color:#555; font-size:0.96em; line-height:1.7; margin-bottom:18px;">
-              Corporate learning, team building, launches, networking, and ceremonies designed around outcomes.
-            </p>
-            <span style="color:#12425c; font-weight:700; font-size:0.9em;">Open Solutions →</span>
+          <div class="lux-card">
+            <div class="lux-index">02</div>
+            <h3>Solutions</h3>
+            <p>Corporate learning, team building, launches, networking, and ceremonies designed around outcomes.</p>
+            <span class="lux-link">Open Solutions →</span>
           </div>
         </a>
 
         <a href="/services/" style="text-decoration:none; color:inherit;">
-          <div class="premium-card">
-            <div style="font-size: 0.72em; letter-spacing: 1.6px; color: #fd000c; margin-bottom: 12px;">03</div>
-            <h3 style="color:#12425c; font-size:1.3em; margin-bottom:12px;">Services</h3>
-            <p style="color:#555; font-size:0.96em; line-height:1.7; margin-bottom:18px;">
-              Design, logistics, media, materials, and operational support under one delivery line.
-            </p>
-            <span style="color:#12425c; font-weight:700; font-size:0.9em;">Open Services →</span>
+          <div class="lux-card">
+            <div class="lux-index">03</div>
+            <h3>Services</h3>
+            <p>Design, logistics, media, materials, and operational support under one delivery line.</p>
+            <span class="lux-link">Open Services →</span>
           </div>
         </a>
 
@@ -145,33 +130,24 @@ description: Circlex Consultancy builds resilient teams through HRDC-registered 
 
 
     <!-- ================= MISSION BAND ================= -->
-    <div style="
-      background:
-        radial-gradient(ellipse at 15% 0%, rgba(253,0,12,0.20), transparent 42%),
-        radial-gradient(ellipse at 90% 100%, rgba(30,64,100,0.38), transparent 45%),
-        #0b1220;
-      color: #fff; border-radius: 16px; padding: 64px 40px;
-      margin-bottom: 90px;
-      box-shadow: 0 24px 60px rgba(11,18,32,0.18);
-    ">
-      <p style="font-size: 0.72em; letter-spacing: 2.8px; color: #8b9bb4; text-transform: uppercase; margin-bottom: 16px;">
-        [ Mission profile ]
-      </p>
+    <div class="mission-lux">
+      <p class="label-lux" style="color:#8b9bb4;">[ Mission profile ]</p>
 
       <h2 style="
         color: #ffffff;
-        font-size: clamp(1.7em, 3.6vw, 2.3em);
-        line-height: 1.18; margin-bottom: 18px; max-width: 720px;
+        font-size: clamp(1.8em, 3.8vw, 2.5em);
+        line-height: 1.12; margin: 0 0 20px; max-width: 740px;
+        letter-spacing: -0.5px;
       ">
         Capability where teams are tested.
       </h2>
 
-      <p style="color: #c5d0e0; font-size: 1.05em; line-height: 1.75; max-width: 620px; margin-bottom: 40px;">
+      <p style="color: #c5d0e0; font-size: 1.06em; line-height: 1.75; max-width: 620px; margin-bottom: 44px;">
         Training that holds up at work. Events that run with control.
         Support that stays practical from planning through live delivery.
       </p>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 28px; max-width: 900px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 28px; max-width: 920px;">
         <div>
           <div style="font-size: 1em; font-weight: 700; margin-bottom: 5px;">HRDC Ready</div>
           <div style="font-size: 0.88em; color: #8b9bb4;">Claimable pathways</div>
@@ -193,104 +169,91 @@ description: Circlex Consultancy builds resilient teams through HRDC-registered 
 
 
     <!-- ================= SELECTED FOCUS ================= -->
-    <div style="margin-bottom: 90px;">
-      <p style="font-size: 0.72em; letter-spacing: 2.8px; color: #999; text-transform: uppercase; margin-bottom: 18px;">
-        [ Selected focus ]
-      </p>
+    <div style="margin-bottom: 100px;">
+      <p class="label-lux">[ Selected focus ]</p>
       <h2 style="
         color: #12425c;
-        font-size: clamp(1.6em, 3.2vw, 2.1em);
-        line-height: 1.2; margin-bottom: 34px; max-width: 700px;
+        font-size: clamp(1.7em, 3.3vw, 2.2em);
+        line-height: 1.15; margin: 0 0 36px; max-width: 700px;
+        letter-spacing: -0.4px;
       ">
         Where organizations usually start with us.
       </h2>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px;">
-        <div class="focus-item">
-          <h3 style="color:#12425c; font-size:1.05em; margin-bottom:8px;">Leadership & Management</h3>
-          <p style="color:#666; font-size:0.92em; line-height:1.6;">Capability building for supervisors, managers, and rising leaders.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+        <div class="focus-lux">
+          <h3>Leadership & Management</h3>
+          <p>Capability building for supervisors, managers, and rising leaders.</p>
         </div>
-        <div class="focus-item">
-          <h3 style="color:#12425c; font-size:1.05em; margin-bottom:8px;">HR & Compliance</h3>
-          <p style="color:#666; font-size:0.92em; line-height:1.6;">Employment law, workplace standards, and practical compliance training.</p>
+        <div class="focus-lux">
+          <h3>HR & Compliance</h3>
+          <p>Employment law, workplace standards, and practical compliance training.</p>
         </div>
-        <div class="focus-item">
-          <h3 style="color:#12425c; font-size:1.05em; margin-bottom:8px;">Team Performance</h3>
-          <p style="color:#666; font-size:0.92em; line-height:1.6;">Team building and collaboration programs designed for measurable impact.</p>
+        <div class="focus-lux">
+          <h3>Team Performance</h3>
+          <p>Team building and collaboration programs designed for measurable impact.</p>
         </div>
-        <div class="focus-item">
-          <h3 style="color:#12425c; font-size:1.05em; margin-bottom:8px;">Corporate Events</h3>
-          <p style="color:#666; font-size:0.92em; line-height:1.6;">Launches, dinners, ceremonies, and multi-stakeholder event execution.</p>
+        <div class="focus-lux">
+          <h3>Corporate Events</h3>
+          <p>Launches, dinners, ceremonies, and multi-stakeholder event execution.</p>
         </div>
       </div>
     </div>
 
 
-    <!-- ================= PROCESS ================= -->
-    <div style="margin-bottom: 90px;">
-      <p style="font-size: 0.72em; letter-spacing: 2.8px; color: #999; text-transform: uppercase; margin-bottom: 18px;">
-        [ Operating model ]
-      </p>
+    <!-- ================= OPERATING MODEL ================= -->
+    <div style="margin-bottom: 100px;">
+      <p class="label-lux">[ Operating model ]</p>
       <h2 style="
         color: #12425c;
-        font-size: clamp(1.6em, 3.2vw, 2.1em);
-        line-height: 1.2; margin-bottom: 34px;
+        font-size: clamp(1.7em, 3.3vw, 2.2em);
+        line-height: 1.15; margin: 0 0 36px;
+        letter-spacing: -0.4px;
       ">
         From brief to delivery.
       </h2>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 26px;">
         <div>
-          <div style="font-size:0.8em; color:#fd000c; font-weight:700; margin-bottom:8px;">01</div>
-          <h3 style="color:#12425c; font-size:1.05em; margin-bottom:8px;">Brief</h3>
-          <p style="color:#666; font-size:0.92em; line-height:1.6;">Define objectives, audience, constraints, and success criteria.</p>
+          <div style="font-size:0.78em; color:#fd000c; font-weight:700; letter-spacing:1px; margin-bottom:10px;">01</div>
+          <h3 style="color:#12425c; font-size:1.08em; margin-bottom:8px;">Brief</h3>
+          <p style="color:#666; font-size:0.93em; line-height:1.65;">Define objectives, audience, constraints, and success criteria.</p>
         </div>
         <div>
-          <div style="font-size:0.8em; color:#fd000c; font-weight:700; margin-bottom:8px;">02</div>
-          <h3 style="color:#12425c; font-size:1.05em; margin-bottom:8px;">Design</h3>
-          <p style="color:#666; font-size:0.92em; line-height:1.6;">Shape the program or event architecture around practical outcomes.</p>
+          <div style="font-size:0.78em; color:#fd000c; font-weight:700; letter-spacing:1px; margin-bottom:10px;">02</div>
+          <h3 style="color:#12425c; font-size:1.08em; margin-bottom:8px;">Design</h3>
+          <p style="color:#666; font-size:0.93em; line-height:1.65;">Shape the program or event architecture around practical outcomes.</p>
         </div>
         <div>
-          <div style="font-size:0.8em; color:#fd000c; font-weight:700; margin-bottom:8px;">03</div>
-          <h3 style="color:#12425c; font-size:1.05em; margin-bottom:8px;">Coordinate</h3>
-          <p style="color:#666; font-size:0.92em; line-height:1.6;">Align people, materials, vendors, and timing into one controlled plan.</p>
+          <div style="font-size:0.78em; color:#fd000c; font-weight:700; letter-spacing:1px; margin-bottom:10px;">03</div>
+          <h3 style="color:#12425c; font-size:1.08em; margin-bottom:8px;">Coordinate</h3>
+          <p style="color:#666; font-size:0.93em; line-height:1.65;">Align people, materials, vendors, and timing into one controlled plan.</p>
         </div>
         <div>
-          <div style="font-size:0.8em; color:#fd000c; font-weight:700; margin-bottom:8px;">04</div>
-          <h3 style="color:#12425c; font-size:1.05em; margin-bottom:8px;">Deliver</h3>
-          <p style="color:#666; font-size:0.92em; line-height:1.6;">Execute live with clarity, then close with usable outputs and follow-through.</p>
+          <div style="font-size:0.78em; color:#fd000c; font-weight:700; letter-spacing:1px; margin-bottom:10px;">04</div>
+          <h3 style="color:#12425c; font-size:1.08em; margin-bottom:8px;">Deliver</h3>
+          <p style="color:#666; font-size:0.93em; line-height:1.65;">Execute live with clarity, then close with usable outputs and follow-through.</p>
         </div>
       </div>
     </div>
 
 
     <!-- ================= FINAL CTA ================= -->
-    <div style="
-      border-top: 1px solid #ececec;
-      padding-top: 70px; padding-bottom: 20px;
-    ">
-      <p style="font-size: 0.72em; letter-spacing: 2.8px; color: #999; text-transform: uppercase; margin-bottom: 16px;">
-        [ Contact ]
-      </p>
+    <div style="border-top: 1px solid #ececec; padding-top: 80px; padding-bottom: 30px;">
+      <p class="label-lux">[ Contact ]</p>
       <h2 style="
         color: #12425c;
-        font-size: clamp(2em, 4.5vw, 2.8em);
-        margin-bottom: 14px; line-height: 1.1;
+        font-size: clamp(2.2em, 5vw, 3.1em);
+        margin: 0 0 16px; line-height: 1.05;
+        letter-spacing: -1px;
       ">
         Let’s talk.
       </h2>
-      <p style="color: #555; font-size: 1.08em; margin-bottom: 30px; max-width: 520px; line-height: 1.7;">
+      <p style="color: #555; font-size: 1.1em; margin-bottom: 34px; max-width: 520px; line-height: 1.7;">
         Programs, coaching, certification, or full event support.
         Tell us what you need to move next.
       </p>
-      <a href="/contact/"
-         style="
-           background: #fd000c; color: #fff; padding: 16px 34px; border-radius: 2px;
-           text-decoration: none; font-weight: 700; display: inline-block;
-           box-shadow: 0 14px 34px rgba(253,0,12,0.24);
-         ">
-        Contact Us
-      </a>
+      <a href="/contact/" class="btn-primary-lux" style="padding: 16px 36px;">Contact Us</a>
     </div>
 
   </div>
@@ -299,28 +262,130 @@ description: Circlex Consultancy builds resilient teams through HRDC-registered 
 
 <style>
 @keyframes ambientShift {
-  0% { opacity: 0.75; transform: scale(1); }
-  100% { opacity: 1; transform: scale(1.06); }
+  0% { opacity: 0.72; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.07); }
 }
 
-.premium-card {
+.label-lux {
+  font-size: 0.7em;
+  letter-spacing: 2.8px;
+  color: #999;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.nav-lux {
+  color: #12425c;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.2s ease;
+}
+.nav-lux:hover { color: #fd000c; }
+
+.btn-primary-lux {
+  background: #fd000c;
+  color: #fff;
+  padding: 15px 32px;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-block;
+  box-shadow: 0 14px 40px rgba(253,0,12,0.28);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.btn-primary-lux:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 48px rgba(253,0,12,0.36);
+}
+
+.btn-ghost-lux {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.88);
+  color: #fff;
+  padding: 15px 32px;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-block;
+  backdrop-filter: blur(10px);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.btn-ghost-lux:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-2px);
+}
+
+.lux-card {
   background: #fff;
-  border: 1px solid #eee;
-  border-radius: 12px;
-  padding: 30px;
+  border: 1px solid #ececec;
+  border-radius: 14px;
+  padding: 32px;
   height: 100%;
-  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
-.premium-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 18px 44px rgba(18,66,92,0.09);
-  border-color: #d7e2ea;
+.lux-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 50px rgba(18,66,92,0.10);
+  border-color: #d5e0e8;
+}
+.lux-card h3 {
+  color: #12425c;
+  font-size: 1.32em;
+  margin: 0 0 12px;
+}
+.lux-card p {
+  color: #555;
+  font-size: 0.96em;
+  line-height: 1.7;
+  margin: 0 0 18px;
+}
+.lux-index {
+  font-size: 0.72em;
+  letter-spacing: 1.6px;
+  color: #fd000c;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.lux-link {
+  color: #12425c;
+  font-weight: 700;
+  font-size: 0.9em;
 }
 
-.focus-item {
-  background: #f8fafc;
-  border: 1px solid #eef2f6;
-  border-radius: 10px;
-  padding: 22px;
+.mission-lux {
+  background:
+    radial-gradient(ellipse at 12% 0%, rgba(253,0,12,0.22), transparent 42%),
+    radial-gradient(ellipse at 90% 100%, rgba(30,64,100,0.40), transparent 45%),
+    #0b1220;
+  color: #fff;
+  border-radius: 18px;
+  padding: 70px 42px;
+  margin-bottom: 100px;
+  box-shadow: 0 28px 70px rgba(11,18,32,0.20);
+}
+
+.focus-lux {
+  background: linear-gradient(180deg, #fbfcfd 0%, #f7f9fb 100%);
+  border: 1px solid #e8eef3;
+  border-radius: 12px;
+  padding: 24px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.focus-lux:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(18,66,92,0.06);
+}
+.focus-lux h3 {
+  color: #12425c;
+  font-size: 1.05em;
+  margin: 0 0 8px;
+}
+.focus-lux p {
+  color: #666;
+  font-size: 0.92em;
+  line-height: 1.6;
+  margin: 0;
 }
 </style>
