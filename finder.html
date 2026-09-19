@@ -7,107 +7,117 @@ description: Search CXCons corporate training modules and request program brochu
 <main>
   <section id="hero">
     <h1>Program Finder</h1>
-    <p>Search our training library. Request the brochure for any module in one step.</p>
+    <p>Search our training library and request a brochure in one step.</p>
   </section>
 
   <div class="content-wrapper">
 
-    <!-- Search -->
-    <div class="card" style="text-align: center; margin-bottom: 30px;">
-      <h2 style="color: #12425c; font-size: 1.4em; margin-bottom: 8px;">Find a Module</h2>
-      <p style="color: #666; font-size: 0.95em; margin-bottom: 20px;">
-        Type a keyword — title, topic, or skill area.
-      </p>
+    <!-- Search bar -->
+    <div style="margin-bottom: 24px;">
       <input
         type="text"
         id="moduleSearch"
-        placeholder="e.g. Employment Act, Leadership, Supply Chain, ESG..."
+        placeholder="Search modules by keyword..."
         style="
           width: 100%;
-          max-width: 560px;
-          padding: 14px 18px;
-          border: 1px solid #ddd;
+          max-width: 480px;
+          padding: 12px 16px;
+          border: 1px solid #d0d7de;
           border-radius: 8px;
-          font-size: 1em;
+          font-size: 0.95em;
           outline: none;
+          background: #fff;
         "
       >
-      <p id="searchStatus" style="margin-top: 12px; font-size: 0.85em; color: #888;"></p>
+      <p id="searchStatus" style="margin-top: 10px; font-size: 0.85em; color: #888;"></p>
     </div>
 
-    <!-- Featured / Sample modules (10–15 visible by default) -->
-    <div id="moduleGrid" class="grid" style="margin-bottom: 40px;">
-      <!-- filled by JS -->
+    <!-- Modern table -->
+    <div class="card" style="padding: 0; overflow: hidden;">
+      <div style="overflow-x: auto;">
+        <table id="moduleTable" style="
+          width: 100%;
+          border-collapse: collapse;
+          font-size: 0.92em;
+        ">
+          <thead>
+            <tr style="background: #12425c; color: #fff; text-align: left;">
+              <th style="padding: 14px 18px; font-weight: 600;">Module Title</th>
+              <th style="padding: 14px 18px; font-weight: 600; width: 140px;">Type</th>
+              <th style="padding: 14px 18px; font-weight: 600; width: 110px; text-align: center;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="moduleBody">
+            <!-- filled by JS -->
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <!-- Empty state -->
-    <div id="noResults" style="display: none; text-align: center; padding: 40px 20px; color: #777;">
-      <p style="font-size: 1.05em; margin-bottom: 8px;">No modules matched your search.</p>
-      <p style="font-size: 0.9em;">Try a broader keyword, or request a custom program below.</p>
+    <div id="noResults" style="display:none; text-align:center; padding: 36px 20px; color:#777;">
+      <p style="margin:0 0 6px; font-size:1em;">No modules matched your search.</p>
+      <p style="margin:0; font-size:0.9em;">Try another keyword, or request a custom program.</p>
     </div>
 
-    <!-- Request form (same page) -->
-    <div id="requestPanel" class="card" style="display: none; border-left: 5px solid #12425c; text-align: left;">
-      <h2 style="color: #12425c; font-size: 1.35em; margin-bottom: 8px;">Request Brochure</h2>
-      <p style="color: #555; font-size: 0.95em; margin-bottom: 18px;">
+    <!-- Request form -->
+    <div id="requestPanel" class="card" style="display:none; margin-top: 28px; border-left: 5px solid #12425c; text-align:left;">
+      <h2 style="color:#12425c; font-size:1.3em; margin:0 0 8px;">Request Brochure</h2>
+      <p style="color:#555; font-size:0.95em; margin:0 0 18px;">
         Selected module: <strong id="selectedModuleName">—</strong>
       </p>
 
-      <form id="brochureForm" style="display: grid; gap: 14px; max-width: 560px;">
+      <form id="brochureForm" style="display:grid; gap:14px; max-width:520px;">
         <input type="hidden" id="moduleTitleField" name="module_title" value="">
 
         <div>
           <label style="display:block; font-size:0.85em; color:#444; margin-bottom:6px;">Full Name *</label>
           <input type="text" name="full_name" required
-            style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:6px; font-size:0.95em;">
+            style="width:100%; padding:11px 13px; border:1px solid #ddd; border-radius:6px; font-size:0.95em;">
         </div>
 
         <div>
           <label style="display:block; font-size:0.85em; color:#444; margin-bottom:6px;">Company *</label>
           <input type="text" name="company" required
-            style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:6px; font-size:0.95em;">
+            style="width:100%; padding:11px 13px; border:1px solid #ddd; border-radius:6px; font-size:0.95em;">
         </div>
 
         <div>
           <label style="display:block; font-size:0.85em; color:#444; margin-bottom:6px;">Corporate Email *</label>
           <input type="email" name="email" required
-            style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:6px; font-size:0.95em;">
+            style="width:100%; padding:11px 13px; border:1px solid #ddd; border-radius:6px; font-size:0.95em;">
         </div>
 
         <div>
           <label style="display:block; font-size:0.85em; color:#444; margin-bottom:6px;">Contact Number *</label>
           <input type="tel" name="phone" required
-            style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:6px; font-size:0.95em;">
+            style="width:100%; padding:11px 13px; border:1px solid #ddd; border-radius:6px; font-size:0.95em;">
         </div>
 
         <div>
           <label style="display:block; font-size:0.85em; color:#444; margin-bottom:6px;">Message (optional)</label>
           <textarea name="message" rows="3"
-            style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:6px; font-size:0.95em; resize:vertical;"
-            placeholder="Preferred dates, group size, or other notes"></textarea>
+            style="width:100%; padding:11px 13px; border:1px solid #ddd; border-radius:6px; font-size:0.95em; resize:vertical;"
+            placeholder="Preferred dates, group size, or notes"></textarea>
         </div>
 
-        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:6px;">
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:4px;">
           <button type="submit"
-            style="background:#12425c; color:#fff; border:none; padding:12px 22px; border-radius:6px; font-weight:600; cursor:pointer;">
-            Send Brochure Request
+            style="background:#12425c; color:#fff; border:none; padding:11px 20px; border-radius:6px; font-weight:600; cursor:pointer;">
+            Send Request
           </button>
           <button type="button" id="cancelRequest"
-            style="background:#f3f4f6; color:#333; border:1px solid #ddd; padding:12px 18px; border-radius:6px; cursor:pointer;">
+            style="background:#f3f4f6; color:#333; border:1px solid #ddd; padding:11px 16px; border-radius:6px; cursor:pointer;">
             Cancel
           </button>
         </div>
       </form>
     </div>
 
-    <!-- Bottom CTA -->
-    <div class="card" style="text-align: center; margin-top: 30px;">
-      <h2 style="color: #12425c; font-size: 1.25em; margin-bottom: 10px;">Can’t find the right module?</h2>
-      <p style="color: #555; font-size: 0.95em; margin-bottom: 18px;">
-        We can design a custom program around your team’s objectives.
-      </p>
+    <!-- Bottom note -->
+    <div style="text-align:center; margin-top: 36px;">
+      <p style="color:#666; font-size:0.92em; margin-bottom:14px;">Can’t find the right module?</p>
       <a href="/request-custom-programs/"
-         style="background:#334155; color:#fff; padding:12px 24px; border-radius:6px; text-decoration:none; font-weight:600; display:inline-block;">
+         style="background:#334155; color:#fff; padding:11px 22px; border-radius:6px; text-decoration:none; font-weight:600; display:inline-block;">
         Request Custom Program
       </a>
     </div>
@@ -116,61 +126,57 @@ description: Search CXCons corporate training modules and request program brochu
 </main>
 
 <script>
-/* =========================
-   DUMMY MODULE LIBRARY
-   Replace this list with your full ~600 titles later
-   ========================= */
+/* Dummy modules — replace later with your full list */
 const ALL_MODULES = [
-  "Human Resources (HR) Advanced",
-  "Executive / Personal Assistant (PA) Advanced",
-  "21st Century Sales for Elite Achievers",
-  "Finance for Non-Finance Executives",
-  "Customer Service Coaching",
-  "Malaysia Mastering Employment Act",
-  "Strategic Supply Chain Management",
-  "Social & Emotional Intelligence",
-  "High Performance Team Building (1 Day)",
-  "High Performance Team Building (2 Days)",
-  "Communicate with Conviction",
-  "Safety Handling of Forklift Truck",
-  "OSHA Amendment Act 2022 Implementation",
-  "Executive Coaching – One to One",
-  "Introduction to Sustainability & ESG 101",
-  "Corporate Financial Modelling",
-  "Project Management Fundamentals",
-  "Stress Management at the Workplace",
-  "Corporate Governance & Risk Management",
-  "Sales Warrior Mindset",
-  "Effective Management of Discipline",
-  "5 Why Analysis",
-  "5S Internal Audit",
-  "Fatigue Management",
-  "Ergonomics Awareness",
-  "8D Problem Solving & GD&T",
-  "MSA and Statistical Process Control",
-  "FMEA and Control Plan",
-  "IFRS Sustainability Disclosure Standards",
-  "Prompt Engineering for Automotive Industry",
-  "Waste Management",
-  "5S & Workplace Organisation",
-  "7 QC Tools",
-  "CAPA & Root Cause Analysis",
-  "Chemical Handling & Spillage Control",
-  "Emergency Response Plan (ERP) & ERT",
-  "HACCP Awareness & Internal Audit",
-  "ISO 9001:2015 & Internal Audit",
-  "KAIZEN Continuous Improvement",
-  "HAZMAT Handling & Emergency Response",
-  "Employment Act & Statutory Deduction",
-  "Empowered Leadership",
-  "Benefits in Kind (BIK)",
-  "ISO 13485 MD-QMS Internal Auditor"
+  { title: "Human Resources (HR) Advanced", type: "In-House" },
+  { title: "Executive / Personal Assistant (PA) Advanced", type: "In-House" },
+  { title: "21st Century Sales for Elite Achievers", type: "Public" },
+  { title: "Finance for Non-Finance Executives", type: "Public" },
+  { title: "Customer Service Coaching", type: "Coaching" },
+  { title: "Malaysia Mastering Employment Act", type: "Public" },
+  { title: "Strategic Supply Chain Management", type: "In-House" },
+  { title: "Social & Emotional Intelligence", type: "Public" },
+  { title: "High Performance Team Building (1 Day)", type: "In-House" },
+  { title: "High Performance Team Building (2 Days)", type: "In-House" },
+  { title: "Communicate with Conviction", type: "Public" },
+  { title: "Safety Handling of Forklift Truck", type: "Public" },
+  { title: "OSHA Amendment Act 2022 Implementation", type: "Public" },
+  { title: "Executive Coaching – One to One", type: "Coaching" },
+  { title: "Introduction to Sustainability & ESG 101", type: "Public" },
+  { title: "Corporate Financial Modelling", type: "In-House" },
+  { title: "Project Management Fundamentals", type: "Public" },
+  { title: "Stress Management at the Workplace", type: "Public" },
+  { title: "Corporate Governance & Risk Management", type: "In-House" },
+  { title: "Sales Warrior Mindset", type: "Public" },
+  { title: "Effective Management of Discipline", type: "Public" },
+  { title: "5 Why Analysis", type: "Public" },
+  { title: "5S Internal Audit", type: "Public" },
+  { title: "Fatigue Management", type: "Public" },
+  { title: "Ergonomics Awareness", type: "Public" },
+  { title: "8D Problem Solving & GD&T", type: "In-House" },
+  { title: "MSA and Statistical Process Control", type: "In-House" },
+  { title: "FMEA and Control Plan", type: "In-House" },
+  { title: "IFRS Sustainability Disclosure Standards", type: "Public" },
+  { title: "Prompt Engineering for Automotive Industry", type: "Public" },
+  { title: "Waste Management", type: "Public" },
+  { title: "5S & Workplace Organisation", type: "Public" },
+  { title: "7 QC Tools", type: "Public" },
+  { title: "CAPA & Root Cause Analysis", type: "Public" },
+  { title: "Chemical Handling & Spillage Control", type: "Public" },
+  { title: "Emergency Response Plan (ERP) & ERT", type: "Public" },
+  { title: "HACCP Awareness & Internal Audit", type: "Public" },
+  { title: "ISO 9001:2015 & Internal Audit", type: "Public" },
+  { title: "KAIZEN Continuous Improvement", type: "Public" },
+  { title: "HAZMAT Handling & Emergency Response", type: "Public" },
+  { title: "Employment Act & Statutory Deduction", type: "Public" },
+  { title: "Empowered Leadership", type: "In-House" },
+  { title: "Benefits in Kind (BIK)", type: "Public" },
+  { title: "ISO 13485 MD-QMS Internal Auditor", type: "Public" }
 ];
 
-/* Show only 12 featured modules by default */
 const FEATURED_COUNT = 12;
 
-const grid = document.getElementById("moduleGrid");
+const body = document.getElementById("moduleBody");
 const searchInput = document.getElementById("moduleSearch");
 const searchStatus = document.getElementById("searchStatus");
 const noResults = document.getElementById("noResults");
@@ -179,34 +185,38 @@ const selectedModuleName = document.getElementById("selectedModuleName");
 const moduleTitleField = document.getElementById("moduleTitleField");
 const cancelRequest = document.getElementById("cancelRequest");
 const brochureForm = document.getElementById("brochureForm");
+const tableWrap = document.getElementById("moduleTable").parentElement.parentElement;
 
-function pickFeatured() {
-  // simple stable sample from the list
-  return ALL_MODULES.slice(0, FEATURED_COUNT);
-}
+function renderRows(list) {
+  body.innerHTML = "";
 
-function renderModules(list) {
-  grid.innerHTML = "";
   if (!list.length) {
+    tableWrap.style.display = "none";
     noResults.style.display = "block";
     return;
   }
+
+  tableWrap.style.display = "block";
   noResults.style.display = "none";
 
-  list.forEach(title => {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.style.textAlign = "left";
-    card.innerHTML = `
-      <h3 style="color:#12425c; font-size:1.05em; margin:0 0 10px; line-height:1.35;">${title}</h3>
-      <p style="color:#666; font-size:0.88em; margin:0 0 16px;">HRDC claimable module · Brochure available on request</p>
-      <button type="button"
-        style="background:#12425c; color:#fff; border:none; padding:8px 14px; border-radius:6px; font-size:0.85em; font-weight:600; cursor:pointer;">
-        Request Brochure
-      </button>
+  list.forEach((item, i) => {
+    const tr = document.createElement("tr");
+    tr.style.borderBottom = "1px solid #eee";
+    tr.style.background = i % 2 === 0 ? "#fff" : "#fafbfc";
+
+    tr.innerHTML = `
+      <td style="padding: 14px 18px; color:#222; font-weight:500;">${item.title}</td>
+      <td style="padding: 14px 18px; color:#666;">${item.type}</td>
+      <td style="padding: 12px 18px; text-align:center;">
+        <button type="button"
+          style="background:#12425c; color:#fff; border:none; padding:7px 12px; border-radius:5px; font-size:0.82em; font-weight:600; cursor:pointer; white-space:nowrap;">
+          Request
+        </button>
+      </td>
     `;
-    card.querySelector("button").addEventListener("click", () => openRequest(title));
-    grid.appendChild(card);
+
+    tr.querySelector("button").addEventListener("click", () => openRequest(item.title));
+    body.appendChild(tr);
   });
 }
 
@@ -230,28 +240,28 @@ searchInput.addEventListener("input", function () {
   const term = this.value.trim().toLowerCase();
 
   if (!term) {
-    renderModules(pickFeatured());
+    renderRows(ALL_MODULES.slice(0, FEATURED_COUNT));
     searchStatus.textContent = `Showing ${FEATURED_COUNT} featured modules`;
     return;
   }
 
-  const results = ALL_MODULES.filter(m => m.toLowerCase().includes(term));
-  renderModules(results);
+  const results = ALL_MODULES.filter(m =>
+    m.title.toLowerCase().includes(term) || m.type.toLowerCase().includes(term)
+  );
+  renderRows(results);
   searchStatus.textContent = results.length
     ? `${results.length} module${results.length > 1 ? "s" : ""} found`
     : "No matches";
 });
 
-/* Form submit – replace with your Google Apps Script URL later */
 brochureForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const data = new FormData(brochureForm);
-  // Temporary success behaviour
-  alert("Request received for: " + data.get("module_title") + "\nWe will send the brochure shortly.");
+  alert("Request received for: " + data.get("module_title"));
   closeRequest();
 });
 
 /* Initial load */
-renderModules(pickFeatured());
+renderRows(ALL_MODULES.slice(0, FEATURED_COUNT));
 searchStatus.textContent = `Showing ${FEATURED_COUNT} featured modules · Search to explore the full library`;
 </script>
