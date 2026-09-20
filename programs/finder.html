@@ -809,10 +809,15 @@ function renderRows(list) {
     const tr = document.createElement("tr");
     tr.style.borderBottom = "1px solid #eef1f4";
     tr.style.background = i % 2 === 0 ? "#fff" : "#f9fafb";
+    
+    // Apply blur class if the index is 20 or greater
+    if (i >= 20) {
+      tr.classList.add("blur-row");
+    }
 
     tr.innerHTML = `
       <td style="padding: 11px 16px; color:#1f2937; text-align:left; vertical-align:middle;">
-        ${title}
+        ${title} ${i >= 20 ? '<small style="color:#aaa;">(Locked)</small>' : ''}
       </td>
       <td style="padding: 10px 16px; text-align:right; vertical-align:middle; white-space:nowrap;">
         <button type="button"
