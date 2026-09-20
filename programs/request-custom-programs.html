@@ -59,7 +59,7 @@ description: Request a custom HRDC claimable training program tailored for your 
         Tell us what you need and we’ll design a tailored corporate training program for your team.
       </p>
 
-          <form id="contactForm">
+          <form id="customProgramForm">
       <!-- Contact Info -->
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
         <input type="text" name="name" placeholder="Your Name *" required>
@@ -103,6 +103,25 @@ description: Request a custom HRDC claimable training program tailored for your 
 </button>
     </form>
 
+      <script>
+const customProgramURL = "https://script.google.com/macros/s/AKfycbybRRZuFi2EHTidPHM_VSZ4y8FHCnRpT3aUbRoTjYc3UDYnjbhAUXa7BsVk4-OMQYENAA/exec";
+
+const customForm = document.getElementById("customProgramForm");
+if (customForm) {
+  customForm.addEventListener("submit", e => {
+    e.preventDefault();
+    fetch(customProgramURL, {
+      method: "POST",
+      body: new FormData(customForm)
+    })
+      .then(() => {
+        alert("Request submitted successfully!");
+        customForm.reset();
+      })
+      .catch(() => alert("Error sending request. Please try again."));
+  });
+}
+</script>
     </div>
 
   </div>
