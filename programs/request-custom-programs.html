@@ -59,46 +59,50 @@ description: Request a custom HRDC claimable training program tailored for your 
         Tell us what you need and we’ll design a tailored corporate training program for your team.
       </p>
 
-      <form id="contactForm">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
-          <input type="text" name="name" placeholder="Your Name *" required>
-          <input type="email" name="email" placeholder="Your Email *" required>
-          <input type="tel" name="phone" placeholder="Phone Number *" required>
-          <input type="text" name="company" placeholder="Company Name *" required>
-        </div>
+          <form id="contactForm">
+      <!-- Contact Info -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+        <input type="text" name="name" placeholder="Your Name *" required>
+        <input type="email" name="email" placeholder="Your Email *" required>
+        <input type="tel" name="phone" placeholder="Phone Number *" required>
+        <input type="text" name="company" placeholder="Company Name *" required>
+      </div>
 
-        <input type="text" name="program_title" placeholder="Program Title *" required style="margin-bottom: 16px; width: 100%;">
+      <!-- Program Title -->
+      <input type="text" name="program_title" placeholder="Program Title *" required style="margin-bottom: 16px;">
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
-          <input type="text" name="duration" placeholder="Duration (e.g. 1 Day / 2 Days)" required>
-          <input type="number" name="attendees" placeholder="Number of Attendees *" min="1" required>
-        </div>
+      <!-- Duration + Attendees -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+        <input type="text" name="duration" placeholder="Duration (e.g. 1 Day / 2 Days)" required>
+        <input type="number" name="attendees" placeholder="Number of Attendees *" min="1" required>
+      </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
-          <select name="payment" required>
-            <option value="">Payment Method *</option>
-            <option value="HRDC">HRDC Claimable</option>
-            <option value="Direct">Direct Payment</option>
-            <option value="To be discussed">To be discussed</option>
-          </select>
-          <input type="text" name="execution_date"
-                 placeholder="Preferred Date(s) — e.g. 15 Mar 2026 / 15–16 Mar / TBD">
-        </div>
+      <!-- Payment + Date -->
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+  <select name="payment" required>
+    <option value="">Payment Method *</option>
+    <option value="HRDC">HRDC Claimable</option>
+    <option value="Direct">Direct Payment</option>
+    <option value="To be discussed">To be discussed</option>
+  </select>
+  <input type="text" name="execution_date" 
+         placeholder="Preferred Date(s) — e.g. 15 Mar 2026 / 15–16 Mar / TBD">
+</div>
 
-        <input type="text" name="target_audience" placeholder="Target Audience (e.g. Managers, Sales Team)" style="margin-bottom: 16px; width: 100%;">
-        <input type="text" name="venue" placeholder="Preferred Venue (or type ‘Need assistance’)" style="margin-bottom: 16px; width: 100%;">
-        <input type="text" name="budget" placeholder="Estimated Budget (optional)" style="margin-bottom: 16px; width: 100%;">
 
-        <textarea name="objectives" rows="4" style="margin-bottom: 16px; width: 100%;"
-          placeholder="Program Objectives & Expected Outcomes&#10;(Briefly list what you want participants to achieve)"></textarea>
+      <input type="text" name="target_audience" placeholder="Target Audience (e.g. Managers, Sales Team)" style="margin-bottom: 16px;">
+      <input type="text" name="venue" placeholder="Preferred Venue (or type ‘Need assistance’)" style="margin-bottom: 16px;">
+      <input type="text" name="budget" placeholder="Estimated Budget (optional)" style="margin-bottom: 16px;">
 
-        <textarea name="message" rows="3" style="margin-bottom: 22px; width: 100%;"
-          placeholder="Any other notes or special requirements..."></textarea>
+      <textarea name="objectives" placeholder="Program Objectives & Expected Outcomes&#10;(Briefly list what you want participants to achieve)" rows="4" style="margin-bottom: 16px;"></textarea>
 
-        <button type="submit" style="width: 100%; padding: 14px; font-size: 1em; background: #12425c; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
-          Submit Request
-        </button>
-      </form>
+      <textarea name="message" placeholder="Any other notes or special requirements..." rows="3" style="margin-bottom: 25px;"></textarea>
+
+      <button type="submit" style="width: 100%; padding: 14px; font-size: 1em; background: #12425c; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 400;">
+  Submit Request
+</button>
+    </form>
+
     </div>
 
   </div>
