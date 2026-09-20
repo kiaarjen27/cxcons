@@ -53,59 +53,77 @@ description: Request a custom HRDC claimable training program tailored for your 
     </div>
 
     <!-- Main Form -->
-    <div id="custom-program-form" class="card" style="border-left: 5px solid #12425c; text-align: left; margin-bottom: 40px; padding: 36px 40px;">
-      <h2 style="margin-top: 0; margin-bottom: 8px; color: #12425c;">Request a Custom Program</h2>
-      <p style="margin-bottom: 24px; color: #555;">
-        Tell us what you need and we’ll design a tailored corporate training program for your team.
-      </p>
+   <div id="custom-program-form" class="card" style="border-left: 5px solid #12425c; text-align: left; margin-bottom: 40px; padding: 36px 40px;">
+  <h2 style="margin-top: 0; margin-bottom: 8px; color: #12425c;">Request a Custom Program</h2>
+  <p style="margin-bottom: 24px; color: #555;">
+    Tell us what you need and we’ll design a tailored corporate training program for your team.
+  </p>
 
-          <form id="customProgramForm">
-      <!-- Contact Info -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
-        <input type="text" name="name" placeholder="Your Name *" required>
-        <input type="email" name="email" placeholder="Your Email *" required>
-        <input type="tel" name="phone" placeholder="Phone Number *" required>
-        <input type="text" name="company" placeholder="Company Name *" required>
-      </div>
+  <form id="customProgramForm">
+    <!-- Contact Info -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+      <input type="text" name="name" placeholder="Your Name *" required
+        style="width:100%; padding:12px 14px; border:1px solid #d8dee6; border-radius:6px; font-size:0.95em; box-sizing:border-box;">
+      <input type="email" name="email" placeholder="Your Email *" required
+        style="width:100%; padding:12px 14px; border:1px solid #d8dee6; border-radius:6px; font-size:0.95em; box-sizing:border-box;">
+      <input type="tel" name="phone" placeholder="Phone Number *" required
+        style="width:100%; padding:12px 14px; border:1px solid #d8dee6; border-radius:6px; font-size:0.95em; box-sizing:border-box;">
+      <input type="text" name="company" placeholder="Company Name *" required
+        style="width:100%; padding:12px 14px; border:1px solid #d8dee6; border-radius:6px; font-size:0.95em; box-sizing:border-box;">
+    </div>
 
-      <!-- Program Title -->
-      <input type="text" name="program_title" placeholder="Program Title *" required style="margin-bottom: 16px;">
+    <!-- Program Title -->
+    <input type="text" name="program_title" placeholder="Program Title *" required
+      style="width:100%; padding:12px 14px; border:1px solid #d8dee6; border-radius:6px; font-size:0.95em; box-sizing:border-box; margin-bottom:16px;">
 
-      <!-- Duration + Attendees -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
-        <input type="text" name="duration" placeholder="Duration (e.g. 1 Day / 2 Days)" required>
-        <input type="number" name="attendees" placeholder="Number of Attendees *" min="1" required>
-      </div>
+    <!-- Duration + Attendees -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+      <input type="text" name="duration" placeholder="Duration (e.g. 1 Day / 2 Days)" required
+        style="width:100%; padding:12px 14px; border:1px solid #d8dee6; border-radius:6px; font-size:0.95em; box-sizing:border-box;">
+      <input type="number" name="attendees" placeholder="Number of Attendees *" min="1" required
+        style="width:100%; padding:12px 14px; border:1px solid #d8dee6; border-radius:6px; font-size:0.95em; box-sizing:border-box;">
+    </div>
 
-      <!-- Payment + Date -->
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
-  <select name="payment" required>
-    <option value="">Payment Method *</option>
-    <option value="HRDC">HRDC Claimable</option>
-    <option value="Direct">Direct Payment</option>
-    <option value="To be discussed">To be discussed</option>
-  </select>
-  <input type="text" name="execution_date" 
-         placeholder="Preferred Date(s) — e.g. 15 Mar 2026 / 15–16 Mar / TBD">
+    <!-- Payment + Date -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+      <select name="payment" required
+        style="width:100%; padding:12px 14px; border:1px solid #d8dee6; border-radius:6px; font-size:0.95em; box-sizing:border-box; background:#fff;">
+        <option value="">Payment Method *</option>
+        <option value="HRDC">HRDC Claimable</option>
+        <option value="Direct">Direct Payment</option>
+        <option value="To be discussed">To be discussed</option>
+      </select>
+      <input type="text" name="execution_date"
+        placeholder="Preferred Date(s) — e.g. 15 Mar 2026 / 15–16 Mar / TBD"
+        style="width:100%; padding:12px 14px; border:1px solid #d8dee6; border-radius:6px; font-size:0.95em; box-sizing:border-box;">
+    </div>
+
+    <input type="text" name="target_audience" placeholder="Target Audience (e.g. Managers, Sales Team)"
+      style="width:100%; padding:12px 14px; border:1px solid #d8dee6; border-radius:6px; font-size:0.95em; box-sizing:border-box; margin-bottom:16px;">
+
+    <input type="text" name="venue" placeholder="Preferred Venue (or type ‘Need assistance’)"
+      style="width:100%; padding:12px 14px; border:1px solid #d8dee6; border-radius:6px; font-size:0.95em; box-sizing:border-box; margin-bottom:16px;">
+
+    <input type="text" name="budget" placeholder="Estimated Budget (optional)"
+      style="width:100%; padding:12px 14px; border:1px solid #d8dee6; border-radius:6px; font-size:0.95em; box-sizing:border-box; margin-bottom:16px;">
+
+    <textarea name="objectives" rows="4"
+      placeholder="Program Objectives & Expected Outcomes&#10;(Briefly list what you want participants to achieve)"
+      style="width:100%; padding:12px 14px; border:1px solid #d8dee6; border-radius:6px; font-size:0.95em; box-sizing:border-box; margin-bottom:16px; resize:vertical;"></textarea>
+
+    <textarea name="message" rows="3"
+      placeholder="Any other notes or special requirements..."
+      style="width:100%; padding:12px 14px; border:1px solid #d8dee6; border-radius:6px; font-size:0.95em; box-sizing:border-box; margin-bottom:22px; resize:vertical;"></textarea>
+
+    <button type="submit"
+      style="width:100%; padding:14px; font-size:1em; background:#12425c; color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:600;">
+      Submit Request
+    </button>
+  </form>
 </div>
 
-
-      <input type="text" name="target_audience" placeholder="Target Audience (e.g. Managers, Sales Team)" style="margin-bottom: 16px;">
-      <input type="text" name="venue" placeholder="Preferred Venue (or type ‘Need assistance’)" style="margin-bottom: 16px;">
-      <input type="text" name="budget" placeholder="Estimated Budget (optional)" style="margin-bottom: 16px;">
-
-      <textarea name="objectives" placeholder="Program Objectives & Expected Outcomes&#10;(Briefly list what you want participants to achieve)" rows="4" style="margin-bottom: 16px;"></textarea>
-
-      <textarea name="message" placeholder="Any other notes or special requirements..." rows="3" style="margin-bottom: 25px;"></textarea>
-
-      <button type="submit" style="width: 100%; padding: 14px; font-size: 1em; background: #12425c; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 400;">
-  Submit Request
-</button>
-    </form>
-
-      <script>
+<script>
 const customProgramURL = "https://script.google.com/macros/s/AKfycbybRRZuFi2EHTidPHM_VSZ4y8FHCnRpT3aUbRoTjYc3UDYnjbhAUXa7BsVk4-OMQYENAA/exec";
-
 const customForm = document.getElementById("customProgramForm");
 if (customForm) {
   customForm.addEventListener("submit", e => {
@@ -122,7 +140,3 @@ if (customForm) {
   });
 }
 </script>
-    </div>
-
-  </div>
-</main>
