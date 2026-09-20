@@ -802,7 +802,15 @@ function renderRows(list) {
     return;
   }
 
+  // --- START OF FADE-IN ENHANCEMENT ---
+  tableCard.style.opacity = "0";
   tableCard.style.display = "block";
+  setTimeout(() => {
+    tableCard.style.transition = "opacity 0.5s ease-in-out";
+    tableCard.style.opacity = "1";
+  }, 10);
+  // --- END OF FADE-IN ENHANCEMENT ---
+
   noResults.style.display = "none";
 
   list.forEach((title, i) => {
@@ -851,8 +859,8 @@ searchInput.addEventListener("input", function () {
   const term = this.value.trim().toLowerCase();
 
   if (!term) {
-    renderRows(ALL_MODULES.slice(0, FEATURED_COUNT));
-    searchStatus.textContent = `Showing ${FEATURED_COUNT} featured modules`;
+    tableCard.style.display = "none";
+    searchStatus.textContent = "Search to explore our training library";
     return;
   }
 
@@ -860,34 +868,25 @@ searchInput.addEventListener("input", function () {
   renderRows(results);
   searchStatus.textContent = results.length
     ? `${results.length} module${results.length > 1 ? "s" : ""} found`
-    : "No matches";
+    : "No matches found";
 });
 
-// REPLACE THIS WITH YOUR DEPLOYED WEB APP URL
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwEOr51jPG7Xm5Jsn8jYLMrzK-I1aRaDomWN6sJD0J-KvghxlvvnWqWquPlFP0mI2tQMg/exec";
 
 brochureForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  
   const submitBtn = brochureForm.querySelector('button[type="submit"]');
   submitBtn.textContent = "Sending...";
   submitBtn.disabled = true;
 
-  // Use the form data directly
-  const formData = new FormData(brochureForm);
-  
   fetch(SCRIPT_URL, {
     method: 'POST',
-    body: formData
+    body: new FormData(brochureForm)
   })
   .then(res => res.json())
   .then(data => {
-    if (data.result === "success") {
-      alert("Thank you! Your request has been sent to our team.");
-      closeRequest();
-    } else {
-      throw new Error();
-    }
+    alert("Thank you! Your request has been sent to our team.");
+    closeRequest();
   })
   .catch(err => {
     alert("Something went wrong. Please try again.");
@@ -899,6 +898,7 @@ brochureForm.addEventListener("submit", function (e) {
   });
 });
 
-renderRows(ALL_MODULES.slice(0, FEATURED_COUNT));
-searchStatus.textContent = `Showing ${FEATURED_COUNT} featured modules · Search to explore the full library`;
+// INITIAL STATE: Hide the table when page loads
+tableCard.style.display = "none";
+searchStatus.textContent = "Search to explore our training library";
 </script>
