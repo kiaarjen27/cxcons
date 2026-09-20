@@ -780,8 +780,8 @@ const ALL_MODULES = [
 
 ];
 
-const FEATURED_COUNT = 642;
-
+<script>
+// --- CORE DATA & SELECTORS ---
 const body = document.getElementById("moduleBody");
 const searchInput = document.getElementById("moduleSearch");
 const searchStatus = document.getElementById("searchStatus");
@@ -792,40 +792,39 @@ const moduleTitleField = document.getElementById("moduleTitleField");
 const cancelRequest = document.getElementById("cancelRequest");
 const brochureForm = document.getElementById("brochureForm");
 const tableCard = document.getElementById("tableCard");
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwEOr51jPG7Xm5Jsn8jYLMrzK-I1aRaDomWN6sJD0J-KvghxlvvnWqWquPlFP0mI2tQMg/exec";
 
+// --- CORE FUNCTIONS ---
 function renderRows(list) {
   body.innerHTML = "";
 
   if (!list.length) {
     tableCard.style.display = "none";
     noResults.style.display = "block";
+    noResults.querySelector('p').textContent = "No modules matched your search.";
     return;
   }
 
+  // Fade-in enhancement
+  tableCard.style.opacity = "0";
   tableCard.style.display = "block";
+  setTimeout(() => {
+    tableCard.style.transition = "opacity 0.5s ease-in-out";
+    tableCard.style.opacity = "1";
+  }, 10);
+
   noResults.style.display = "none";
 
   list.forEach((title, i) => {
     const tr = document.createElement("tr");
     tr.style.borderBottom = "1px solid #eef1f4";
     tr.style.background = i % 2 === 0 ? "#fff" : "#f9fafb";
-
     tr.innerHTML = `
-      <td style="padding: 11px 16px; color:#1f2937; text-align:left; vertical-align:middle;">
-        ${title}
-      </td>
+      <td style="padding: 11px 16px; color:#1f2937; text-align:left; vertical-align:middle;">${title}</td>
       <td style="padding: 10px 16px; text-align:right; vertical-align:middle; white-space:nowrap;">
-        <button type="button"
-          style="
-            background:#12425c; color:#fff; border:none;
-            padding:6px 12px; border-radius:4px;
-            font-size:0.82em; font-weight:600; cursor:pointer;
-          ">
-          Request Info
-        </button>
+        <button type="button" style="background:#12425c; color:#fff; border:none; padding:6px 12px; border-radius:4px; font-size:0.82em; font-weight:600; cursor:pointer;">Request Info</button>
       </td>
     `;
-
     tr.querySelector("button").addEventListener("click", () => openRequest(title));
     body.appendChild(tr);
   });
@@ -845,126 +844,48 @@ function closeRequest() {
   selectedModuleName.textContent = "—";
 }
 
+// --- EVENT LISTENERS ---
 cancelRequest.addEventListener("click", closeRequest);
 
 searchInput.addEventListener("input", function () {
   const term = this.value.trim().toLowerCase();
-
+  
   if (!term) {
-    renderRows(ALL_MODULES.slice(0, FEATURED_COUNT));
-    searchStatus.textContent = `Showing ${FEATURED_COUNT} featured modules`;
+    tableCard.style.display = "none";
+    noResults.style.display = "block";
+    noResults.querySelector('p').textContent = "Enter a keyword to explore our library.";
+    searchStatus.textContent = "";
     return;
   }
 
   const results = ALL_MODULES.filter(m => m.toLowerCase().includes(term));
   renderRows(results);
-  searchStatus.textContent = results.length
-    ? `${results.length} module${results.length > 1 ? "s" : ""} found`
-    : "No matches";
+  searchStatus.textContent = results.length 
+    ? `${results.length} module(s) found` 
+    : "No matches found.";
 });
-
-// REPLACE THIS WITH YOUR DEPLOYED WEB APP URL
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwEOr51jPG7Xm5Jsn8jYLMrzK-I1aRaDomWN6sJD0J-KvghxlvvnWqWquPlFP0mI2tQMg/exec";
 
 brochureForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  
-  const submitBtn = brochureForm.querySelector('button[type="submit"]');
-  submitBtn.textContent = "Sending...";
-  submitBtn.disabled = true;
+  const btn = brochureForm.querySelector('button[type="submit"]');
+  btn.textContent = "Sending...";
+  btn.disabled = true;
 
-  // Use the form data directly
-  const formData = new FormData(brochureForm);
-  
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    body: formData
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.result === "success") {
-      alert("Thank you! Your request has been sent to our team.");
+  fetch(SCRIPT_URL, { method: 'POST', body: new FormData(brochureForm) })
+    .then(res => res.json())
+    .then(data => {
+      alert("Thank you! Your request has been sent.");
       closeRequest();
-    } else {
-      throw new Error();
-    }
-  })
-  .catch(err => {
-    alert("Something went wrong. Please try again.");
-    console.error(err);
-  })
-  .finally(() => {
-    submitBtn.textContent = "Send Request";
-    submitBtn.disabled = false;
-  });
+    })
+    .catch(() => alert("Error sending request. Please try again."))
+    .finally(() => {
+      btn.textContent = "Send Request";
+      btn.disabled = false;
+    });
 });
 
-  <script>
-  // ONLY for the Program Finder page
-  document.addEventListener("DOMContentLoaded", function() {
-    const searchInput = document.getElementById('moduleSearch');
-    const tableCard = document.getElementById('tableCard');
-    const noResults = document.getElementById('noResults');
-    const brochureForm = document.getElementById('brochureForm');
-
-    // 1. Initial State: Hide the library until searched
-    if (tableCard) tableCard.style.display = "none";
-    if (noResults) noResults.style.display = "block";
-
-    // 2. Search Logic
-    if (searchInput) {
-      searchInput.addEventListener('input', function() {
-        const term = this.value.trim().toLowerCase();
-        const rows = document.querySelectorAll('#moduleBody tr');
-        
-        if (!term) {
-          tableCard.style.display = "none";
-          noResults.style.display = "block";
-          return;
-        }
-
-        let count = 0;
-        rows.forEach(tr => {
-          if (tr.textContent.toLowerCase().includes(term)) {
-            tr.style.display = "";
-            count++;
-          } else {
-            tr.style.display = "none";
-          }
-        });
-
-        tableCard.style.display = count > 0 ? "block" : "none";
-        noResults.style.display = count > 0 ? "none" : "block";
-      });
-    }
-
-    // 3. Form Submission Logic
-    if (brochureForm) {
-      brochureForm.addEventListener("submit", function(e) {
-        e.preventDefault();
-        const btn = brochureForm.querySelector('button[type="submit"]');
-        btn.textContent = "Sending...";
-        btn.disabled = true;
-
-        fetch("https://script.google.com/macros/s/AKfycbwlygUNCTJltOgXx0B5wtntQKb34e3Ufpu9aDBVWItoyNfI34ALwruNCuIX0B2QVQA/exec", {
-          method: "POST",
-          body: new FormData(brochureForm)
-        })
-        .then(() => {
-          alert("Request sent successfully!");
-          brochureForm.reset();
-          if (typeof closeRequest === 'function') closeRequest();
-        })
-        .catch(() => alert("Error. Please try again."))
-        .finally(() => {
-          btn.textContent = "Send Request";
-          btn.disabled = false;
-        });
-      });
-    }
-  });
-</script>
-
-renderRows(ALL_MODULES.slice(0, FEATURED_COUNT));
-searchStatus.textContent = `Showing ${FEATURED_COUNT} featured modules · Search to explore the full library`;
+// --- INITIAL STATE ---
+tableCard.style.display = "none";
+noResults.style.display = "block";
+noResults.querySelector('p').textContent = "Search to explore our training library.";
 </script>
