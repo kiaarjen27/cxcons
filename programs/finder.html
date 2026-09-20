@@ -863,11 +863,40 @@ searchInput.addEventListener("input", function () {
     : "No matches";
 });
 
+// REPLACE THIS WITH YOUR DEPLOYED WEB APP URL
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwEOr51jPG7Xm5Jsn8jYLMrzK-I1aRaDomWN6sJD0J-KvghxlvvnWqWquPlFP0mI2tQMg/exec";
+
 brochureForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  const data = new FormData(brochureForm);
-  alert("Request received for: " + data.get("module_title"));
-  closeRequest();
+  
+  const submitBtn = brochureForm.querySelector('button[type="submit"]');
+  submitBtn.textContent = "Sending...";
+  submitBtn.disabled = true;
+
+  // Use the form data directly
+  const formData = new FormData(brochureForm);
+  
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.result === "success") {
+      alert("Thank you! Your request has been sent to our team.");
+      closeRequest();
+    } else {
+      throw new Error();
+    }
+  })
+  .catch(err => {
+    alert("Something went wrong. Please try again.");
+    console.error(err);
+  })
+  .finally(() => {
+    submitBtn.textContent = "Send Request";
+    submitBtn.disabled = false;
+  });
 });
 
 renderRows(ALL_MODULES.slice(0, FEATURED_COUNT));
