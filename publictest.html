@@ -161,10 +161,10 @@ function renderTable(data) {
     tr.style.borderBottom = "1px solid #eee";
     tr.style.backgroundColor = i % 2 === 0 ? "#fff" : "#f9f9f9";
 const actionCell = p.action === "Full" 
-  ? `<span style="color:#666; font-size:0.8em;">Full</span>` 
+  ? `<span style="color:#666; font-size:0.85em;">Full</span>` 
   : `<button type="button" 
       onclick="openRequest('${p.title.replace(/'/g, "\\'")}', '${p.date.replace(/'/g, "\\'")}')" 
-      style="background:#12425c; color:white; border:none; padding:4px 10px; border-radius:4px; cursor:pointer; font-size:0.8em !important; font-family: inherit;">
+      style="background:#12425c; color:white; border:none; padding:4px 10px; border-radius:4px; cursor:pointer; font-size:0.85em !important; font-family: inherit;">
       Request Info
     </button>`;
     
