@@ -565,7 +565,7 @@ h2, h3 {
 
   #hero {
     background:
-linear-gradient(
+      linear-gradient(
         180deg,
         rgba(7, 13, 24, 0.88) 0%,
         rgba(7, 13, 24, 0.80) 100%
@@ -575,11 +575,13 @@ linear-gradient(
     background-position: center;
     padding: 88px 18px 96px;
   }
+
   #hero .home-hero-title {
     font-size: 2.7em;
     line-height: 1.12;
     padding: 0 6px;
   }
+
   #hero p {
     margin-bottom: 30px;
     font-size: 1.02em;
@@ -589,8 +591,9 @@ linear-gradient(
     position: fixed;
     left: 15px;
     top: 12px;
-    z-index: 2200;
+    z-index: 1200;
   }
+
   .site-logo img { height: 34px; }
 
   header {
@@ -603,39 +606,59 @@ linear-gradient(
     box-shadow: 0 2px 14px rgba(15, 39, 64, 0.08);
     justify-content: flex-end;
     z-index: 1100;
+
+    /* critical: prevents small white box menu */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    overflow: visible !important;
   }
+
   main { padding-top: 58px !important; }
 
   .hamburger-button {
-    display: block;
-    position: fixed;
+    display: block !important;
+    position: fixed !important;
     top: 10px;
     right: 14px;
-    z-index: 2200;
+    z-index: 1300 !important;
+    pointer-events: auto !important;
   }
 
-  nav {
-    display: none;
-    position: fixed !important;
-    top: 0;
-    right: 0;
-    width: 82%;
-    height: 100%;
-    background: rgba(255,255,255,0.94) !important;
-    backdrop-filter: blur(18px) saturate(160%);
-    -webkit-backdrop-filter: blur(18px) saturate(160%);
-    box-shadow: -10px 0 30px rgba(0,0,0,0.15);
-    z-index: 2100 !important;
-    overflow-y: auto;
-    padding-top: 66px;
+  #navOverlay {
+    z-index: 1200 !important;
   }
-  nav.nav-open { display: block; }
-  nav ul { text-align: left; padding: 0; margin: 0; }
+
+  nav#mainNav {
+    display: none !important;
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 82% !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    background: #fff !important;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+    z-index: 1250 !important;
+    overflow-y: auto !important;
+    padding-top: 66px !important;
+  }
+
+  nav#mainNav.nav-open {
+    display: block !important;
+  }
+
+  nav ul {
+    text-align: left;
+    padding: 0;
+    margin: 0;
+  }
+
   nav > ul > li {
     display: block;
     padding: 0;
     border-bottom: 1px solid #eef1f4;
   }
+
   nav > ul > li > a {
     display: flex;
     align-items: center;
@@ -651,38 +674,34 @@ linear-gradient(
   }
 
   .submenu {
-    position: static;
+    position: static !important;
     display: none !important;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    box-shadow: none;
-    background: transparent;
-    padding: 4px 0;
-    pointer-events: auto;
-    text-align: left;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 4px 0 !important;
+    pointer-events: auto !important;
+    text-align: left !important;
+    width: 100% !important;
   }
-  nav li.open > .submenu { display: block !important; }
-  .submenu li { display: block; margin: 0; }
+
+  nav li.open > .submenu {
+    display: block !important;
+  }
+
+  .submenu li {
+    display: block !important;
+    margin: 0 !important;
+  }
+
   .submenu li a {
     display: block;
     padding: 8px 22px;
     font-size: 12px;
     color: #64748b;
     font-weight: 500;
-  }
-
-  nav > ul > li.has-submenu > a::after {
-    content: "›";
-    position: absolute;
-    right: 22px;
-    top: 50%;
-    transform: translateY(-50%) rotate(90deg);
-    font-size: 16px;
-    color: #64748b;
-  }
-  nav > ul > li.open > a::after {
-    transform: translateY(-50%) rotate(-90deg);
   }
 
   .subscribe-btn,
@@ -704,6 +723,7 @@ linear-gradient(
     gap: 14px;
     text-align: center;
   }
+
   .footer-bottom-right {
     flex-direction: column;
     gap: 10px;
