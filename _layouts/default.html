@@ -780,8 +780,13 @@ nav#mainNav.nav-open {
 }
 
 .expandable-content {
-  padding: 10px 0;
-  border-top: 1px solid #f1f5f9;
+  padding: 20px 0;
+  border-top: 1px solid #e8eef3;
+  margin-top: 15px;
+}
+
+    .expandable-content.hidden {
+  display: none !important;
 }
 
 .center-link {
@@ -823,6 +828,15 @@ article.card {
   align-items: flex-start;
   margin-bottom: 20px;
 }
+
+    @media (max-width: 600px) {
+  .inline-gif {
+    float: none;
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 100%;
+  }
+    }
     
 </style>
 
