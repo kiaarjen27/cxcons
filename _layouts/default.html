@@ -802,21 +802,28 @@ article.card {
   clear: both;
 }
 
-/* Updated GIF styling */
+/* GIF fixed size */
 .inline-gif {
-  float: left;
-  max-width: 40%;
-  margin: 0 20px 10px 0;
+  flex: 0 0 40%; /* Won't grow, won't shrink, stays at 40% width */
+  max-width: 250px;
   border-radius: 8px;
-  display: block;
 }
 
-/* Ensure the paragraph wraps correctly */
-.expandable-content p {
-  margin-top: 0;
-  margin-bottom: 1em;
+/* Text next to the GIF */
+.flex-text {
+  flex: 1; /* Takes up the remaining space */
+  min-width: 250px;
 }
 
+    /* Container for the GIF and first paragraph */
+.content-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+    
 </style>
 
 </head>
