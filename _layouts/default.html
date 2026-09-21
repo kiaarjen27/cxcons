@@ -581,7 +581,7 @@ h2, h3 {
   }
 }
 
-    @media (min-width: 769px) {
+@media (min-width: 769px) {
   nav#mainNav {
     position: relative;
     background: #fff;
@@ -589,12 +589,64 @@ h2, h3 {
     z-index: 1200;
   }
 
+  nav#mainNav > ul {
+    display: block;
+    text-align: center;
+  }
+
+  nav#mainNav > ul > li {
+    display: inline-block;
+    position: static; /* important for full-width bar */
+  }
+
+  /* Horizontal submenu strip under the top bar */
   .submenu {
     position: absolute;
-    top: 100%;
+    top: 100%;          /* under the main menu row */
     left: 0;
     right: 0;
     width: 100%;
+    background: #fff;
+    border-top: 1px solid #e8eef3;
+    box-shadow: 0 12px 32px rgba(15, 39, 64, 0.10);
+    padding: 14px 0;
+    text-align: center;
+    list-style: none;
+    margin: 0;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+  }
+
+  nav li:hover > .submenu,
+  .submenu:hover {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0s;
+  }
+
+  /* Keep submenu links horizontal */
+  .submenu li {
+    display: inline-block;
+    margin: 0 16px;
+    padding: 0;
+  }
+
+  .submenu a {
+    display: inline-block;
+    padding: 6px 10px;
+    white-space: nowrap;
+    color: #475569;
+    font-weight: 500;
+  }
+
+  .submenu a:hover {
+    color: #fd000c;
   }
 }
 
