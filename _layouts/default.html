@@ -745,10 +745,17 @@ nav#mainNav.nav-open {
 
     /* --- New Content Styles --- */
 .inline-gif {
-  float: left;            /* Pulls the image to the left */
-  max-width: 30%;         /* Limits image size on desktop */
-  margin: 0 20px 10px 0;  /* Adds space around the image */
+  float: left;
+  max-width: 40%;
+  margin: 0 20px 10px 0;
   border-radius: 8px;
+  display: block;
+}
+
+/* Ensure the full-width paragraph stays under the GIF */
+.full-width-text {
+  clear: both;
+  width: 100%;
 }
 
 /* Clear the float so the text below doesn't get stuck */
