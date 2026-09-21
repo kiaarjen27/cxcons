@@ -83,14 +83,15 @@ function renderTable(data) {
     tr.style.borderBottom = "1px solid #eee";
     tr.style.backgroundColor = i % 2 === 0 ? "#fff" : "#f9f9f9";
     
-const actionCell = p.action === "Full" 
-  ? "Full" 
-  : `<button type="button" onclick="openRequest('${p.title.replace(/'/g, "\\'")}', '${p.date.replace(/'/g, "\\'")}')" style="background:#12425c; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Request</button>`;
-    
+    const actionCell = p.action === "Full" 
+      ? "Full" 
+      : `<button type="button" onclick="openRequest('${p.title.replace(/'/g, "\\'")}', '${p.date.replace(/'/g, "\\'")}')" style="background:#12425c; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Request</button>`;
+
     tr.innerHTML = `
       <td style="padding: 12px;">${p.title}</td>
       <td style="padding: 12px; text-align: center;">${p.date}</td>
       <td style="padding: 12px; text-align: center;">${p.duration}</td>
+      <td style="padding: 12px; text-align: center;">${p.time || '-'}</td>
       <td style="padding: 12px; text-align: center;">${p.venue}</td>
       <td style="padding: 12px; text-align: center;">${p.hrdc}</td>
       <td style="padding: 12px; text-align: center;">${actionCell}</td>
