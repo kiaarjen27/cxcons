@@ -555,101 +555,6 @@ h2, h3 {
 .pulse-btn:hover { background: #0d3144; }
 .hidden { display: none !important; }
 
-    nav#mainNav {
-    position: relative;
-    background: #fff;
-    border-bottom: 1px solid #e8eef3;
-    z-index: 1200;
-  }
-
-  .submenu {
-    position: absolute;   /* was fixed */
-    top: 100%;            /* directly under the nav bar */
-    left: 0;
-    right: 0;
-    width: 100%;
-    margin: 0;
-    transform: none;
-  }
-
-  /* keep hover behavior */
-  nav li:hover > .submenu,
-  .submenu:hover {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-}
-
-@media (min-width: 769px) {
-  nav#mainNav {
-    position: relative;
-    background: #fff;
-    border-bottom: 1px solid #e8eef3;
-    z-index: 1200;
-  }
-
-  nav#mainNav > ul {
-    display: block;
-    text-align: center;
-  }
-
-  nav#mainNav > ul > li {
-    display: inline-block;
-    position: static; /* important for full-width bar */
-  }
-
-  /* Horizontal submenu strip under the top bar */
-  .submenu {
-    position: absolute;
-    top: 100%;          /* under the main menu row */
-    left: 0;
-    right: 0;
-    width: 100%;
-    background: #fff;
-    border-top: 1px solid #e8eef3;
-    box-shadow: 0 12px 32px rgba(15, 39, 64, 0.10);
-    padding: 14px 0;
-    text-align: center;
-    list-style: none;
-    margin: 0;
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transform: translateY(-6px);
-    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
-  }
-
-  nav li:hover > .submenu,
-  .submenu:hover {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateY(0);
-    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0s;
-  }
-
-  /* Keep submenu links horizontal */
-  .submenu li {
-    display: inline-block;
-    margin: 0 16px;
-    padding: 0;
-  }
-
-  .submenu a {
-    display: inline-block;
-    padding: 6px 10px;
-    white-space: nowrap;
-    color: #475569;
-    font-weight: 500;
-  }
-
-  .submenu a:hover {
-    color: #fd000c;
-  }
-}
-
 /* ---------- Mobile ---------- */
 @media (max-width: 768px) {
   .container {
@@ -660,7 +565,7 @@ h2, h3 {
 
   #hero {
     background:
-      linear-gradient(
+linear-gradient(
         180deg,
         rgba(7, 13, 24, 0.88) 0%,
         rgba(7, 13, 24, 0.80) 100%
@@ -670,13 +575,11 @@ h2, h3 {
     background-position: center;
     padding: 88px 18px 96px;
   }
-
   #hero .home-hero-title {
     font-size: 2.7em;
     line-height: 1.12;
     padding: 0 6px;
   }
-
   #hero p {
     margin-bottom: 30px;
     font-size: 1.02em;
@@ -686,9 +589,8 @@ h2, h3 {
     position: fixed;
     left: 15px;
     top: 12px;
-    z-index: 2300;
+    z-index: 2200;
   }
-
   .site-logo img { height: 34px; }
 
   header {
@@ -700,66 +602,40 @@ h2, h3 {
     background: rgba(255,255,255,0.97);
     box-shadow: 0 2px 14px rgba(15, 39, 64, 0.08);
     justify-content: flex-end;
-    z-index: 2100;
+    z-index: 1100;
   }
-
   main { padding-top: 58px !important; }
 
-  /* Hamburger must be clickable above everything */
   .hamburger-button {
-    display: block !important;
-    position: fixed !important;
+    display: block;
+    position: fixed;
     top: 10px;
     right: 14px;
-    z-index: 2400 !important;
-    background: none;
-    border: none;
-    padding: 12px;
-    cursor: pointer;
-    pointer-events: auto !important;
-  }
-
-  /* Overlay */
-  #navOverlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.45);
     z-index: 2200;
-    display: none;
   }
 
-  /* Mobile drawer */
-  nav#mainNav {
-    display: none !important;
+  nav {
+    display: none;
     position: fixed !important;
     top: 0;
     right: 0;
     width: 82%;
     height: 100%;
-    background: rgba(255,255,255,0.96) !important;
+    background: rgba(255,255,255,0.94) !important;
     backdrop-filter: blur(18px) saturate(160%);
     -webkit-backdrop-filter: blur(18px) saturate(160%);
     box-shadow: -10px 0 30px rgba(0,0,0,0.15);
-    z-index: 2300 !important;
+    z-index: 2100 !important;
     overflow-y: auto;
     padding-top: 66px;
-    pointer-events: auto !important;
   }
-
-  /* This is the key open state */
-  nav#mainNav.nav-open {
-    display: block !important;
-  }
-
+  nav.nav-open { display: block; }
   nav ul { text-align: left; padding: 0; margin: 0; }
-
   nav > ul > li {
     display: block;
     padding: 0;
     border-bottom: 1px solid #eef1f4;
-    position: relative;
   }
-
   nav > ul > li > a {
     display: flex;
     align-items: center;
@@ -775,28 +651,19 @@ h2, h3 {
   }
 
   .submenu {
-    position: static !important;
+    position: static;
     display: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
-    box-shadow: none !important;
-    background: transparent !important;
-    padding: 4px 0 !important;
-    pointer-events: auto !important;
-    text-align: left !important;
-    width: 100% !important;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    background: transparent;
+    padding: 4px 0;
+    pointer-events: auto;
+    text-align: left;
   }
-
-  nav li.open > .submenu {
-    display: block !important;
-  }
-
-  .submenu li {
-    display: block !important;
-    margin: 0 !important;
-  }
-
+  nav li.open > .submenu { display: block !important; }
+  .submenu li { display: block; margin: 0; }
   .submenu li a {
     display: block;
     padding: 8px 22px;
@@ -814,7 +681,6 @@ h2, h3 {
     font-size: 16px;
     color: #64748b;
   }
-
   nav > ul > li.open > a::after {
     transform: translateY(-50%) rotate(-90deg);
   }
@@ -838,103 +704,122 @@ h2, h3 {
     gap: 14px;
     text-align: center;
   }
-
   .footer-bottom-right {
     flex-direction: column;
     gap: 10px;
   }
 }
 
+/* Hamburger cross */
+.hamburger-button.active .hamburger-line:nth-child(1) {
+  transform: translateY(6px) rotate(45deg) !important;
+}
+.hamburger-button.active .hamburger-line:nth-child(2) {
+  opacity: 0 !important;
+}
+.hamburger-button.active .hamburger-line:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg) !important;
+}
+
 </style>
 
 </head>
 <body>
-  <div id="navOverlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:2200; display:none;"></div>
 
-  <header>
-    <a href="/" class="site-logo">
-      <img src="https://raw.githubusercontent.com/kiaarjen27/cxcons-assets/d40525b37591257a68d5195b0d604e442e3dd577/logo.webp" alt="CXCons Logo">
-    </a>
+<div id="navOverlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1500; display:none;"></div>
 
-    <button class="hamburger-button" id="hamburgerButton" aria-label="Toggle Menu" aria-expanded="false">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
-  </header>
+<header>
+ <a href="/" class="site-logo">
+    <img src="https://raw.githubusercontent.com/kiaarjen27/cxcons-assets/d40525b37591257a68d5195b0d604e442e3dd577/logo.webp" alt="CXCons Logo">
+ </a>
 
-  <!-- NAV MUST BE OUTSIDE HEADER -->
-  <nav id="mainNav">
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li>
-        <a href="/hrdcorp/">HRDCorp</a>
-        <ul class="submenu">
-          <li><a href="/hrdcorp/hrdcorp-hub/">HRDCorp Hub</a></li>
-          <li><a href="/hrdcorp/registered-companies/">HRDC Registered Companies</a></li>
-          <li><a href="/hrdcorp/evaluation-process/">Evaluation Process</a></li>
-          <li><a href="/hrdcorp/employer-guide/">HRDC Employer Guide</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="/programs/">Programs</a>
-        <ul class="submenu">
-          <li><a href="/programs/">Programs</a></li>
-          <li><a href="/programs/finder/">Finder</a></li>
-          <li><a href="/programs/public-training/">Public Training Schedule</a></li>
-          <li><a href="/programs/request-custom-programs/">In-House Training</a></li>
-          <li><a href="/programs/coaching/">Coaching Sessions</a></li>
-          <li><a href="/programs/certification/">Certification</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="/about/">About Us</a>
-        <ul class="submenu">
-          <li><a href="/about/">About Us</a></li>
-          <li><a href="/news-and-articles/">News & Updates</a></li>
-          <li><a href="/resources/">Resources</a></li>
-          <li><a href="/industry-pulse/">Industry Pulse</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="/solutions/">Solutions</a>
-        <ul class="submenu">
-          <li><a href="/solutions/corporate-learning/">Corporate Learning</a></li>
-          <li><a href="/solutions/team-building/">Team Building</a></li>
-          <li><a href="/solutions/annual-dinners/">Annual Dinners</a></li>
-          <li><a href="/solutions/csr-events/">CSR Events</a></li>
-          <li><a href="/solutions/networking-events/">Networking Events</a></li>
-          <li><a href="/solutions/workshops-seminars/">Workshops & Seminars</a></li>
-          <li><a href="/solutions/product-launches/">Product Launches</a></li>
-          <li><a href="/solutions/awards-ceremonies/">Awards Ceremonies</a></li>
-        </ul>
-      </li>
-      <li><a href="/join-our-team/">Talent Opportunities</a></li>
-      <li>
-        <a href="/services/">Services</a>
-        <ul class="submenu">
-          <li><a href="/services/event-design/">Event Design</a></li>
-          <li><a href="/services/vendor-management/">Vendor Management</a></li>
-          <li><a href="/services/web-development-design/">Web Development</a></li>
-          <li><a href="/services/logistics-coordination/">Event Logistics</a></li>
-          <li><a href="/services/advertisement-marketing/">Marketing & Promotion</a></li>
-          <li><a href="/services/product-launch-execution/">Product Launch</a></li>
-          <li><a href="/services/local-crm-service/">Local CRM Service</a></li>
-          <li><a href="/services/event-media/">Event Media</a></li>
-        </ul>
-      </li>
-      <li><a href="/hr-appreciation-program/" style="color:#cc0000;">HR Rewards</a></li>
-      <li style="text-align:center; margin:15px 0;">
-        <a href="/programs/request-custom-programs/"
-           style="display:inline-block; background-color:#12425c; color:#fff; padding:6px 14px; border-radius:4px; font-size:11px; font-weight:500; letter-spacing:0.5px; text-decoration:none;">
-          Request Custom Program
-        </a>
-      </li>
-      <li style="text-align:center; margin:15px 0;">
-        <a href="/contact/" class="subscribe-btn">Contact Us</a>
-      </li>
-    </ul>
-  </nav>
+ <button class="hamburger-button" id="hamburgerButton" aria-label="Toggle Menu" aria-expanded="false">
+   <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+ </button>
+ 
+<nav id="mainNav">
+  <ul>
+    <li><a href="/">Home</a></li>
+
+    <li>
+      <a href="/hrdcorp/">HRDCorp</a>
+      <ul class="submenu">
+        <li><a href="/hrdcorp/hrdcorp-hub/">HRDCorp Hub</a></li>
+        <li><a href="/hrdcorp/registered-companies/">HRDC Registered Companies</a></li>
+        <li><a href="/hrdcorp/evaluation-process/">Evaluation Process</a></li>
+        <li><a href="/hrdcorp/employer-guide/">HRDC Employer Guide</a></li>
+      </ul>
+    </li>
+
+    <li>
+     <a href="/programs/">Programs</a>
+     <ul class="submenu">
+      <li><a href="/programs/">Programs</a></li>
+      <li><a href="/programs/finder/">Finder</a></li>
+      <li><a href="/programs/public-training/">Public Training Schedule</a></li>
+      <li><a href="/programs/request-custom-programs/">In-House Training</a></li>
+      <li><a href="/programs/coaching/">Coaching Sessions</a></li>
+      <li><a href="/programs/certification/">Certification</a></li>
+     </ul> 
+   </li>
+
+    <li>
+      <a href="/about/">About Us</a>
+      <ul class="submenu">
+        <li><a href="/about/">About Us</a></li>
+        <li><a href="/news-and-articles/">News & Updates</a></li>
+        <li><a href="/resources/">Resources</a></li>
+        <li><a href="/industry-pulse/">Industry Pulse</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="/solutions/">Solutions</a>
+      <ul class="submenu">
+        <li><a href="/solutions/corporate-learning/">Corporate Learning</a></li>
+        <li><a href="/solutions/team-building/">Team Building</a></li>
+        <li><a href="/solutions/annual-dinners/">Annual Dinners</a></li>
+        <li><a href="/solutions/csr-events/">CSR Events</a></li>
+        <li><a href="/solutions/networking-events/">Networking Events</a></li>
+        <li><a href="/solutions/workshops-seminars/">Workshops & Seminars</a></li>
+        <li><a href="/solutions/product-launches/">Product Launches</a></li>
+        <li><a href="/solutions/awards-ceremonies/">Awards Ceremonies</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="/join-our-team/">Talent Opportunities</a>
+    </li>
+
+    <li>
+      <a href="/services/">Services</a>
+      <ul class="submenu">
+        <li><a href="/services/event-design/">Event Design</a></li>
+        <li><a href="/services/vendor-management/">Vendor Management</a></li>
+        <li><a href="/services/web-development-design/">Web Development</a></li>
+        <li><a href="/services/logistics-coordination/">Event Logistics</a></li>
+        <li><a href="/services/advertisement-marketing/">Marketing & Promotion</a></li>
+        <li><a href="/services/product-launch-execution/">Product Launch</a></li>
+        <li><a href="/services/local-crm-service/">Local CRM Service</a></li>
+        <li><a href="/services/event-media/">Event Media</a></li>
+       
+      </ul>
+    </li>
+
+    <li><a href="/hr-appreciation-program/" style="color:#cc0000;">HR Rewards</a></li>
+
+
+<li style="text-align:center; margin:15px 0;">
+  <a href="/programs/request-custom-programs/" 
+     style="display:inline-block; background-color:#12425c; color:#fff; padding:6px 14px; border-radius:4px; font-size:11px; font-weight:500; letter-spacing:0.5px; text-decoration:none;">
+    Request Custom Program
+  </a>
+</li>
+ <li style="text-align:center; margin:15px 0;">
+   <a href="/contact/" class="subscribe-btn">Contact Us</a>
+ </li>
+  </ul>
+ </nav>
 </header>
 
 {{ content }}
@@ -1022,133 +907,80 @@ h2, h3 {
 </footer>
 
 <script>
-// =========================
 // Contact form
-// =========================
 const scriptURL = "https://script.google.com/macros/s/AKfycbwlygUNCTJltOgXx0B5wtntQKb34e3Ufpu9aDBVWItoyNfI34ALwruNCuIX0B2QVQA/exec";
 const form = document.getElementById("contactForm");
-
 if (form) {
-  form.addEventListener("submit", function (e) {
+  form.addEventListener("submit", e => {
     e.preventDefault();
     fetch(scriptURL, { method: "POST", body: new FormData(form) })
-      .then(function () {
+      .then(() => {
         alert("Message sent successfully!");
         form.reset();
       })
-      .catch(function () {
-        alert("Error sending message. Please try again.");
-      });
+      .catch(() => alert("Error sending message. Please try again."));
   });
 }
 
-// =========================
 // Mobile nav
-// =========================
-const hamburgerButton = document.getElementById("hamburgerButton");
-const mainNav = document.getElementById("mainNav");
-const navOverlay = document.getElementById("navOverlay");
-const exploreBtn = document.getElementById("exploreBtn");
-const footerExpandable = document.getElementById("footerExpandable");
+const hamburgerButton = document.getElementById('hamburgerButton');
+const mainNav = document.getElementById('mainNav');
+const navOverlay = document.getElementById('navOverlay');
+const exploreBtn = document.getElementById('exploreBtn');
+const footerExpandable = document.getElementById('footerExpandable');
 
 function closeMenu() {
-  if (mainNav) mainNav.classList.remove("nav-open");
-  if (hamburgerButton) {
-    hamburgerButton.classList.remove("active");
-    hamburgerButton.setAttribute("aria-expanded", "false");
-  }
-  if (navOverlay) navOverlay.style.display = "none";
-  document.querySelectorAll("nav li.open").forEach(function (li) {
-    li.classList.remove("open");
-  });
-  document.body.style.overflow = "";
+  if (!mainNav || !hamburgerButton || !navOverlay) return;
+  mainNav.classList.remove('nav-open');
+  hamburgerButton.classList.remove('active');
+  navOverlay.style.display = 'none';
+  document.querySelectorAll('nav li.open').forEach(li => li.classList.remove('open'));
 }
 
-function openMenu() {
-  if (mainNav) mainNav.classList.add("nav-open");
-  if (hamburgerButton) {
-    hamburgerButton.classList.add("active");
-    hamburgerButton.setAttribute("aria-expanded", "true");
-  }
-  if (navOverlay) navOverlay.style.display = "block";
-  document.body.style.overflow = "hidden";
-}
-
-if (hamburgerButton && mainNav) {
-  hamburgerButton.addEventListener("click", function (e) {
-    e.preventDefault();
+if (hamburgerButton) {
+  hamburgerButton.addEventListener('click', (e) => {
     e.stopPropagation();
-
-    if (mainNav.classList.contains("nav-open")) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
+    const isOpen = mainNav.classList.toggle('nav-open');
+    hamburgerButton.classList.toggle('active');
+    navOverlay.style.display = isOpen ? 'block' : 'none';
   });
 }
+if (navOverlay) navOverlay.addEventListener('click', closeMenu);
 
-if (navOverlay) {
-  navOverlay.addEventListener("click", function () {
-    closeMenu();
-  });
-}
-
-// Mobile submenu accordion only
-document.querySelectorAll("nav > ul > li > a").forEach(function (link) {
-  link.addEventListener("click", function (e) {
-    // Desktop hover menus: do nothing special
+document.querySelectorAll('nav > ul > li > a').forEach(link => {
+  link.addEventListener('click', function (e) {
     if (window.innerWidth > 768) return;
-
     const li = this.parentElement;
-    const submenu = li.querySelector(".submenu");
-
+    const submenu = li.querySelector('.submenu');
     if (submenu) {
       e.preventDefault();
       e.stopPropagation();
-
-      // Close other open submenus
-      document.querySelectorAll("nav li.open").forEach(function (openLi) {
-        if (openLi !== li) openLi.classList.remove("open");
-      });
-
-      li.classList.toggle("open");
-    } else {
-      // Normal link on mobile: close drawer after tap
+      li.classList.toggle('open');
+    } else if (this.getAttribute('href') !== "#") {
       closeMenu();
     }
   });
 });
 
-// Close mobile menu on resize to desktop
-window.addEventListener("resize", function () {
-  if (window.innerWidth > 768) {
-    closeMenu();
-  }
-});
-
-// =========================
-// Footer explore toggle
-// =========================
 if (exploreBtn && footerExpandable) {
-  exploreBtn.addEventListener("click", function (e) {
+  exploreBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    footerExpandable.classList.toggle("show");
-    exploreBtn.classList.toggle("active");
+    footerExpandable.classList.toggle('show');
+    exploreBtn.classList.toggle('active');
   });
 }
 
-// =========================
 // Industry Pulse expanders
-// =========================
-document.querySelectorAll(".chevron-toggle").forEach(function (toggle) {
-  toggle.addEventListener("click", function () {
+document.querySelectorAll('.chevron-toggle').forEach(toggle => {
+  toggle.addEventListener('click', function () {
     const content = this.nextElementSibling;
-    const isExpanded = this.getAttribute("aria-expanded") === "true";
-    this.setAttribute("aria-expanded", String(!isExpanded));
-
-    if (content && content.classList.contains("expandable-content")) {
-      content.classList.toggle("hidden");
+    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', !isExpanded);
+    if (content && content.classList.contains('expandable-content')) {
+      content.classList.toggle('hidden');
     }
   });
 });
 </script>
+</body>
+</html>
