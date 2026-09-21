@@ -3,7 +3,19 @@ layout: default
 title: Industry Pulse
 description: Stay ahead with curated updates, insights, and trends shaping the industry.
 ---
- 
+
+<!-- Search Box -->
+<div id="searchArea" style="text-align:center; margin:20px 0;">
+  <input
+    type="text"
+    id="articleSearch"
+    placeholder="Search articles..."
+    style="width:100%; max-width:420px; padding:11px 14px; border:1px solid #d0d7de; border-radius:6px; font-size:0.9em; outline:none; background:#fff; box-sizing:border-box;"
+  >
+  <p id="searchStatus" style="margin:8px 0 0; font-size:0.82em; color:#888;"></p>
+</div>
+
+
 <main>
   <section id="hero">
     <h1>Industry Pulse</h1>
@@ -344,6 +356,38 @@ The Employment Act 1955 (Act 265) is the foundation of labor law in Peninsular M
 
     </div>
   </div>
+
+ <script>
+const searchInput = document.getElementById("articleSearch");
+const cards = document.querySelectorAll(".card");
+const searchStatus = document.getElementById("searchStatus");
+
+searchInput.addEventListener("input", function () {
+  const term = this.value.trim().toLowerCase();
+  let matches = 0;
+
+  cards.forEach(card => {
+    const title = card.querySelector(".post-title").textContent.toLowerCase();
+    const text = card.querySelector("p").textContent.toLowerCase();
+
+    if (title.includes(term) || text.includes(term)) {
+      card.style.display = "block";
+      matches++;
+    } else {
+      card.style.display = "none";
+    }
+  });
+
+  if (!term) {
+    searchStatus.textContent = "";
+    cards.forEach(card => card.style.display = "block");
+  } else {
+    searchStatus.textContent = matches
+      ? `${matches} article${matches > 1 ? "s" : ""} found`
+      : "No matches";
+  }
+});
+</script>
 
 
 
