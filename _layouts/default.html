@@ -556,6 +556,20 @@ h2, h3 {
 .pulse-btn:hover { background: #0d3144; }
 .hidden { display: none !important; }
 
+    .inline-gif {
+  flex: 0 0 250px; /* Forces the GIF to stay 250px wide */
+  max-width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+/* This makes the text next to the GIF fill the remaining space */
+.expandable-content p {
+  flex: 1;
+  min-width: 250px;
+  margin: 0;
+}
+
 /* ---------- Mobile ---------- */
 @media (max-width: 768px) {
   .container {
@@ -781,9 +795,11 @@ nav#mainNav.nav-open {
 }
 
 .expandable-content {
-  padding: 20px 0;
-  border-top: 1px solid #e8eef3;
-  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 10px 0;
+  border-top: 1px solid #f1f5f9;
 }
 
     .expandable-content.hidden {
