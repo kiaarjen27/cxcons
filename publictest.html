@@ -35,18 +35,34 @@ description: Search our upcoming HRDC claimable public programs.
       </div>
     </div>
 
-    <!-- Request Form (Hidden by default) -->
-    <div id="requestPanel" style="display: none; margin-top: 28px; background: #fff; border: 1px solid #e6ebf0; border-left: 4px solid #12425c; padding: 20px;">
-      <h2 style="color:#12425c; font-size:1.2em;">Request Brochure</h2>
-      <p>Program: <strong id="selectedModuleName"></strong></p>
-      <form id="brochureForm" style="display:grid; gap:10px; max-width:400px;">
-        <input type="hidden" id="moduleTitleField" name="module_title">
-        <input type="text" name="full_name" placeholder="Full Name" required style="padding:8px;">
-        <input type="email" name="email" placeholder="Corporate Email" required style="padding:8px;">
-        <button type="submit" style="background:#12425c; color:#fff; border:none; padding:10px; cursor:pointer;">Send Request</button>
-        <button type="button" id="cancelRequest" style="background:#eee; padding:10px; border:none; cursor:pointer;">Cancel</button>
-      </form>
+<!-- Request Form -->
+<div id="requestPanel" style="display: none; margin-top: 28px; background: #fff; border: 1px solid #e6ebf0; border-left: 4px solid #12425c; border-radius: 8px; padding: 24px 20px;">
+  <h2 style="color:#12425c; font-size:1.2em; margin:0 0 6px;">Request Information</h2>
+  <p style="color:#555; font-size:0.85em; margin:0 0 18px;">
+    Selected: <strong id="selectedModuleName">—</strong> (<span id="selectedModuleDate">—</span>)
+  </p>
+
+  <form id="brochureForm" style="display:grid; gap:12px; max-width:480px;">
+    <!-- Hidden fields to pass data to App Script -->
+    <input type="hidden" id="moduleTitleField" name="module_title">
+    <input type="hidden" id="moduleDateField" name="module_date">
+
+    <div>
+      <label style="display:block; font-size:0.8em; color:#555; margin-bottom:5px;">Full Name *</label>
+      <input type="text" name="full_name" required style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;">
     </div>
+
+    <div>
+      <label style="display:block; font-size:0.8em; color:#555; margin-bottom:5px;">Corporate Email *</label>
+      <input type="email" name="email" required style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;">
+    </div>
+
+    <div style="display:flex; gap:10px; margin-top:5px;">
+      <button type="submit" style="background:#12425c; color:#fff; border:none; padding:10px 20px; border-radius:4px; cursor:pointer;">Send Request</button>
+      <button type="button" id="cancelRequest" style="background:#f4f5f7; border:1px solid #ccc; padding:10px 20px; border-radius:4px; cursor:pointer;">Cancel</button>
+    </div>
+  </form>
+</div>
   </div>
 </main>
 
@@ -67,10 +83,10 @@ function renderTable(data) {
     tr.style.borderBottom = "1px solid #eee";
     tr.style.backgroundColor = i % 2 === 0 ? "#fff" : "#f9f9f9";
     
-    const actionCell = p.action === "Full" 
-      ? "Full" 
-      : `<button onclick="openRequest('${p.title}')" style="background:#12425c; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Request</button>`;
-
+const actionCell = p.action === "Full" 
+  ? "Full" 
+  : `<button type="button" onclick="openRequest('${p.title.replace(/'/g, "\\'")}', '${p.date.replace(/'/g, "\\'")}')" style="background:#12425c; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Request</button>`;
+    
     tr.innerHTML = `
       <td style="padding: 12px;">${p.title}</td>
       <td style="padding: 12px; text-align: center;">${p.date}</td>
@@ -83,14 +99,25 @@ function renderTable(data) {
   });
 }
 
-function openRequest(title) {
-  document.getElementById("selectedModuleName").textContent = title;
+function openRequest(title, date) {
+  // Update the hidden fields so App Script receives the data
   document.getElementById("moduleTitleField").value = title;
+  document.getElementById("moduleDateField").value = date;
+  
+  // Update the display text so the user knows what they are requesting
+  document.getElementById("selectedModuleName").textContent = title;
+  document.getElementById("selectedModuleDate").textContent = date;
+  
+  // Display the panel
   document.getElementById("requestPanel").style.display = "block";
+  document.getElementById("requestPanel").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 document.getElementById("moduleSearch").addEventListener("input", (e) => {
-  const filtered = PROGRAMS.filter(p => p.title.toLowerCase().includes(e.target.value.toLowerCase()));
+  const filtered = PROGRAMS.filter(p => 
+    p.title.toLowerCase().includes(e.target.value.toLowerCase()) || 
+    p.date.toLowerCase().includes(e.target.value.toLowerCase())
+  );
   renderTable(filtered);
 });
 
@@ -98,5 +125,6 @@ document.getElementById("cancelRequest").addEventListener("click", () => {
   document.getElementById("requestPanel").style.display = "none";
 });
 
+// Initial render
 renderTable(PROGRAMS);
 </script>
