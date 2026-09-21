@@ -555,6 +555,32 @@ h2, h3 {
 .pulse-btn:hover { background: #0d3144; }
 .hidden { display: none !important; }
 
+    nav#mainNav {
+    position: relative;
+    background: #fff;
+    border-bottom: 1px solid #e8eef3;
+    z-index: 1200;
+  }
+
+  .submenu {
+    position: absolute;   /* was fixed */
+    top: 100%;            /* directly under the nav bar */
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin: 0;
+    transform: none;
+  }
+
+  /* keep hover behavior */
+  nav li:hover > .submenu,
+  .submenu:hover {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
 /* ---------- Mobile ---------- */
 @media (max-width: 768px) {
   .container {
@@ -927,22 +953,29 @@ h2, h3 {
 </footer>
 
 <script>
+// =========================
 // Contact form
+// =========================
 const scriptURL = "https://script.google.com/macros/s/AKfycbwlygUNCTJltOgXx0B5wtntQKb34e3Ufpu9aDBVWItoyNfI34ALwruNCuIX0B2QVQA/exec";
 const form = document.getElementById("contactForm");
+
 if (form) {
-  form.addEventListener("submit", e => {
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
     fetch(scriptURL, { method: "POST", body: new FormData(form) })
-      .then(() => {
+      .then(function () {
         alert("Message sent successfully!");
         form.reset();
       })
-      .catch(() => alert("Error sending message. Please try again."));
+      .catch(function () {
+        alert("Error sending message. Please try again.");
+      });
   });
 }
 
+// =========================
 // Mobile nav
+// =========================
 const hamburgerButton = document.getElementById("hamburgerButton");
 const mainNav = document.getElementById("mainNav");
 const navOverlay = document.getElementById("navOverlay");
@@ -956,7 +989,9 @@ function closeMenu() {
     hamburgerButton.setAttribute("aria-expanded", "false");
   }
   if (navOverlay) navOverlay.style.display = "none";
-  document.querySelectorAll("nav li.open").forEach(li => li.classList.remove("open"));
+  document.querySelectorAll("nav li.open").forEach(function (li) {
+    li.classList.remove("open");
+  });
   document.body.style.overflow = "";
 }
 
@@ -981,21 +1016,18 @@ if (hamburgerButton && mainNav) {
       openMenu();
     }
   });
-} else {
-  console.warn("Hamburger menu elements missing:", {
-    hamburgerButton: !!hamburgerButton,
-    mainNav: !!mainNav,
-    navOverlay: !!navOverlay
-  });
 }
 
 if (navOverlay) {
-  navOverlay.addEventListener("click", closeMenu);
+  navOverlay.addEventListener("click", function () {
+    closeMenu();
+  });
 }
 
-// Mobile submenu accordion
-document.querySelectorAll("nav > ul > li > a").forEach(link => {
+// Mobile submenu accordion only
+document.querySelectorAll("nav > ul > li > a").forEach(function (link) {
   link.addEventListener("click", function (e) {
+    // Desktop hover menus: do nothing special
     if (window.innerWidth > 768) return;
 
     const li = this.parentElement;
@@ -1004,14 +1036,30 @@ document.querySelectorAll("nav > ul > li > a").forEach(link => {
     if (submenu) {
       e.preventDefault();
       e.stopPropagation();
+
+      // Close other open submenus
+      document.querySelectorAll("nav li.open").forEach(function (openLi) {
+        if (openLi !== li) openLi.classList.remove("open");
+      });
+
       li.classList.toggle("open");
-    } else if (this.getAttribute("href") !== "#") {
+    } else {
+      // Normal link on mobile: close drawer after tap
       closeMenu();
     }
   });
 });
 
-// Footer explore
+// Close mobile menu on resize to desktop
+window.addEventListener("resize", function () {
+  if (window.innerWidth > 768) {
+    closeMenu();
+  }
+});
+
+// =========================
+// Footer explore toggle
+// =========================
 if (exploreBtn && footerExpandable) {
   exploreBtn.addEventListener("click", function (e) {
     e.preventDefault();
@@ -1020,17 +1068,18 @@ if (exploreBtn && footerExpandable) {
   });
 }
 
+// =========================
 // Industry Pulse expanders
-document.querySelectorAll(".chevron-toggle").forEach(toggle => {
+// =========================
+document.querySelectorAll(".chevron-toggle").forEach(function (toggle) {
   toggle.addEventListener("click", function () {
     const content = this.nextElementSibling;
     const isExpanded = this.getAttribute("aria-expanded") === "true";
     this.setAttribute("aria-expanded", String(!isExpanded));
+
     if (content && content.classList.contains("expandable-content")) {
       content.classList.toggle("hidden");
     }
   });
 });
 </script>
-</body>
-</html>
