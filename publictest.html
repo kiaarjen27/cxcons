@@ -142,50 +142,48 @@ function renderTable(data) {
     const tr = document.createElement("tr");
     tr.style.borderBottom = "1px solid #eee";
     tr.style.backgroundColor = i % 2 === 0 ? "#fff" : "#f9f9f9";
-    
     const actionCell = p.action === "Full" 
-      ? "Full" 
-      : `<button type="button" onclick="openRequest('${p.title.replace(/'/g, "\\'")}', '${p.date.replace(/'/g, "\\'")}')" style="background:#12425c; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Request</button>`;
+      ? `<span style="color:#666; font-size:0.85em;">Full</span>` 
+      : `<button type="button" onclick="openRequest('${p.title.replace(/'/g, "\\'")}', '${p.date.replace(/'/g, "\\'")}')" style="background:#12425c; color:white; border:none; padding:6px 12px; border-radius:4px; cursor:pointer;">Request Info</button>`;
 
-    tr.innerHTML = `
-      <td style="padding: 12px;">${p.title}</td>
-      <td style="padding: 12px; text-align: center;">${p.date}</td>
-      <td style="padding: 12px; text-align: center;">${p.duration}</td>
-      <td style="padding: 12px; text-align: center;">${p.time || '-'}</td>
-      <td style="padding: 12px; text-align: center;">${p.venue}</td>
-      <td style="padding: 12px; text-align: center;">${p.hrdc}</td>
-      <td style="padding: 12px; text-align: center;">${actionCell}</td>
-    `;
+    tr.innerHTML = `<td style="padding: 12px;">${p.title}</td><td style="padding: 12px; text-align: center;">${p.date}</td><td style="padding: 12px; text-align: center;">${p.duration}</td><td style="padding: 12px; text-align: center;">${p.time}</td><td style="padding: 12px; text-align: center;">${p.venue}</td><td style="padding: 12px; text-align: center;">${p.hrdc}</td><td style="padding: 12px; text-align: center;">${actionCell}</td>`;
     body.appendChild(tr);
   });
 }
 
 function openRequest(title, date) {
-  // Update the hidden fields so App Script receives the data
   document.getElementById("moduleTitleField").value = title;
   document.getElementById("moduleDateField").value = date;
-  
-  // Update the display text so the user knows what they are requesting
   document.getElementById("selectedModuleName").textContent = title;
   document.getElementById("selectedModuleDate").textContent = date;
-  
-  // Display the panel
   document.getElementById("requestPanel").style.display = "block";
   document.getElementById("requestPanel").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 document.getElementById("moduleSearch").addEventListener("input", (e) => {
-  const filtered = PROGRAMS.filter(p => 
-    p.title.toLowerCase().includes(e.target.value.toLowerCase()) || 
-    p.date.toLowerCase().includes(e.target.value.toLowerCase())
-  );
+  const filtered = PROGRAMS.filter(p => p.title.toLowerCase().includes(e.target.value.toLowerCase()) || p.date.toLowerCase().includes(e.target.value.toLowerCase()));
   renderTable(filtered);
 });
 
-document.getElementById("cancelRequest").addEventListener("click", () => {
-  document.getElementById("requestPanel").style.display = "none";
+document.getElementById("cancelRequest").addEventListener("click", () => document.getElementById("requestPanel").style.display = "none");
+
+document.getElementById("brochureForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('button[type="submit"]');
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwEOr51jPG7Xm5Jsn8jYLMrzK-I1aRaDomWN6sJD0J-KvghxlvvnWqWquPlFP0mI2tQMg/exec";
+  btn.textContent = "Sending...";
+  btn.disabled = true;
+
+  fetch(SCRIPT_URL, { method: "POST", body: new FormData(this) })
+  .then(res => res.json())
+  .then(() => {
+    alert("Request sent successfully!");
+    document.getElementById("requestPanel").style.display = "none";
+    this.reset();
+  })
+  .catch(() => alert("Something went wrong."))
+  .finally(() => { btn.textContent = "Send Request"; btn.disabled = false; });
 });
 
-// Initial render
 renderTable(PROGRAMS);
 </script>
