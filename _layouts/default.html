@@ -754,101 +754,92 @@ h2, h3 {
 
 </head>
 <body>
+  <div id="navOverlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:2200; display:none;"></div>
 
-<div id="navOverlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1500; display:none;"></div>
+  <header>
+    <a href="/" class="site-logo">
+      <img src="https://raw.githubusercontent.com/kiaarjen27/cxcons-assets/d40525b37591257a68d5195b0d604e442e3dd577/logo.webp" alt="CXCons Logo">
+    </a>
 
-<header>
- <a href="/" class="site-logo">
-    <img src="https://raw.githubusercontent.com/kiaarjen27/cxcons-assets/d40525b37591257a68d5195b0d604e442e3dd577/logo.webp" alt="CXCons Logo">
- </a>
+    <button class="hamburger-button" id="hamburgerButton" aria-label="Toggle Menu" aria-expanded="false">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+  </header>
 
- <button class="hamburger-button" id="hamburgerButton" aria-label="Toggle Menu" aria-expanded="false">
-   <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
- </button>
- 
-<nav id="mainNav">
-  <ul>
-    <li><a href="/">Home</a></li>
-
-    <li>
-      <a href="/hrdcorp/">HRDCorp</a>
-      <ul class="submenu">
-        <li><a href="/hrdcorp/hrdcorp-hub/">HRDCorp Hub</a></li>
-        <li><a href="/hrdcorp/registered-companies/">HRDC Registered Companies</a></li>
-        <li><a href="/hrdcorp/evaluation-process/">Evaluation Process</a></li>
-        <li><a href="/hrdcorp/employer-guide/">HRDC Employer Guide</a></li>
-      </ul>
-    </li>
-
-    <li>
-     <a href="/programs/">Programs</a>
-     <ul class="submenu">
-      <li><a href="/programs/">Programs</a></li>
-      <li><a href="/programs/finder/">Finder</a></li>
-      <li><a href="/programs/public-training/">Public Training Schedule</a></li>
-      <li><a href="/programs/request-custom-programs/">In-House Training</a></li>
-      <li><a href="/programs/coaching/">Coaching Sessions</a></li>
-      <li><a href="/programs/certification/">Certification</a></li>
-     </ul> 
-   </li>
-
-    <li>
-      <a href="/about/">About Us</a>
-      <ul class="submenu">
-        <li><a href="/about/">About Us</a></li>
-        <li><a href="/news-and-articles/">News & Updates</a></li>
-        <li><a href="/resources/">Resources</a></li>
-        <li><a href="/industry-pulse/">Industry Pulse</a></li>
-      </ul>
-    </li>
-
-    <li>
-      <a href="/solutions/">Solutions</a>
-      <ul class="submenu">
-        <li><a href="/solutions/corporate-learning/">Corporate Learning</a></li>
-        <li><a href="/solutions/team-building/">Team Building</a></li>
-        <li><a href="/solutions/annual-dinners/">Annual Dinners</a></li>
-        <li><a href="/solutions/csr-events/">CSR Events</a></li>
-        <li><a href="/solutions/networking-events/">Networking Events</a></li>
-        <li><a href="/solutions/workshops-seminars/">Workshops & Seminars</a></li>
-        <li><a href="/solutions/product-launches/">Product Launches</a></li>
-        <li><a href="/solutions/awards-ceremonies/">Awards Ceremonies</a></li>
-      </ul>
-    </li>
-
-    <li>
-      <a href="/join-our-team/">Talent Opportunities</a>
-    </li>
-
-    <li>
-      <a href="/services/">Services</a>
-      <ul class="submenu">
-        <li><a href="/services/event-design/">Event Design</a></li>
-        <li><a href="/services/vendor-management/">Vendor Management</a></li>
-        <li><a href="/services/web-development-design/">Web Development</a></li>
-        <li><a href="/services/logistics-coordination/">Event Logistics</a></li>
-        <li><a href="/services/advertisement-marketing/">Marketing & Promotion</a></li>
-        <li><a href="/services/product-launch-execution/">Product Launch</a></li>
-        <li><a href="/services/local-crm-service/">Local CRM Service</a></li>
-        <li><a href="/services/event-media/">Event Media</a></li>
-       
-      </ul>
-    </li>
-
-    <li><a href="/hr-appreciation-program/" style="color:#cc0000;">HR Rewards</a></li>
-
-
-<li style="text-align:center; margin:15px 0;">
-  <a href="/programs/request-custom-programs/" 
-     style="display:inline-block; background-color:#12425c; color:#fff; padding:6px 14px; border-radius:4px; font-size:11px; font-weight:500; letter-spacing:0.5px; text-decoration:none;">
-    Request Custom Program
-  </a>
-</li>
- <li style="text-align:center; margin:15px 0;">
-   <a href="/contact/" class="subscribe-btn">Contact Us</a>
- </li>
-  </ul>
- </nav>
+  <!-- NAV MUST BE OUTSIDE HEADER -->
+  <nav id="mainNav">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li>
+        <a href="/hrdcorp/">HRDCorp</a>
+        <ul class="submenu">
+          <li><a href="/hrdcorp/hrdcorp-hub/">HRDCorp Hub</a></li>
+          <li><a href="/hrdcorp/registered-companies/">HRDC Registered Companies</a></li>
+          <li><a href="/hrdcorp/evaluation-process/">Evaluation Process</a></li>
+          <li><a href="/hrdcorp/employer-guide/">HRDC Employer Guide</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/programs/">Programs</a>
+        <ul class="submenu">
+          <li><a href="/programs/">Programs</a></li>
+          <li><a href="/programs/finder/">Finder</a></li>
+          <li><a href="/programs/public-training/">Public Training Schedule</a></li>
+          <li><a href="/programs/request-custom-programs/">In-House Training</a></li>
+          <li><a href="/programs/coaching/">Coaching Sessions</a></li>
+          <li><a href="/programs/certification/">Certification</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/about/">About Us</a>
+        <ul class="submenu">
+          <li><a href="/about/">About Us</a></li>
+          <li><a href="/news-and-articles/">News & Updates</a></li>
+          <li><a href="/resources/">Resources</a></li>
+          <li><a href="/industry-pulse/">Industry Pulse</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/solutions/">Solutions</a>
+        <ul class="submenu">
+          <li><a href="/solutions/corporate-learning/">Corporate Learning</a></li>
+          <li><a href="/solutions/team-building/">Team Building</a></li>
+          <li><a href="/solutions/annual-dinners/">Annual Dinners</a></li>
+          <li><a href="/solutions/csr-events/">CSR Events</a></li>
+          <li><a href="/solutions/networking-events/">Networking Events</a></li>
+          <li><a href="/solutions/workshops-seminars/">Workshops & Seminars</a></li>
+          <li><a href="/solutions/product-launches/">Product Launches</a></li>
+          <li><a href="/solutions/awards-ceremonies/">Awards Ceremonies</a></li>
+        </ul>
+      </li>
+      <li><a href="/join-our-team/">Talent Opportunities</a></li>
+      <li>
+        <a href="/services/">Services</a>
+        <ul class="submenu">
+          <li><a href="/services/event-design/">Event Design</a></li>
+          <li><a href="/services/vendor-management/">Vendor Management</a></li>
+          <li><a href="/services/web-development-design/">Web Development</a></li>
+          <li><a href="/services/logistics-coordination/">Event Logistics</a></li>
+          <li><a href="/services/advertisement-marketing/">Marketing & Promotion</a></li>
+          <li><a href="/services/product-launch-execution/">Product Launch</a></li>
+          <li><a href="/services/local-crm-service/">Local CRM Service</a></li>
+          <li><a href="/services/event-media/">Event Media</a></li>
+        </ul>
+      </li>
+      <li><a href="/hr-appreciation-program/" style="color:#cc0000;">HR Rewards</a></li>
+      <li style="text-align:center; margin:15px 0;">
+        <a href="/programs/request-custom-programs/"
+           style="display:inline-block; background-color:#12425c; color:#fff; padding:6px 14px; border-radius:4px; font-size:11px; font-weight:500; letter-spacing:0.5px; text-decoration:none;">
+          Request Custom Program
+        </a>
+      </li>
+      <li style="text-align:center; margin:15px 0;">
+        <a href="/contact/" class="subscribe-btn">Contact Us</a>
+      </li>
+    </ul>
+  </nav>
 </header>
 
 {{ content }}
