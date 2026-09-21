@@ -19,7 +19,7 @@ description: Search our upcoming HRDC claimable public programs.
     <!-- Table -->
     <div id="tableCard" style="background: #fff; border: 1px solid #e6ebf0; border-radius: 8px; overflow: hidden;">
       <div style="overflow-x: auto;">
-        <table style="width: 100%; border-collapse: collapse; font-size: 0.85em;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.8em;">
           <thead>
             <tr style="background: #12425c; color: #fff;">
               <th style="padding: 12px; text-align: left;">Program Title</th>
@@ -38,8 +38,8 @@ description: Search our upcoming HRDC claimable public programs.
 
 <!-- Request Form -->
 <div id="requestPanel" style="display: none; margin-top: 28px; background: #fff; border: 1px solid #e6ebf0; border-left: 4px solid #12425c; border-radius: 8px; padding: 24px 20px;">
-  <h2 style="color:#12425c; font-size:1.2em; margin:0 0 6px;">Request Information</h2>
-  <p style="color:#555; font-size:0.85em; margin:0 0 18px;">
+  <h2 style="color:#12425c; font-size:0.8em; margin:0 0 6px;">Request Information</h2>
+  <p style="color:#555; font-size:0.8em; margin:0 0 18px;">
     Selected: <strong id="selectedModuleName">—</strong> (<span id="selectedModuleDate">—</span>)
   </p>
 
@@ -143,7 +143,7 @@ function renderTable(data) {
     tr.style.borderBottom = "1px solid #eee";
     tr.style.backgroundColor = i % 2 === 0 ? "#fff" : "#f9f9f9";
     const actionCell = p.action === "Full" 
-      ? `<span style="color:#666; font-size:0.85em;">Full</span>` 
+      ? `<span style="color:#666; font-size:0.8em;">Full</span>` 
       : `<button type="button" onclick="openRequest('${p.title.replace(/'/g, "\\'")}', '${p.date.replace(/'/g, "\\'")}')" style="background:#12425c; color:white; border:none; padding:6px 12px; border-radius:4px; cursor:pointer;">Request Info</button>`;
 
     tr.innerHTML = `<td style="padding: 12px;">${p.title}</td><td style="padding: 12px; text-align: center;">${p.date}</td><td style="padding: 12px; text-align: center;">${p.duration}</td><td style="padding: 12px; text-align: center;">${p.time}</td><td style="padding: 12px; text-align: center;">${p.venue}</td><td style="padding: 12px; text-align: center;">${p.hrdc}</td><td style="padding: 12px; text-align: center;">${actionCell}</td>`;
