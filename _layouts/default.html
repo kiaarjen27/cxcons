@@ -795,6 +795,28 @@ article.card {
   margin: 0 auto;
 }
 
+    /* Modern Clearfix: Ensures the card contains floated elements */
+.card::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Updated GIF styling */
+.inline-gif {
+  float: left;
+  max-width: 40%;
+  margin: 0 20px 10px 0;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Ensure the paragraph wraps correctly */
+.expandable-content p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
 </style>
 
 </head>
