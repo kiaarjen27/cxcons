@@ -743,6 +743,47 @@ nav#mainNav.nav-open {
   transform: translateY(-6px) rotate(-45deg) !important;
 }
 
+    /* --- New Content Styles --- */
+.inline-gif {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  margin: 20px 0;
+  display: block;
+}
+
+.chevron-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background: #f8fafc;
+  border-radius: 6px;
+  margin: 10px 0;
+}
+
+.chevron-toggle[aria-expanded="true"] .chevron {
+  transform: rotate(-135deg);
+  margin-top: 6px;
+}
+
+.expandable-content {
+  padding: 10px 0;
+  border-top: 1px solid #f1f5f9;
+}
+
+.center-link {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Ensure the card styles apply correctly to articles */
+article.card {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 </style>
 
 </head>
