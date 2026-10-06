@@ -10,20 +10,43 @@ description: Internal form for company event participant list submission.
   </section>
 
   <div class="content-wrapper">
-    <div class="card" style="text-align:left; max-width:960px; margin:0 auto;">
+    <div class="card" style="text-align:left; max-width:980px; margin:0 auto;">
       <form id="participantForm">
         <h2 style="color:#12425c; margin-top:0;">Event details</h2>
 
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px;">
           <input type="text" name="company_name" placeholder="Company Name *" required>
           <input type="text" name="pic_name" placeholder="PIC Name *" required>
           <input type="text" name="event_title" placeholder="Event Title *" required>
           <input type="date" name="event_date" required>
         </div>
 
+        <h2 style="color:#12425c; margin-bottom:6px;">Bulk paste (optional)</h2>
+        <p style="color:#666; font-size:0.88em; margin-top:0;">
+          Paste from Excel / Google Sheets. One participant per line.<br>
+          Formats accepted:<br>
+          <code>Name &nbsp;&nbsp; IC &nbsp;&nbsp; Gender</code> &nbsp; or &nbsp;
+          <code>Name, IC, Gender</code><br>
+          Gender: <strong>Male</strong> / <strong>Female</strong> / <strong>M</strong> / <strong>F</strong>
+        </p>
+        <textarea id="bulkPaste"
+          rows="6"
+          placeholder="Ahmad Bin Ali	900101145678	Male
+Siti Aminah, 880202085432, Female
+John Tan 850303145123 M"
+          style="width:100%; padding:12px; box-sizing:border-box; margin-bottom:10px; font-family:inherit;"></textarea>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:22px;">
+          <button type="button" id="importBulkBtn" class="button" style="background:#12425c; box-shadow:none;">
+            Import paste into table
+          </button>
+          <button type="button" id="clearBulkBtn" class="button" style="background:#334155; box-shadow:none;">
+            Clear paste box
+          </button>
+        </div>
+
         <h2 style="color:#12425c;">Participants</h2>
         <p style="color:#666; font-size:0.9em; margin-top:0;">
-          Add up to 500 participants. Use “Add row” for more lines.
+          Edit rows below if needed. Maximum 500 participants.
         </p>
 
         <div style="overflow-x:auto;">
@@ -41,18 +64,16 @@ description: Internal form for company event participant list submission.
           </table>
         </div>
 
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin:16px 0 24px;">
-          <button type="button" id="addRowBtn" class="button" style="background:#12425c; box-shadow:none;">
-            Add row
-          </button>
-          <button type="button" id="add10Btn" class="button" style="background:#334155; box-shadow:none;">
-            Add 10 rows
-          </button>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin:16px 0 12px;">
+          <button type="button" id="addRowBtn" class="button" style="background:#12425c; box-shadow:none;">Add row</button>
+          <button type="button" id="add10Btn" class="button" style="background:#334155; box-shadow:none;">Add 10 rows</button>
+          <button type="button" id="clearRowsBtn" class="button" style="background:#64748b; box-shadow:none;">Clear all rows</button>
         </div>
 
         <p id="rowCount" style="color:#666; font-size:0.85em;"></p>
 
-        <button type="submit" id="submitBtn" style="width:100%; padding:14px; font-size:1em; background:#12425c; color:#fff; border:none; border-radius:6px; cursor:pointer;">
+        <button type="submit" id="submitBtn"
+          style="width:100%; padding:14px; font-size:1em; background:#12425c; color:#fff; border:none; border-radius:6px; cursor:pointer; margin-top:8px;">
           Submit list
         </button>
       </form>
@@ -67,30 +88,31 @@ description: Internal form for company event participant list submission.
   const rowCount = document.getElementById("rowCount");
   const form = document.getElementById("participantForm");
   const submitBtn = document.getElementById("submitBtn");
+  const bulkPaste = document.getElementById("bulkPaste");
 
-  // REPLACE with your deployed Apps Script Web App URL
+  // REPLACE after Apps Script deploy
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz8L8hfWhRrn4pLEqKyXFl8886KlHjm3GD1PSDRbS9yxGgH5p-cG862gHMbOpRheHZo/exec";
 
   function renumber() {
     [...body.querySelectorAll("tr")].forEach((tr, i) => {
       tr.querySelector(".idx").textContent = i + 1;
     });
-    rowCount.textContent = body.children.length + " / " + MAX_ROWS + " participants";
+    rowCount.textContent = body.children.length + " / " + MAX_ROWS + " participant rows";
   }
 
-  function addRow() {
-    if (body.children.length >= MAX_ROWS) {
-      alert("Maximum " + MAX_ROWS + " participants.");
-      return;
-    }
+  function addRow(data) {
+    if (body.children.length >= MAX_ROWS) return false;
+
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td style="padding:8px; border-bottom:1px solid #eee;" class="idx"></td>
       <td style="padding:8px; border-bottom:1px solid #eee;">
-        <input type="text" class="p-name" placeholder="Full name" required style="width:100%; padding:8px; box-sizing:border-box;">
+        <input type="text" class="p-name" placeholder="Full name" required
+          style="width:100%; padding:8px; box-sizing:border-box;">
       </td>
       <td style="padding:8px; border-bottom:1px solid #eee;">
-        <input type="text" class="p-ic" placeholder="IC number" required style="width:100%; padding:8px; box-sizing:border-box;">
+        <input type="text" class="p-ic" placeholder="IC number" required
+          style="width:100%; padding:8px; box-sizing:border-box;">
       </td>
       <td style="padding:8px; border-bottom:1px solid #eee;">
         <select class="p-gender" required style="width:100%; padding:8px;">
@@ -100,24 +122,136 @@ description: Internal form for company event participant list submission.
         </select>
       </td>
       <td style="padding:8px; border-bottom:1px solid #eee; text-align:center;">
-        <button type="button" class="remove-btn" style="background:none; border:1px solid #ddd; border-radius:4px; padding:4px 8px; cursor:pointer;">✕</button>
+        <button type="button" class="remove-btn"
+          style="background:none; border:1px solid #ddd; border-radius:4px; padding:4px 8px; cursor:pointer;">✕</button>
       </td>
     `;
+
+    if (data) {
+      tr.querySelector(".p-name").value = data.name || "";
+      tr.querySelector(".p-ic").value = data.ic || "";
+      if (data.gender) tr.querySelector(".p-gender").value = data.gender;
+    }
+
     tr.querySelector(".remove-btn").addEventListener("click", () => {
       if (body.children.length <= 1) return;
       tr.remove();
       renumber();
     });
+
     body.appendChild(tr);
     renumber();
+    return true;
   }
 
-  document.getElementById("addRowBtn").addEventListener("click", addRow);
+  function normalizeGender(g) {
+    const v = String(g || "").trim().toLowerCase();
+    if (v === "m" || v === "male" || v === "lelaki") return "Male";
+    if (v === "f" || v === "female" || v === "perempuan") return "Female";
+    return "";
+  }
+
+  function parseBulkLine(line) {
+    line = line.trim();
+    if (!line) return null;
+
+    // CSV: Name, IC, Gender
+    if (line.includes(",")) {
+      const parts = line.split(",").map(s => s.trim()).filter(Boolean);
+      if (parts.length >= 3) {
+        return { name: parts[0], ic: parts[1], gender: normalizeGender(parts[2]) };
+      }
+      if (parts.length === 2) {
+        return { name: parts[0], ic: parts[1], gender: "" };
+      }
+    }
+
+    // Tab-separated (Excel paste)
+    if (line.includes("\t")) {
+      const parts = line.split("\t").map(s => s.trim()).filter(Boolean);
+      if (parts.length >= 3) {
+        return { name: parts[0], ic: parts[1], gender: normalizeGender(parts[2]) };
+      }
+      if (parts.length === 2) {
+        return { name: parts[0], ic: parts[1], gender: "" };
+      }
+    }
+
+    // Space-separated fallback: Name ... IC Gender
+    // Example: Ahmad Bin Ali 900101145678 Male
+    const m = line.match(/^(.*?)[\s]+([0-9]{6,12})[\s]+([A-Za-z]+)\s*$/);
+    if (m) {
+      return { name: m[1].trim(), ic: m[2], gender: normalizeGender(m[3]) };
+    }
+
+    // Name + IC only
+    const m2 = line.match(/^(.*?)[\s]+([0-9]{6,12})\s*$/);
+    if (m2) {
+      return { name: m2[1].trim(), ic: m2[2], gender: "" };
+    }
+
+    return { name: line, ic: "", gender: "" };
+  }
+
+  function importBulk() {
+    const text = bulkPaste.value.trim();
+    if (!text) {
+      alert("Paste box is empty.");
+      return;
+    }
+
+    const lines = text.split(/\r?\n/);
+    const parsed = [];
+    for (const line of lines) {
+      const row = parseBulkLine(line);
+      if (row && (row.name || row.ic)) parsed.push(row);
+    }
+
+    if (!parsed.length) {
+      alert("No valid lines found.");
+      return;
+    }
+
+    // Replace empty starter rows if table only has blank rows
+    const existingFilled = [...body.querySelectorAll("tr")].filter(tr => {
+      return tr.querySelector(".p-name").value.trim() || tr.querySelector(".p-ic").value.trim();
+    });
+
+    if (!existingFilled.length) body.innerHTML = "";
+
+    let added = 0;
+    let skipped = 0;
+    for (const row of parsed) {
+      if (body.children.length >= MAX_ROWS) {
+        skipped = parsed.length - added;
+        break;
+      }
+      if (addRow(row)) added++;
+    }
+
+    let msg = "Imported " + added + " participant(s).";
+    if (skipped > 0) msg += " " + skipped + " skipped (500 max).";
+    alert(msg);
+  }
+
+  document.getElementById("addRowBtn").addEventListener("click", () => {
+    if (!addRow()) alert("Maximum " + MAX_ROWS + " participants.");
+  });
   document.getElementById("add10Btn").addEventListener("click", () => {
-    for (let i = 0; i < 10; i++) addRow();
+    for (let i = 0; i < 10; i++) {
+      if (!addRow()) break;
+    }
+  });
+  document.getElementById("clearRowsBtn").addEventListener("click", () => {
+    if (!confirm("Clear all participant rows?")) return;
+    body.innerHTML = "";
+    for (let i = 0; i < 5; i++) addRow();
+  });
+  document.getElementById("importBulkBtn").addEventListener("click", importBulk);
+  document.getElementById("clearBulkBtn").addEventListener("click", () => {
+    bulkPaste.value = "";
   });
 
-  // start with 5 rows
   for (let i = 0; i < 5; i++) addRow();
 
   form.addEventListener("submit", async (e) => {
@@ -129,6 +263,12 @@ description: Internal form for company event participant list submission.
       gender: tr.querySelector(".p-gender").value
     })).filter(p => p.name || p.ic || p.gender);
 
+    // require complete rows only
+    const incomplete = participants.find(p => !p.name || !p.ic || !p.gender);
+    if (incomplete) {
+      alert("Each participant needs Name, IC, and Gender.");
+      return;
+    }
     if (!participants.length) {
       alert("Please add at least one participant.");
       return;
@@ -152,17 +292,17 @@ description: Internal form for company event participant list submission.
     try {
       await fetch(SCRIPT_URL, {
         method: "POST",
-        // text/plain avoids CORS preflight issues with Apps Script
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(payload)
       });
-      alert("Submitted successfully. Our team will receive the participant list.");
+      alert("Submitted successfully. Our team will receive the Excel participant list.");
       form.reset();
+      bulkPaste.value = "";
       body.innerHTML = "";
       for (let i = 0; i < 5; i++) addRow();
     } catch (err) {
       console.error(err);
-      alert("Submission failed. Please try again or email the list to us.");
+      alert("Submission failed. Please try again.");
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = "Submit list";
