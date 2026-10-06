@@ -44,9 +44,9 @@ John Tan 850303145123 M"
           </button>
         </div>
 
-        <h2 style="color:#12425c;">Participants</h2>
+                <h2 style="color:#12425c;">Participants</h2>
         <p style="color:#666; font-size:0.9em; margin-top:0;">
-          Edit rows below if needed. Maximum 500 participants.
+          Add participants below. Maximum 500.
         </p>
 
         <div style="overflow-x:auto;">
@@ -71,6 +71,56 @@ John Tan 850303145123 M"
         </div>
 
         <p id="rowCount" style="color:#666; font-size:0.85em;"></p>
+
+        <!-- Bulk paste: collapsed by default -->
+        <div style="margin:22px 0 18px; border:1px solid #e6ebf0; border-radius:8px; overflow:hidden;">
+          <button
+            type="button"
+            id="bulkToggleBtn"
+            aria-expanded="false"
+            style="
+              width:100%;
+              display:flex;
+              align-items:center;
+              justify-content:space-between;
+              gap:12px;
+              padding:12px 14px;
+              background:#f8fafc;
+              border:none;
+              cursor:pointer;
+              font:inherit;
+              color:#334155;
+              text-align:left;
+            "
+          >
+            <span style="font-size:0.92em;">
+              Optional: bulk paste from Excel
+              <span style="color:#94a3b8; font-weight:400;"> — only if you already have a list</span>
+            </span>
+            <span id="bulkChevron" style="color:#64748b; font-size:1.1em; transition:transform 0.2s ease;">›</span>
+          </button>
+
+          <div id="bulkPanel" style="display:none; padding:14px; border-top:1px solid #e6ebf0; background:#fff;">
+            <p style="color:#666; font-size:0.86em; margin:0 0 10px;">
+              Paste from Excel / Google Sheets. One participant per line.<br>
+              Formats: <code>Name &nbsp; IC &nbsp; Gender</code> or <code>Name, IC, Gender</code><br>
+              Gender: <strong>Male</strong> / <strong>Female</strong> / <strong>M</strong> / <strong>F</strong>
+            </p>
+            <textarea id="bulkPaste"
+              rows="6"
+              placeholder="Ahmad Bin Ali	900101145678	Male
+Siti Aminah, 880202085432, Female"
+              style="width:100%; padding:12px; box-sizing:border-box; margin-bottom:10px; font-family:inherit;"></textarea>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button type="button" id="importBulkBtn" class="button" style="background:#12425c; box-shadow:none;">
+                Import paste into table
+              </button>
+              <button type="button" id="clearBulkBtn" class="button" style="background:#334155; box-shadow:none;">
+                Clear paste box
+              </button>
+            </div>
+          </div>
+        </div>
 
         <button type="submit" id="submitBtn"
           style="width:100%; padding:14px; font-size:1em; background:#12425c; color:#fff; border:none; border-radius:6px; cursor:pointer; margin-top:8px;">
@@ -309,4 +359,16 @@ John Tan 850303145123 M"
     }
   });
 })();
+
+    const bulkToggleBtn = document.getElementById("bulkToggleBtn");
+  const bulkPanel = document.getElementById("bulkPanel");
+  const bulkChevron = document.getElementById("bulkChevron");
+
+  bulkToggleBtn.addEventListener("click", () => {
+    const open = bulkPanel.style.display === "block";
+    bulkPanel.style.display = open ? "none" : "block";
+    bulkToggleBtn.setAttribute("aria-expanded", open ? "false" : "true");
+    bulkChevron.style.transform = open ? "rotate(0deg)" : "rotate(90deg)";
+  });
+  
 </script>
