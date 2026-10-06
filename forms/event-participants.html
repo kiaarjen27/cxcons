@@ -13,7 +13,6 @@ description: Internal form for company event participant list submission.
     <div class="card" style="text-align:left; max-width:980px; margin:0 auto;">
       <form id="participantForm">
         <h2 style="color:#12425c; margin-top:0;">Event details</h2>
-
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px;">
           <input type="text" name="company_name" placeholder="Company Name *" required>
           <input type="text" name="pic_name" placeholder="PIC Name *" required>
@@ -21,30 +20,7 @@ description: Internal form for company event participant list submission.
           <input type="date" name="event_date" required>
         </div>
 
-        <h2 style="color:#12425c; margin-bottom:6px;">Bulk paste (optional)</h2>
-        <p style="color:#666; font-size:0.88em; margin-top:0;">
-          Paste from Excel / Google Sheets. One participant per line.<br>
-          Formats accepted:<br>
-          <code>Name &nbsp;&nbsp; IC &nbsp;&nbsp; Gender</code> &nbsp; or &nbsp;
-          <code>Name, IC, Gender</code><br>
-          Gender: <strong>Male</strong> / <strong>Female</strong> / <strong>M</strong> / <strong>F</strong>
-        </p>
-        <textarea id="bulkPaste"
-          rows="6"
-          placeholder="Ahmad Bin Ali	900101145678	Male
-Siti Aminah, 880202085432, Female
-John Tan 850303145123 M"
-          style="width:100%; padding:12px; box-sizing:border-box; margin-bottom:10px; font-family:inherit;"></textarea>
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:22px;">
-          <button type="button" id="importBulkBtn" class="button" style="background:#12425c; box-shadow:none;">
-            Import paste into table
-          </button>
-          <button type="button" id="clearBulkBtn" class="button" style="background:#334155; box-shadow:none;">
-            Clear paste box
-          </button>
-        </div>
-
-                <h2 style="color:#12425c;">Participants</h2>
+        <h2 style="color:#12425c;">Participants</h2>
         <p style="color:#666; font-size:0.9em; margin-top:0;">
           Add participants below. Maximum 500.
         </p>
@@ -72,26 +48,13 @@ John Tan 850303145123 M"
 
         <p id="rowCount" style="color:#666; font-size:0.85em;"></p>
 
-        <!-- Bulk paste: collapsed by default -->
+        <!-- Bulk paste: collapsed, low visibility -->
         <div style="margin:22px 0 18px; border:1px solid #e6ebf0; border-radius:8px; overflow:hidden;">
           <button
             type="button"
             id="bulkToggleBtn"
             aria-expanded="false"
-            style="
-              width:100%;
-              display:flex;
-              align-items:center;
-              justify-content:space-between;
-              gap:12px;
-              padding:12px 14px;
-              background:#f8fafc;
-              border:none;
-              cursor:pointer;
-              font:inherit;
-              color:#334155;
-              text-align:left;
-            "
+            style="width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; background:#f8fafc; border:none; cursor:pointer; font:inherit; color:#334155; text-align:left;"
           >
             <span style="font-size:0.92em;">
               Optional: bulk paste from Excel
@@ -112,12 +75,8 @@ John Tan 850303145123 M"
 Siti Aminah, 880202085432, Female"
               style="width:100%; padding:12px; box-sizing:border-box; margin-bottom:10px; font-family:inherit;"></textarea>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <button type="button" id="importBulkBtn" class="button" style="background:#12425c; box-shadow:none;">
-                Import paste into table
-              </button>
-              <button type="button" id="clearBulkBtn" class="button" style="background:#334155; box-shadow:none;">
-                Clear paste box
-              </button>
+              <button type="button" id="importBulkBtn" class="button" style="background:#12425c; box-shadow:none;">Import paste into table</button>
+              <button type="button" id="clearBulkBtn" class="button" style="background:#334155; box-shadow:none;">Clear paste box</button>
             </div>
           </div>
         </div>
@@ -139,8 +98,10 @@ Siti Aminah, 880202085432, Female"
   const form = document.getElementById("participantForm");
   const submitBtn = document.getElementById("submitBtn");
   const bulkPaste = document.getElementById("bulkPaste");
+  const bulkToggleBtn = document.getElementById("bulkToggleBtn");
+  const bulkPanel = document.getElementById("bulkPanel");
+  const bulkChevron = document.getElementById("bulkChevron");
 
-  // REPLACE after Apps Script deploy
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZjKu0waRLar-qwKizmuaWUUUmoke3oariI31f24ZjEBgZYEGNDoj2Vz1X6pLJDynL/exec";
 
   function renumber() {
@@ -152,17 +113,14 @@ Siti Aminah, 880202085432, Female"
 
   function addRow(data) {
     if (body.children.length >= MAX_ROWS) return false;
-
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td style="padding:8px; border-bottom:1px solid #eee;" class="idx"></td>
       <td style="padding:8px; border-bottom:1px solid #eee;">
-        <input type="text" class="p-name" placeholder="Full name" required
-          style="width:100%; padding:8px; box-sizing:border-box;">
+        <input type="text" class="p-name" placeholder="Full name" required style="width:100%; padding:8px; box-sizing:border-box;">
       </td>
       <td style="padding:8px; border-bottom:1px solid #eee;">
-        <input type="text" class="p-ic" placeholder="IC number" required
-          style="width:100%; padding:8px; box-sizing:border-box;">
+        <input type="text" class="p-ic" placeholder="IC number" required style="width:100%; padding:8px; box-sizing:border-box;">
       </td>
       <td style="padding:8px; border-bottom:1px solid #eee;">
         <select class="p-gender" required style="width:100%; padding:8px;">
@@ -172,23 +130,19 @@ Siti Aminah, 880202085432, Female"
         </select>
       </td>
       <td style="padding:8px; border-bottom:1px solid #eee; text-align:center;">
-        <button type="button" class="remove-btn"
-          style="background:none; border:1px solid #ddd; border-radius:4px; padding:4px 8px; cursor:pointer;">✕</button>
+        <button type="button" class="remove-btn" style="background:none; border:1px solid #ddd; border-radius:4px; padding:4px 8px; cursor:pointer;">✕</button>
       </td>
     `;
-
     if (data) {
       tr.querySelector(".p-name").value = data.name || "";
       tr.querySelector(".p-ic").value = data.ic || "";
       if (data.gender) tr.querySelector(".p-gender").value = data.gender;
     }
-
     tr.querySelector(".remove-btn").addEventListener("click", () => {
       if (body.children.length <= 1) return;
       tr.remove();
       renumber();
     });
-
     body.appendChild(tr);
     renumber();
     return true;
@@ -204,42 +158,20 @@ Siti Aminah, 880202085432, Female"
   function parseBulkLine(line) {
     line = line.trim();
     if (!line) return null;
-
-    // CSV: Name, IC, Gender
     if (line.includes(",")) {
       const parts = line.split(",").map(s => s.trim()).filter(Boolean);
-      if (parts.length >= 3) {
-        return { name: parts[0], ic: parts[1], gender: normalizeGender(parts[2]) };
-      }
-      if (parts.length === 2) {
-        return { name: parts[0], ic: parts[1], gender: "" };
-      }
+      if (parts.length >= 3) return { name: parts[0], ic: parts[1], gender: normalizeGender(parts[2]) };
+      if (parts.length === 2) return { name: parts[0], ic: parts[1], gender: "" };
     }
-
-    // Tab-separated (Excel paste)
     if (line.includes("\t")) {
       const parts = line.split("\t").map(s => s.trim()).filter(Boolean);
-      if (parts.length >= 3) {
-        return { name: parts[0], ic: parts[1], gender: normalizeGender(parts[2]) };
-      }
-      if (parts.length === 2) {
-        return { name: parts[0], ic: parts[1], gender: "" };
-      }
+      if (parts.length >= 3) return { name: parts[0], ic: parts[1], gender: normalizeGender(parts[2]) };
+      if (parts.length === 2) return { name: parts[0], ic: parts[1], gender: "" };
     }
-
-    // Space-separated fallback: Name ... IC Gender
-    // Example: Ahmad Bin Ali 900101145678 Male
     const m = line.match(/^(.*?)[\s]+([0-9]{6,12})[\s]+([A-Za-z]+)\s*$/);
-    if (m) {
-      return { name: m[1].trim(), ic: m[2], gender: normalizeGender(m[3]) };
-    }
-
-    // Name + IC only
+    if (m) return { name: m[1].trim(), ic: m[2], gender: normalizeGender(m[3]) };
     const m2 = line.match(/^(.*?)[\s]+([0-9]{6,12})\s*$/);
-    if (m2) {
-      return { name: m2[1].trim(), ic: m2[2], gender: "" };
-    }
-
+    if (m2) return { name: m2[1].trim(), ic: m2[2], gender: "" };
     return { name: line, ic: "", gender: "" };
   }
 
@@ -249,24 +181,19 @@ Siti Aminah, 880202085432, Female"
       alert("Paste box is empty.");
       return;
     }
-
     const lines = text.split(/\r?\n/);
     const parsed = [];
     for (const line of lines) {
       const row = parseBulkLine(line);
       if (row && (row.name || row.ic)) parsed.push(row);
     }
-
     if (!parsed.length) {
       alert("No valid lines found.");
       return;
     }
-
-    // Replace empty starter rows if table only has blank rows
     const existingFilled = [...body.querySelectorAll("tr")].filter(tr => {
       return tr.querySelector(".p-name").value.trim() || tr.querySelector(".p-ic").value.trim();
     });
-
     if (!existingFilled.length) body.innerHTML = "";
 
     let added = 0;
@@ -278,11 +205,17 @@ Siti Aminah, 880202085432, Female"
       }
       if (addRow(row)) added++;
     }
-
     let msg = "Imported " + added + " participant(s).";
     if (skipped > 0) msg += " " + skipped + " skipped (500 max).";
     alert(msg);
   }
+
+  bulkToggleBtn.addEventListener("click", () => {
+    const open = bulkPanel.style.display === "block";
+    bulkPanel.style.display = open ? "none" : "block";
+    bulkToggleBtn.setAttribute("aria-expanded", open ? "false" : "true");
+    bulkChevron.style.transform = open ? "rotate(0deg)" : "rotate(90deg)";
+  });
 
   document.getElementById("addRowBtn").addEventListener("click", () => {
     if (!addRow()) alert("Maximum " + MAX_ROWS + " participants.");
@@ -306,14 +239,12 @@ Siti Aminah, 880202085432, Female"
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-
     const participants = [...body.querySelectorAll("tr")].map((tr) => ({
       name: tr.querySelector(".p-name").value.trim(),
       ic: tr.querySelector(".p-ic").value.trim(),
       gender: tr.querySelector(".p-gender").value
     })).filter(p => p.name || p.ic || p.gender);
 
-    // require complete rows only
     const incomplete = participants.find(p => !p.name || !p.ic || !p.gender);
     if (incomplete) {
       alert("Each participant needs Name, IC, and Gender.");
@@ -338,7 +269,6 @@ Siti Aminah, 880202085432, Female"
 
     submitBtn.disabled = true;
     submitBtn.textContent = "Submitting...";
-
     try {
       await fetch(SCRIPT_URL, {
         method: "POST",
@@ -359,16 +289,4 @@ Siti Aminah, 880202085432, Female"
     }
   });
 })();
-
-    const bulkToggleBtn = document.getElementById("bulkToggleBtn");
-  const bulkPanel = document.getElementById("bulkPanel");
-  const bulkChevron = document.getElementById("bulkChevron");
-
-  bulkToggleBtn.addEventListener("click", () => {
-    const open = bulkPanel.style.display === "block";
-    bulkPanel.style.display = open ? "none" : "block";
-    bulkToggleBtn.setAttribute("aria-expanded", open ? "false" : "true");
-    bulkChevron.style.transform = open ? "rotate(0deg)" : "rotate(90deg)";
-  });
-  
 </script>
