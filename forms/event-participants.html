@@ -104,7 +104,7 @@ Siti Aminah, 880202085432, Female"
   const bulkPanel = document.getElementById("bulkPanel");
   const bulkChevron = document.getElementById("bulkChevron");
 
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyi7NgEN9B-HZQovJ2tL-4IOYC93jAkz8GC2IH3TjClvcUz0DS5lIHZX8HxJPusnp8F/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxpYgN5pYzxQuwh8xQxagvb55YQt8Z7dZliqQzVe_qa71i4S51n85jJoB9h_A2tNvDD/exec";
 
   function renumber() {
     [...body.querySelectorAll("tr")].forEach((tr, i) => {
@@ -271,17 +271,25 @@ Siti Aminah, 880202085432, Female"
 
     submitBtn.disabled = true;
     submitBtn.textContent = "Submitting...";
-    try {
-      await fetch(SCRIPT_URL, {
+       try {
+      const res = await fetch(SCRIPT_URL, {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(payload)
       });
-      alert("Submitted successfully. Our team will receive the Excel participant list.");
-      form.reset();
-      bulkPaste.value = "";
-      body.innerHTML = "";
-      for (let i = 0; i < 5; i++) addRow();
+      const text = await res.text();
+      let data = {};
+      try { data = JSON.parse(text); } catch (_) {}
+
+      if (data.result === "success") {
+        alert("Submitted successfully. Our team will receive the participant list.");
+        form.reset();
+        bulkPaste.value = "";
+        body.innerHTML = "";
+        for (let i = 0; i < 5; i++) addRow();
+      } else {
+        alert("Submission failed: " + (data.message || "Unknown error. Check Apps Script Executions."));
+      }
     } catch (err) {
       console.error(err);
       alert("Submission failed. Please try again.");
