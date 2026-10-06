@@ -17,7 +17,9 @@ description: Internal form for company event participant list submission.
           <input type="text" name="company_name" placeholder="Company Name *" required>
           <input type="text" name="pic_name" placeholder="PIC Name *" required>
           <input type="text" name="event_title" placeholder="Event Title *" required>
-          <input type="date" name="event_date" required>
+          <input type="text" name="event_date"
+  placeholder="Event Date *  e.g. 27 Nov 2026 or 27–28 Nov 2026"
+  required>
         </div>
 
         <h2 style="color:#12425c;">Participants</h2>
@@ -102,7 +104,7 @@ Siti Aminah, 880202085432, Female"
   const bulkPanel = document.getElementById("bulkPanel");
   const bulkChevron = document.getElementById("bulkChevron");
 
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZjKu0waRLar-qwKizmuaWUUUmoke3oariI31f24ZjEBgZYEGNDoj2Vz1X6pLJDynL/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzPKOVAUZbY_PiU29KUiX3QoyBsO5lHawjkDWWBKb0xDZpTvWOldfPpbsvVYiF34t8p/exec";
 
   function renumber() {
     [...body.querySelectorAll("tr")].forEach((tr, i) => {
