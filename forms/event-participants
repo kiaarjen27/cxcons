@@ -91,7 +91,7 @@ John Tan 850303145123 M"
   const bulkPaste = document.getElementById("bulkPaste");
 
   // REPLACE after Apps Script deploy
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz8L8hfWhRrn4pLEqKyXFl8886KlHjm3GD1PSDRbS9yxGgH5p-cG862gHMbOpRheHZo/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZjKu0waRLar-qwKizmuaWUUUmoke3oariI31f24ZjEBgZYEGNDoj2Vz1X6pLJDynL/exec";
 
   function renumber() {
     [...body.querySelectorAll("tr")].forEach((tr, i) => {
