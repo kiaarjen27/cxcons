@@ -1,0 +1,252 @@
+---
+layout: default
+title: Output Assessment (OA)
+description: HRD TEE Output Assessment form for training feedback — English and Bahasa Melayu.
+---
+<main>
+  <section id="hero">
+    <h1 data-i18n="hero_title">Output Assessment (OA)</h1>
+    <p data-i18n="hero_sub">Rate the training content, organiser, and trainer. Each submission is stored separately.</p>
+  </section>
+
+  <div class="content-wrapper">
+    <div class="card" style="text-align:left; max-width:920px; margin:0 auto;">
+
+      <!-- Language -->
+      <div style="display:flex; gap:8px; margin-bottom:18px;">
+        <button type="button" id="langEN" class="button" style="background:#12425c; box-shadow:none;">English</button>
+        <button type="button" id="langBM" class="button" style="background:#334155; box-shadow:none;">Bahasa Melayu</button>
+      </div>
+
+      <form id="oaForm">
+        <h2 style="color:#12425c; margin-top:0;" data-i18n="training_details">Training details</h2>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px;">
+          <input type="text" name="company_name" required data-i18n-placeholder="ph_company">
+          <input type="text" name="program_title" required data-i18n-placeholder="ph_program">
+          <input type="text" name="training_date" required data-i18n-placeholder="ph_date">
+          <input type="text" name="trainer_name" data-i18n-placeholder="ph_trainer">
+        </div>
+
+        <p style="color:#666; font-size:0.88em; margin-bottom:18px;" data-i18n="scale_note">
+          Rating scale: 1 Poor · 2 Fair · 3 Good · 4 Very Good · 5 Excellent
+        </p>
+
+        <!-- PART A -->
+        <h2 style="color:#12425c;" data-i18n="part_a">Part A — Assessment criteria</h2>
+
+        <h3 style="color:#12425c; font-size:1.05em;" data-i18n="sec_a">A. Course Content Quality</h3>
+        <div id="secA"></div>
+
+        <h3 style="color:#12425c; font-size:1.05em;" data-i18n="sec_b">B. Training Provider / Organiser / Overall</h3>
+        <div id="secB"></div>
+
+        <h3 style="color:#12425c; font-size:1.05em;" data-i18n="sec_c">C. Trainer / Speaker / Subject Matter Experts</h3>
+        <div id="secC"></div>
+
+        <!-- PART B -->
+        <h2 style="color:#12425c; margin-top:28px;" data-i18n="part_b">Part B — Before & after training</h2>
+        <p style="color:#666; font-size:0.88em;" data-i18n="part_b_note">Rate each item for before training and after training (1–5).</p>
+        <div id="secPartB"></div>
+
+        <button type="submit" id="submitBtn"
+          style="width:100%; margin-top:22px; padding:14px; font-size:1em; background:#12425c; color:#fff; border:none; border-radius:6px; cursor:pointer;">
+          <span data-i18n="submit">Submit assessment</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</main>
+
+<script>
+(function () {
+  const SCRIPT_URL = "https://script.google.com/macros/s/YOUR_OA_SCRIPT_ID/exec";
+
+  const I18N = {
+    en: {
+      hero_title: "Output Assessment (OA)",
+      hero_sub: "Rate the training content, organiser, and trainer. Each submission is stored separately.",
+      training_details: "Training details",
+      ph_company: "Company Name *",
+      ph_program: "Program / Training Title *",
+      ph_date: "Training Date *  e.g. 27 Nov 2026 or 27–28 Nov 2026",
+      ph_trainer: "Trainer Name (optional)",
+      scale_note: "Rating scale: 1 Poor · 2 Fair · 3 Good · 4 Very Good · 5 Excellent",
+      part_a: "Part A — Assessment criteria",
+      sec_a: "A. Course Content Quality",
+      sec_b: "B. Training Provider / Organiser / Overall",
+      sec_c: "C. Trainer / Speaker / Subject Matter Experts",
+      part_b: "Part B — Before & after training",
+      part_b_note: "Rate each item for before training and after training (1–5).",
+      submit: "Submit assessment",
+      before: "Before",
+      after: "After",
+      a1: "The overall course content is relevant to my learning experience",
+      a2: "The course materials were clear, concise, sufficient and helpful in my learning",
+      a3: "I am confident in my ability to apply the skills I have learned from the training",
+      b1: "I received all relevant information prior to the session",
+      b2: "The class environment was conducive for learning and enabled me to learn",
+      b3: "I will recommend this program to my co-workers",
+      c1: "The trainer effectively engaged with the audience and helped me gain a clear understanding of the subject matter",
+      c2: "The trainer’s knowledge of the subject matter aided me to understand the concept better",
+      c3: "The presentation style of the trainer contributed to my learning experience",
+      pb1: "The confidence to share knowledge learned at my workplace",
+      pb2: "Implement the skills I have learned and help others with it as well",
+      pb3: "Start a new project or initiative related to my job using existing and new knowledge and skills I learned"
+    },
+    bm: {
+      hero_title: "Penilaian Output (OA)",
+      hero_sub: "Nilai kandungan latihan, penganjur dan trainer. Setiap serahan disimpan berasingan.",
+      training_details: "Butiran latihan",
+      ph_company: "Nama Syarikat *",
+      ph_program: "Tajuk Program / Latihan *",
+      ph_date: "Tarikh Latihan *  cth. 27 Nov 2026 atau 27–28 Nov 2026",
+      ph_trainer: "Nama Trainer (pilihan)",
+      scale_note: "Skala rating: 1 Lemah · 2 Memuaskan · 3 Baik · 4 Sangat Baik · 5 Cemerlang",
+      part_a: "Bahagian A — Kriteria penilaian",
+      sec_a: "A. Kualiti Kandungan Kursus",
+      sec_b: "B. Penyedia Latihan / Penganjur / Keseluruhan",
+      sec_c: "C. Trainer / Penceramah / Pakar Subjek",
+      part_b: "Bahagian B — Sebelum & selepas latihan",
+      part_b_note: "Berikan rating sebelum latihan dan selepas latihan (1–5).",
+      submit: "Hantar penilaian",
+      before: "Sebelum",
+      after: "Selepas",
+      a1: "Kandungan kursus secara keseluruhan adalah relevan dengan pengalaman pembelajaran saya",
+      a2: "Bahan kursus adalah jelas, ringkas, mencukupi dan membantu dalam pembelajaran saya",
+      a3: "Saya yakin dengan keupayaan saya untuk mengaplikasikan kemahiran yang telah saya pelajari daripada latihan ini",
+      b1: "Saya telah menerima semua maklumat berkaitan sebelum sesi dijalankan",
+      b2: "Persekitaran kelas adalah kondusif dan membolehkan saya belajar dengan baik",
+      b3: "Saya akan mengesyorkan program ini kepada rakan sekerja saya",
+      c1: "Trainer berinteraksi dengan peserta secara efektif dan membantu saya memahami topik dengan jelas",
+      c2: "Pengetahuan trainer mengenai topik latihan membantu saya memahami konsep dengan lebih baik",
+      c3: "Cara penyampaian trainer menyumbang kepada pengalaman pembelajaran yang baik untuk saya",
+      pb1: "Keyakinan untuk berkongsi pengetahuan yang dipelajari di tempat kerja saya",
+      pb2: "Mengaplikasikan kemahiran yang saya pelajari dan membantu orang lain mengaplikasikannya juga",
+      pb3: "Memulakan projek atau inisiatif baru yang berkaitan dengan pekerjaan saya menggunakan pengetahuan dan kemahiran sedia ada dan baru yang telah saya pelajari"
+    }
+  };
+
+  let lang = "en";
+
+  function t(key) { return I18N[lang][key]; }
+
+  function ratingRow(name, label) {
+    return `
+      <div style="margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid #eee;">
+        <div style="margin-bottom:8px; color:#334155; font-size:0.92em;">${label}</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          ${[1,2,3,4,5].map(n => `
+            <label style="display:flex; align-items:center; gap:4px; font-size:0.9em;">
+              <input type="radio" name="${name}" value="${n}" required> ${n}
+            </label>
+          `).join("")}
+        </div>
+      </div>`;
+  }
+
+  function partBRow(key, label) {
+    return `
+      <div style="margin-bottom:16px; padding:12px; background:#f8fafc; border-radius:8px;">
+        <div style="margin-bottom:10px; color:#334155; font-size:0.92em;">${label}</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div>
+            <div style="font-size:0.8em; color:#64748b; margin-bottom:6px;">${t("before")}</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              ${[1,2,3,4,5].map(n => `
+                <label style="display:flex; align-items:center; gap:3px; font-size:0.88em;">
+                  <input type="radio" name="${key}_before" value="${n}" required> ${n}
+                </label>
+              `).join("")}
+            </div>
+          </div>
+          <div>
+            <div style="font-size:0.8em; color:#64748b; margin-bottom:6px;">${t("after")}</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              ${[1,2,3,4,5].map(n => `
+                <label style="display:flex; align-items:center; gap:3px; font-size:0.88em;">
+                  <input type="radio" name="${key}_after" value="${n}" required> ${n}
+                </label>
+              `).join("")}
+            </div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function renderQuestions() {
+    document.getElementById("secA").innerHTML =
+      ratingRow("a1", t("a1")) + ratingRow("a2", t("a2")) + ratingRow("a3", t("a3"));
+    document.getElementById("secB").innerHTML =
+      ratingRow("b1", t("b1")) + ratingRow("b2", t("b2")) + ratingRow("b3", t("b3"));
+    document.getElementById("secC").innerHTML =
+      ratingRow("c1", t("c1")) + ratingRow("c2", t("c2")) + ratingRow("c3", t("c3"));
+    document.getElementById("secPartB").innerHTML =
+      partBRow("pb1", t("pb1")) + partBRow("pb2", t("pb2")) + partBRow("pb3", t("pb3"));
+  }
+
+  function applyLang() {
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      el.textContent = t(el.getAttribute("data-i18n"));
+    });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+      el.placeholder = t(el.getAttribute("data-i18n-placeholder"));
+    });
+    document.getElementById("langEN").style.background = lang === "en" ? "#12425c" : "#334155";
+    document.getElementById("langBM").style.background = lang === "bm" ? "#12425c" : "#334155";
+    renderQuestions();
+  }
+
+  document.getElementById("langEN").addEventListener("click", () => { lang = "en"; applyLang(); });
+  document.getElementById("langBM").addEventListener("click", () => { lang = "bm"; applyLang(); });
+  applyLang();
+
+  const form = document.getElementById("oaForm");
+  const submitBtn = document.getElementById("submitBtn");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const payload = {
+      language: lang,
+      company_name: (fd.get("company_name") || "").trim(),
+      program_title: (fd.get("program_title") || "").trim(),
+      training_date: (fd.get("training_date") || "").trim(),
+      trainer_name: (fd.get("trainer_name") || "").trim(),
+      part_a: {
+        a1: Number(fd.get("a1")), a2: Number(fd.get("a2")), a3: Number(fd.get("a3")),
+        b1: Number(fd.get("b1")), b2: Number(fd.get("b2")), b3: Number(fd.get("b3")),
+        c1: Number(fd.get("c1")), c2: Number(fd.get("c2")), c3: Number(fd.get("c3"))
+      },
+      part_b: {
+        pb1_before: Number(fd.get("pb1_before")), pb1_after: Number(fd.get("pb1_after")),
+        pb2_before: Number(fd.get("pb2_before")), pb2_after: Number(fd.get("pb2_after")),
+        pb3_before: Number(fd.get("pb3_before")), pb3_after: Number(fd.get("pb3_after"))
+      }
+    };
+
+    submitBtn.disabled = true;
+    try {
+      const res = await fetch(SCRIPT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+      });
+      const text = await res.text();
+      let data = {};
+      try { data = JSON.parse(text); } catch (_) {}
+      if (data.result === "success") {
+        alert(lang === "bm" ? "Penilaian berjaya dihantar." : "Assessment submitted successfully.");
+        form.reset();
+        applyLang();
+      } else {
+        alert("Failed: " + (data.message || "Unknown error"));
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Submission failed. Please try again.");
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+})();
+</script>
