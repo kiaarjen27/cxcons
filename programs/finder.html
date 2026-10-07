@@ -912,6 +912,15 @@ brochureForm.addEventListener("submit", function (e) {
     });
 });
 
+(function prefillFromQuery() {
+  const params = new URLSearchParams(window.location.search);
+  const moduleName = params.get("module");
+  if (!moduleName) return;
+  setTimeout(() => {
+    openRequest(moduleName);
+  }, 200);
+})();
+
 renderRows(ALL_MODULES.slice(0, FEATURED_COUNT), false);
 searchStatus.textContent = `Showing ${FEATURED_COUNT} featured modules · Search to explore 600+ programs`;
 </script>
