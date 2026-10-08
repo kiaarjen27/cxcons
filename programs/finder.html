@@ -135,26 +135,18 @@ description: Search CXCons corporate training modules and request program inform
 
 <script>
 const ALL_MODULES = [
-"One Day First Aid, CPR and AED": "/programs/modules/one-day-first-aid-cpr-aed/",
-"One Day Combat Work Stress": "/programs/modules/one-day-combat-work-stress/",
-"Mental Health Awareness (C.A.R.E)": "/programs/modules/mental-health-awareness-care/",
-"Finance for Non Finance": "/programs/modules/finance-for-non-finance/",
-"Excel 365 Functions & Formulas": "/programs/modules/excel-365-functions-formulas/",
-"ESG Awareness": "/programs/modules/esg-awareness/",
-"Conflict Resolution": "/programs/modules/conflict-resolution/",
-"Basics of First Aider (BOFA), CPR and AED": "/programs/modules/basics-of-first-aider-bofa-cpr-aed/",
-"AI at Work": "/programs/modules/ai-at-work/",
-"Corporate Leadership & Wellness": "/programs/modules/corporate-leadership-wellness/",
-"Effective Leadership": "/programs/modules/effective-leadership/",
-"One Day Multi-Platform AI-Powered Excel": "/programs/modules/one-day-multi-platform-ai-powered-excel/",
-"Basic To Advanced Payroll, Reporting And Audits": "/programs/modules/basic-to-advanced-payroll-reporting-audits/",
-"Behavioral Based Interviewing Skills": "/programs/modules/behavioral-based-interviewing-skills/",
-"Iatf 16949 Awareness And Internal Audit": "/programs/modules/iatf-16949-awareness-internal-auditor/",
-"Mastering Employment Act (Latest Amendment)": "/programs/modules/mastering-employment-act/",
-"Master Microsoft Excel - Intermediate & Advanced": "/programs/modules/mastering-microsoft-excel-intermediate-advanced/",
-"Anti Bribery And Anti Corruption Awareness (Abc)": "/programs/modules/one-day-anti-bribery-corruption-abc/",
-"One Day Sexual Harassment And Bullying In The Workplace": "/programs/modules/one-day-bullying-harassment-prevention/",
-"Personal Challenges Of Effective Leaders": "/programs/modules/personal-challenges-of-effective-leaders/"
+"One Day First Aid, CPR and AED",
+"One Day Combat Work Stress",
+"Mental Health Awareness (C.A.R.E)",
+"Finance for Non Finance",
+"Excel 365 Functions & Formulas",
+"ESG Awareness",
+"Conflict Resolution",
+"Basics of First Aider (BOFA), CPR and AED",
+"AI at Work",
+"Corporate Leadership & Wellness",
+"Effective Leadership",
+"One Day Multi-Platform AI-Powered Excel",
 "Human Resources (Hr) Advanced",
 "Executive / Personal Assistant (Pa) Advanced",
 "21St Century Sales For Elite Achievers",
@@ -819,20 +811,15 @@ function renderRows(list, isSearch = false) {
     // Blur only on default list after first 20, never on search results
     const locked = !isSearch && i >= 20;
 
-    const pageUrl = MODULE_PAGES[title];
-const linkedTitle = pageUrl
-  ? `<a href="${pageUrl}" style="color:#12425c; text-decoration:none; font-weight:600;">${title}</a>`
-  : title;
-
-const titleHtml = locked
-  ? `<span style="
-        filter: blur(3.5px);
-        opacity: 0.55;
-        user-select: none;
-        display: inline-block;
-     ">${title}</span>
-     <small style="color:#9aa3af; margin-left:8px;">Locked</small>`
-  : linkedTitle;
+    const titleHtml = locked
+      ? `<span style="
+            filter: blur(3.5px);
+            opacity: 0.55;
+            user-select: none;
+            display: inline-block;
+         ">${title}</span>
+         <small style="color:#9aa3af; margin-left:8px;">Locked</small>`
+      : title;
 
     const btnHtml = locked
       ? `<button type="button" disabled
