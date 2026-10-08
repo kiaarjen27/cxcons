@@ -901,12 +901,12 @@ cancelRequest.addEventListener("click", closeRequest);
 
 searchInput.addEventListener("input", function () {
   const term = this.value.trim().toLowerCase();
-if (!term) {
-  renderRows(defaultList, false);
-  searchStatus.textContent = `Showing ${defaultList.length} featured modules with program pages · Search to explore the full library`;
-  return;
-}
-  const results = ALL_MODULES.filter(m => m.toLowerCase().includes(term));
+  if (!term) {
+    renderRows(defaultList, false);
+    searchStatus.textContent = `Showing ${defaultList.length} featured modules with program pages · Search to explore the full library`;
+    return;
+  }
+  const results = SEARCH_MODULES.filter(m => m.toLowerCase().includes(term));
   renderRows(results, true);
   searchStatus.textContent = results.length
     ? `${results.length} module${results.length > 1 ? "s" : ""} found`
