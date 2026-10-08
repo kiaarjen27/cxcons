@@ -804,6 +804,8 @@ const MODULE_PAGES = {
 
 // Default view = modules that have pages (linked)
 const FEATURED_MODULES = Object.keys(MODULE_PAGES);
+const FEATURED_COUNT = 20;
+const defaultList = FEATURED_MODULES.slice(0, FEATURED_COUNT);
 const FEATURED_COUNT = FEATURED_MODULES.length; // show all linked modules by default
 
 const body = document.getElementById("moduleBody");
@@ -880,11 +882,11 @@ cancelRequest.addEventListener("click", closeRequest);
 
 searchInput.addEventListener("input", function () {
   const term = this.value.trim().toLowerCase();
-  if (!term) {
-    renderRows(FEATURED_MODULES, false);
-    searchStatus.textContent = `Showing ${FEATURED_MODULES.length} modules with program pages · Search to explore the full library with over 550 active modules`;
-    return;
-  }
+if (!term) {
+  renderRows(defaultList, false);
+  searchStatus.textContent = `Showing ${defaultList.length} featured modules with program pages · Search to explore the full library`;
+  return;
+}
   const results = ALL_MODULES.filter(m => m.toLowerCase().includes(term));
   renderRows(results, true);
   searchStatus.textContent = results.length
