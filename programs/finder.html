@@ -882,7 +882,7 @@ searchInput.addEventListener("input", function () {
   const term = this.value.trim().toLowerCase();
   if (!term) {
     renderRows(FEATURED_MODULES, false);
-    searchStatus.textContent = `Showing ${FEATURED_MODULES.length} modules with program pages · Search to explore the full library`;
+    searchStatus.textContent = `Showing ${FEATURED_MODULES.length} modules with program pages · Search to explore the full library with over 550 active modules`;
     return;
   }
   const results = ALL_MODULES.filter(m => m.toLowerCase().includes(term));
