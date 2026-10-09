@@ -35,162 +35,155 @@ description: "Request a corporate team building program in Malaysia with CXCons.
     </div>
 
     <!-- Form -->
-    <div class="card" style="text-align:left; margin-bottom:28px;" id="team-building-form">
-      <h2 style="color:#12425c; margin-top:0;">Team building request form</h2>
-      <p style="color:#555; margin-bottom:22px;">
-        Complete the details below. Required fields are marked *.
-      </p>
+   <div class="card" style="text-align:left; margin-bottom:28px; padding:36px 40px;" id="team-building-form">
+  <h2 style="color:#12425c; margin-top:0;">Team building request</h2>
+  <p style="color:#64748b; margin-bottom:28px; font-size:0.95em;">
+    Share your requirements and our team will respond with suitable format and venue direction.
+  </p>
 
-      <form id="teamBuildingForm">
-        <!-- Contact -->
-        <h3 style="color:#12425c; margin:0 0 12px; font-size:1.05em;">Contact details</h3>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px;">
-          <input type="text" name="name" placeholder="Your Name *" required>
-          <input type="email" name="email" placeholder="Work Email *" required>
-          <input type="tel" name="phone" placeholder="Phone Number *" required>
-          <input type="text" name="company" placeholder="Company Name *" required>
+  <form id="teamBuildingForm">
+
+    <!-- Contact -->
+    <div style="margin-bottom:28px;">
+      <h3 style="color:#12425c; margin:0 0 14px; font-size:1em; letter-spacing:0.02em;">Contact details</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+        <div>
+          <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Your name *</label>
+          <input type="text" name="name" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
         </div>
+        <div>
+          <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Work email *</label>
+          <input type="email" name="email" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+        </div>
+        <div>
+          <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Phone number *</label>
+          <input type="tel" name="phone" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+        </div>
+        <div>
+          <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Company name *</label>
+          <input type="text" name="company" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+        </div>
+      </div>
+    </div>
 
-        <!-- Program basics -->
-        <h3 style="color:#12425c; margin:18px 0 12px; font-size:1.05em;">Program basics</h3>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px;">
-          <input type="text" name="duration" placeholder="Duration * (e.g. 1 Day / 2 Days / Half Day)" required>
-          <input type="text" name="event_date" placeholder="Estimated Date * (e.g. 27 Nov 2026 or TBD)" required>
-          <input type="number" name="pax" placeholder="Number of Participants *" min="1" required>
-          <select name="payment" required>
-            <option value="">Payment Preference *</option>
+    <hr style="border:none; border-top:1px solid #eef2f7; margin:8px 0 28px;">
+
+    <!-- Program basics -->
+    <div style="margin-bottom:28px;">
+      <h3 style="color:#12425c; margin:0 0 14px; font-size:1em;">Program basics</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+        <div>
+          <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Duration *</label>
+          <input type="text" name="duration" placeholder="e.g. 1 Day / 2 Days" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+        </div>
+        <div>
+          <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Estimated date *</label>
+          <input type="text" name="event_date" placeholder="e.g. 27 Nov 2026 or TBD" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+        </div>
+        <div>
+          <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Number of participants *</label>
+          <input type="number" name="pax" min="1" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+        </div>
+        <div>
+          <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Payment preference *</label>
+          <select name="payment" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+            <option value="">Select</option>
             <option value="HRDC Claimable">HRDC Claimable</option>
             <option value="Direct Payment">Direct Payment</option>
             <option value="To be discussed">To be discussed</option>
           </select>
         </div>
-
-        <!-- Theme -->
-        <h3 style="color:#12425c; margin:18px 0 8px; font-size:1.05em;">Preferred theme *</h3>
-        <p style="color:#666; font-size:0.88em; margin:0 0 12px;">Select all that fit.</p>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px 18px; margin-bottom:18px; color:#444; font-size:0.95em;">
-          <label><input type="checkbox" name="theme" value="Corporate / Facilitated"> Corporate / Facilitated</label>
-          <label><input type="checkbox" name="theme" value="Resort-based"> Resort-based</label>
-          <label><input type="checkbox" name="theme" value="Waterpark"> Waterpark</label>
-          <label><input type="checkbox" name="theme" value="Jungle Trekking / Adventure"> Jungle Trekking / Adventure</label>
-          <label><input type="checkbox" name="theme" value="Indoor Adventure / Challenge"> Indoor Adventure / Challenge</label>
-          <label><input type="checkbox" name="theme" value="Sports / Active Challenge"> Sports / Active Challenge</label>
-          <label><input type="checkbox" name="theme" value="Beach / Coastal"> Beach / Coastal</label>
-          <label><input type="checkbox" name="theme" value="Hybrid Indoor + Outdoor"> Hybrid Indoor + Outdoor</label>
-        </div>
-
-        <!-- Location -->
-        <h3 style="color:#12425c; margin:18px 0 8px; font-size:1.05em;">Preferred location / venue</h3>
-        <p style="color:#666; font-size:0.88em; margin:0 0 12px;">
-          Choose a direction. If you already have a venue in mind, select it or choose Other.
-        </p>
-        <select name="location" id="locationSelect" style="width:100%; margin-bottom:12px;">
-          <option value="">Select preferred location type or venue</option>
-
-          <optgroup label="Corporate / Hotel">
-            <option value="VE Hotel Bangsar">VE Hotel Bangsar</option>
-            <option value="One World Hotel">One World Hotel</option>
-            <option value="Royale Chulan">Royale Chulan</option>
-            <option value="Dash Box Cyberjaya">Dash Box Cyberjaya</option>
-            <option value="CyberView Resort & Spa">CyberView Resort & Spa</option>
-          </optgroup>
-
-          <optgroup label="Resort / Retreat">
-            <option value="Tadom Hill Resort">Tadom Hill Resort</option>
-            <option value="Semenyih Eco Venture Resort & Recreation">Semenyih Eco Venture Resort & Recreation</option>
-            <option value="Impian Rimba Resort">Impian Rimba Resort</option>
-            <option value="Paradise Valley Broga Resort">Paradise Valley Broga Resort</option>
-            <option value="Beacon Resort">Beacon Resort</option>
-            <option value="Eagle Ranch Resort">Eagle Ranch Resort</option>
-            <option value="Embun Resort Kampar Perak">Embun Resort Kampar Perak</option>
-            <option value="Adeline Villa And Resort">Adeline Villa And Resort</option>
-            <option value="Amverton Cove Golf & Island Resort">Amverton Cove Golf & Island Resort</option>
-            <option value="Monkey Canopy Resort">Monkey Canopy Resort</option>
-          </optgroup>
-
-          <optgroup label="Adventure / Outdoor">
-            <option value="Skytrex Adventure, Sungai Congkak">Skytrex Adventure, Sungai Congkak</option>
-            <option value="Xventure Mind White Water Rafting">Xventure Mind White Water Rafting</option>
-            <option value="The Kabin Kuala Selangor">The Kabin Kuala Selangor</option>
-            <option value="Camp5 Climbing Gym">Camp5 Climbing Gym</option>
-          </optgroup>
-
-          <optgroup label="Waterpark / Fun">
-            <option value="SplashMania">SplashMania</option>
-            <option value="Sunway">Sunway</option>
-            <option value="AFamosa Melaka">AFamosa Melaka</option>
-            <option value="Segar City">Segar City</option>
-          </optgroup>
-
-          <optgroup label="Indoor Activity">
-            <option value="Paint Bomber">Paint Bomber</option>
-            <option value="Laser Battle">Laser Battle</option>
-            <option value="PartyBox 360">PartyBox 360</option>
-            <option value="VAR LIVE MY">VAR LIVE MY</option>
-            <option value="SuperPark Malaysia">SuperPark Malaysia</option>
-            <option value="The Paddy Gallery">The Paddy Gallery</option>
-          </optgroup>
-
-          <optgroup label="Other">
-            <option value="Other">Other / My preferred venue</option>
-            <option value="Need recommendation">Need CXCons recommendation</option>
-          </optgroup>
-        </select>
-
-        <input
-          type="text"
-          name="location_other"
-          id="locationOther"
-          placeholder="If Other — type your preferred venue or area"
-          style="width:100%; margin-bottom:16px; display:none;"
-        >
-
-        <!-- Expected outcomes -->
-        <h3 style="color:#12425c; margin:18px 0 8px; font-size:1.05em;">Expected outcomes *</h3>
-        <p style="color:#666; font-size:0.88em; margin:0 0 12px;">Select all that matter to your team.</p>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px 18px; margin-bottom:18px; color:#444; font-size:0.95em;">
-          <label><input type="checkbox" name="outcome" value="Leisure / Fun"> Leisure / Fun</label>
-          <label><input type="checkbox" name="outcome" value="Team Bonding"> Team Bonding</label>
-          <label><input type="checkbox" name="outcome" value="Momentum"> Momentum</label>
-          <label><input type="checkbox" name="outcome" value="Self-confidence"> Self-confidence</label>
-          <label><input type="checkbox" name="outcome" value="Sense of Achievement"> Sense of Achievement</label>
-          <label><input type="checkbox" name="outcome" value="Learning new work/life skills"> Learning new work/life skills</label>
-          <label><input type="checkbox" name="outcome" value="Trust Building"> Trust Building</label>
-          <label><input type="checkbox" name="outcome" value="Communication"> Communication</label>
-          <label><input type="checkbox" name="outcome" value="Leadership"> Leadership</label>
-          <label><input type="checkbox" name="outcome" value="Problem-solving"> Problem-solving</label>
-          <label><input type="checkbox" name="outcome" value="Cross-department Collaboration"> Cross-department Collaboration</label>
-        </div>
-
-        <!-- Logistics -->
-        <h3 style="color:#12425c; margin:18px 0 12px; font-size:1.05em;">Logistics</h3>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px;">
-          <select name="transportation" required>
-            <option value="">Transportation needed? *</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-            <option value="To be discussed">To be discussed</option>
-          </select>
-          <select name="hotel_stay" required>
-            <option value="">Hotel overnight stay? *</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-            <option value="To be discussed">To be discussed</option>
-          </select>
-        </div>
-
-        <textarea
-          name="message"
-          rows="4"
-          placeholder="Any other notes? (budget range, special requirements, accessibility needs, preferred activity intensity, etc.)"
-          style="width:100%; margin-bottom:18px;"
-        ></textarea>
-
-        <button type="submit" style="width:100%; padding:14px; font-size:1em; background:#12425c; color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:600;">
-          Submit Team Building Request
-        </button>
-      </form>
+      </div>
     </div>
+
+    <hr style="border:none; border-top:1px solid #eef2f7; margin:8px 0 28px;">
+
+    <!-- Theme -->
+    <div style="margin-bottom:28px;">
+      <h3 style="color:#12425c; margin:0 0 8px; font-size:1em;">Preferred theme *</h3>
+      <p style="color:#94a3b8; font-size:0.82em; margin:0 0 14px;">Select all that fit</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; font-size:0.92em; color:#334155;">
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="theme" value="Corporate / Facilitated"> Corporate / Facilitated</label>
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="theme" value="Resort-based"> Resort-based</label>
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="theme" value="Waterpark"> Waterpark</label>
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="theme" value="Jungle Trekking / Adventure"> Jungle Trekking / Adventure</label>
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="theme" value="Indoor Adventure / Challenge"> Indoor Adventure / Challenge</label>
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="theme" value="Sports / Active Challenge"> Sports / Active Challenge</label>
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="theme" value="Beach / Coastal"> Beach / Coastal</label>
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="theme" value="Hybrid Indoor + Outdoor"> Hybrid Indoor + Outdoor</label>
+      </div>
+    </div>
+
+    <hr style="border:none; border-top:1px solid #eef2f7; margin:8px 0 28px;">
+
+    <!-- Location -->
+    <div style="margin-bottom:28px;">
+      <h3 style="color:#12425c; margin:0 0 8px; font-size:1em;">Preferred location / venue</h3>
+      <p style="color:#94a3b8; font-size:0.82em; margin:0 0 14px;">Choose a direction, or ask us to recommend</p>
+      <select name="location" id="locationSelect" style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; margin-bottom:12px;">
+        <!-- keep your existing optgroups/options here -->
+      </select>
+      <input type="text" name="location_other" id="locationOther" placeholder="Preferred venue or area" style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; display:none;">
+    </div>
+
+    <hr style="border:none; border-top:1px solid #eef2f7; margin:8px 0 28px;">
+
+    <!-- Outcomes -->
+    <div style="margin-bottom:28px;">
+      <h3 style="color:#12425c; margin:0 0 8px; font-size:1em;">Expected outcomes *</h3>
+      <p style="color:#94a3b8; font-size:0.82em; margin:0 0 14px;">Select all that matter</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; font-size:0.92em; color:#334155;">
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="outcome" value="Leisure / Fun"> Leisure / Fun</label>
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="outcome" value="Team Bonding"> Team Bonding</label>
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="outcome" value="Momentum"> Momentum</label>
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="outcome" value="Self-confidence"> Self-confidence</label>
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="outcome" value="Sense of Achievement"> Sense of Achievement</label>
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="outcome" value="Learning new work/life skills"> Learning new work/life skills</label>
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="outcome" value="Trust Building"> Trust Building</label>
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="outcome" value="Communication"> Communication</label>
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="outcome" value="Leadership"> Leadership</label>
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="outcome" value="Problem-solving"> Problem-solving</label>
+        <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="outcome" value="Cross-department Collaboration"> Cross-department Collaboration</label>
+      </div>
+    </div>
+
+    <hr style="border:none; border-top:1px solid #eef2f7; margin:8px 0 28px;">
+
+    <!-- Logistics -->
+    <div style="margin-bottom:28px;">
+      <h3 style="color:#12425c; margin:0 0 14px; font-size:1em;">Logistics</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+        <div>
+          <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Transportation needed? *</label>
+          <select name="transportation" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+            <option value="To be discussed">To be discussed</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Hotel overnight stay? *</label>
+          <select name="hotel_stay" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+            <option value="To be discussed">To be discussed</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:22px;">
+      <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Additional notes</label>
+      <textarea name="message" rows="4" placeholder="Budget range, intensity preference, accessibility needs, etc." style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; resize:vertical;"></textarea>
+    </div>
+
+    <button type="submit" style="width:100%; padding:15px; font-size:1em; background:#12425c; color:#fff; border:none; border-radius:8px; cursor:pointer; font-weight:600;">
+      Submit Team Building Request
+    </button>
+  </form>
+</div>
 
     <!-- Trust / SEO support -->
     <div class="grid">
