@@ -1,66 +1,98 @@
 ---
 layout: default
-title: Output Assessment (OA)
-description: HRD TEE Output Assessment form for training feedback — English and Bahasa Melayu.
+title: "Output Assessment (OA) | HRD Corp"
+description: "Official HRD Corp Output Assessment form for training feedback — available in English and Bahasa Melayu."
 ---
 <main>
-<section id="hero">
-  <h1 data-i18n="hero_title">Output Assessment (OA)</h1>
-  <p data-i18n="hero_sub">
-    Official HRD Corp Output Assessment form. Rate the training content, organiser, and trainer.
-  </p>
-  <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:18px;">
-    <a href="https://g.page/r/CYH-I-KKKA56EBM/review"
-       class="button"
-       target="_blank"
-       rel="noopener noreferrer"
-       data-i18n="review_btn">
-      Leave a Google Review
-    </a>
-  </div>
-</section>
+  <section id="hero">
+    <h1 data-i18n="hero_title">Output Assessment (OA)</h1>
+    <p data-i18n="hero_sub">
+      Official HRD Corp Output Assessment form. Rate the training content, organiser, and trainer.
+    </p>
+    <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:18px;">
+      <a href="https://g.page/r/CYH-I-KKKA56EBM/review"
+         class="button"
+         target="_blank"
+         rel="noopener noreferrer"
+         data-i18n="review_btn">
+        Leave a Google Review
+      </a>
+    </div>
+  </section>
 
   <div class="content-wrapper">
-    <div class="card" style="text-align:left; max-width:920px; margin:0 auto;">
+    <div class="card" style="text-align:left; max-width:920px; margin:0 auto; padding:36px 40px;">
 
       <!-- Language -->
-      <div style="display:flex; gap:8px; margin-bottom:18px;">
-        <button type="button" id="langEN" class="button" style="background:#12425c; box-shadow:none;">English</button>
-        <button type="button" id="langBM" class="button" style="background:#334155; box-shadow:none;">Bahasa Melayu</button>
+      <div style="display:inline-flex; gap:6px; margin-bottom:24px; padding:4px; background:#f1f5f9; border-radius:10px;">
+        <button type="button" id="langEN"
+          style="border:none; border-radius:8px; padding:8px 14px; cursor:pointer; font:inherit; background:#12425c; color:#fff;">
+          English
+        </button>
+        <button type="button" id="langBM"
+          style="border:none; border-radius:8px; padding:8px 14px; cursor:pointer; font:inherit; background:transparent; color:#334155;">
+          Bahasa Melayu
+        </button>
       </div>
 
       <form id="oaForm">
-        <h2 style="color:#12425c; margin-top:0;" data-i18n="training_details">Training details</h2>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px;">
-          <input type="text" name="company_name" required data-i18n-placeholder="ph_company">
-          <input type="text" name="program_title" required data-i18n-placeholder="ph_program">
-          <input type="text" name="training_date" required data-i18n-placeholder="ph_date">
-          <input type="text" name="trainer_name" required data-i18n-placeholder="ph_trainer">
-        </div>
-
-        <p style="color:#666; font-size:0.88em; margin-bottom:18px;" data-i18n="scale_note">
+        <h2 style="color:#12425c; margin-top:0; margin-bottom:8px;" data-i18n="training_details">Training details</h2>
+        <p style="color:#64748b; font-size:0.9em; margin:0 0 18px;" data-i18n="scale_note">
           Rating scale: 1 Poor · 2 Fair · 3 Good · 4 Very Good · 5 Excellent
         </p>
 
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:28px;">
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;" data-i18n="ph_company">Company Name *</label>
+            <input type="text" name="company_name" required
+              style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;" data-i18n="ph_program">Program / Training Title *</label>
+            <input type="text" name="program_title" required
+              style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;" data-i18n="ph_date">Training Date *</label>
+            <input type="text" name="training_date" required placeholder="e.g. 27 Nov 2026 or 27–28 Nov 2026"
+              style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;" data-i18n="ph_trainer">Trainer Name *</label>
+            <input type="text" name="trainer_name" required
+              style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box;">
+          </div>
+        </div>
+
+        <hr style="border:none; border-top:1px solid #eef2f7; margin:0 0 24px;">
+
         <!-- PART A -->
-        <h2 style="color:#12425c;" data-i18n="part_a">Part A — Assessment criteria</h2>
+        <h2 style="color:#12425c; margin:0 0 16px;" data-i18n="part_a">Part A — Assessment criteria</h2>
 
-        <h3 style="color:#12425c; font-size:1.05em;" data-i18n="sec_a">A. Course Content Quality</h3>
-        <div id="secA"></div>
+        <div style="margin-bottom:22px; padding:18px; background:#f8fafc; border:1px solid #eef2f7; border-radius:12px;">
+          <h3 style="color:#12425c; font-size:1em; margin:0 0 14px;" data-i18n="sec_a">A. Course Content Quality</h3>
+          <div id="secA"></div>
+        </div>
 
-        <h3 style="color:#12425c; font-size:1.05em;" data-i18n="sec_b">B. Training Provider / Organiser / Overall</h3>
-        <div id="secB"></div>
+        <div style="margin-bottom:22px; padding:18px; background:#f8fafc; border:1px solid #eef2f7; border-radius:12px;">
+          <h3 style="color:#12425c; font-size:1em; margin:0 0 14px;" data-i18n="sec_b">B. Training Provider / Organiser / Overall</h3>
+          <div id="secB"></div>
+        </div>
 
-        <h3 style="color:#12425c; font-size:1.05em;" data-i18n="sec_c">C. Trainer / Speaker / Subject Matter Experts</h3>
-        <div id="secC"></div>
+        <div style="margin-bottom:22px; padding:18px; background:#f8fafc; border:1px solid #eef2f7; border-radius:12px;">
+          <h3 style="color:#12425c; font-size:1em; margin:0 0 14px;" data-i18n="sec_c">C. Trainer / Speaker / Subject Matter Experts</h3>
+          <div id="secC"></div>
+        </div>
 
         <!-- PART B -->
-        <h2 style="color:#12425c; margin-top:28px;" data-i18n="part_b">Part B — Before & after training</h2>
-        <p style="color:#666; font-size:0.88em;" data-i18n="part_b_note">Rate each item for before training and after training (1–5).</p>
+        <h2 style="color:#12425c; margin:8px 0 8px;" data-i18n="part_b">Part B — Before & after training</h2>
+        <p style="color:#64748b; font-size:0.88em; margin:0 0 16px;" data-i18n="part_b_note">
+          Rate each item for before training and after training (1–5).
+        </p>
         <div id="secPartB"></div>
 
         <button type="submit" id="submitBtn"
-          style="width:100%; margin-top:22px; padding:14px; font-size:1em; background:#12425c; color:#fff; border:none; border-radius:6px; cursor:pointer;">
+          style="width:100%; margin-top:24px; padding:15px; font-size:1em; background:#12425c; color:#fff; border:none; border-radius:8px; cursor:pointer; font-weight:600;">
           <span data-i18n="submit">Submit assessment</span>
         </button>
       </form>
@@ -80,7 +112,7 @@ description: HRD TEE Output Assessment form for training feedback — English an
       training_details: "Training details",
       ph_company: "Company Name *",
       ph_program: "Program / Training Title *",
-      ph_date: "Training Date *  e.g. 27 Nov 2026 or 27–28 Nov 2026",
+      ph_date: "Training Date *",
       ph_trainer: "Trainer Name *",
       scale_note: "Rating scale: 1 Poor · 2 Fair · 3 Good · 4 Very Good · 5 Excellent",
       part_a: "Part A — Assessment criteria",
@@ -112,7 +144,7 @@ description: HRD TEE Output Assessment form for training feedback — English an
       training_details: "Butiran latihan",
       ph_company: "Nama Syarikat *",
       ph_program: "Tajuk Program / Latihan *",
-      ph_date: "Tarikh Latihan *  cth. 27 Nov 2026 atau 27–28 Nov 2026",
+      ph_date: "Tarikh Latihan *",
       ph_trainer: "Nama Trainer *",
       scale_note: "Skala rating: 1 Lemah · 2 Memuaskan · 3 Baik · 4 Sangat Baik · 5 Cemerlang",
       part_a: "Bahagian A — Kriteria penilaian",
@@ -140,17 +172,16 @@ description: HRD TEE Output Assessment form for training feedback — English an
   };
 
   let lang = "en";
-
   function t(key) { return I18N[lang][key]; }
 
   function ratingRow(name, label) {
     return `
-      <div style="margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid #eee;">
-        <div style="margin-bottom:8px; color:#334155; font-size:0.92em;">${label}</div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <div style="margin-bottom:14px; padding-bottom:14px; border-bottom:1px solid #e8eef3;">
+        <div style="margin-bottom:10px; color:#334155; font-size:0.92em; line-height:1.5;">${label}</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
           ${[1,2,3,4,5].map(n => `
-            <label style="display:flex; align-items:center; gap:4px; font-size:0.9em;">
-              <input type="radio" name="${name}" value="${n}" required> ${n}
+            <label style="display:inline-flex; align-items:center; justify-content:center; min-width:42px; height:36px; padding:0 10px; border:1px solid #e2e8f0; border-radius:8px; background:#fff; cursor:pointer; font-size:0.9em; color:#334155;">
+              <input type="radio" name="${name}" value="${n}" required style="margin-right:6px;"> ${n}
             </label>
           `).join("")}
         </div>
@@ -159,25 +190,25 @@ description: HRD TEE Output Assessment form for training feedback — English an
 
   function partBRow(key, label) {
     return `
-      <div style="margin-bottom:16px; padding:12px; background:#f8fafc; border-radius:8px;">
-        <div style="margin-bottom:10px; color:#334155; font-size:0.92em;">${label}</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+      <div style="margin-bottom:14px; padding:16px; background:#f8fafc; border:1px solid #eef2f7; border-radius:12px;">
+        <div style="margin-bottom:12px; color:#334155; font-size:0.92em; line-height:1.5;">${label}</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
           <div>
-            <div style="font-size:0.8em; color:#64748b; margin-bottom:6px;">${t("before")}</div>
-            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <div style="font-size:0.78em; color:#64748b; margin-bottom:8px; font-weight:600; letter-spacing:0.02em;">${t("before")}</div>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
               ${[1,2,3,4,5].map(n => `
-                <label style="display:flex; align-items:center; gap:3px; font-size:0.88em;">
-                  <input type="radio" name="${key}_before" value="${n}" required> ${n}
+                <label style="display:inline-flex; align-items:center; justify-content:center; min-width:38px; height:34px; padding:0 8px; border:1px solid #e2e8f0; border-radius:8px; background:#fff; cursor:pointer; font-size:0.88em;">
+                  <input type="radio" name="${key}_before" value="${n}" required style="margin-right:5px;"> ${n}
                 </label>
               `).join("")}
             </div>
           </div>
           <div>
-            <div style="font-size:0.8em; color:#64748b; margin-bottom:6px;">${t("after")}</div>
-            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <div style="font-size:0.78em; color:#64748b; margin-bottom:8px; font-weight:600; letter-spacing:0.02em;">${t("after")}</div>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
               ${[1,2,3,4,5].map(n => `
-                <label style="display:flex; align-items:center; gap:3px; font-size:0.88em;">
-                  <input type="radio" name="${key}_after" value="${n}" required> ${n}
+                <label style="display:inline-flex; align-items:center; justify-content:center; min-width:38px; height:34px; padding:0 8px; border:1px solid #e2e8f0; border-radius:8px; background:#fff; cursor:pointer; font-size:0.88em;">
+                  <input type="radio" name="${key}_after" value="${n}" required style="margin-right:5px;"> ${n}
                 </label>
               `).join("")}
             </div>
@@ -201,11 +232,20 @@ description: HRD TEE Output Assessment form for training feedback — English an
     document.querySelectorAll("[data-i18n]").forEach(el => {
       el.textContent = t(el.getAttribute("data-i18n"));
     });
-    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
-      el.placeholder = t(el.getAttribute("data-i18n-placeholder"));
-    });
-    document.getElementById("langEN").style.background = lang === "en" ? "#12425c" : "#334155";
-    document.getElementById("langBM").style.background = lang === "bm" ? "#12425c" : "#334155";
+
+    const enBtn = document.getElementById("langEN");
+    const bmBtn = document.getElementById("langBM");
+    if (lang === "en") {
+      enBtn.style.background = "#12425c";
+      enBtn.style.color = "#fff";
+      bmBtn.style.background = "transparent";
+      bmBtn.style.color = "#334155";
+    } else {
+      bmBtn.style.background = "#12425c";
+      bmBtn.style.color = "#fff";
+      enBtn.style.background = "transparent";
+      enBtn.style.color = "#334155";
+    }
     renderQuestions();
   }
 
