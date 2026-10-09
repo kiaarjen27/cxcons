@@ -1,70 +1,87 @@
 ---
 layout: default
-title: Event Participant Submission
-description: Internal form for company event participant list submission.
+title: "Event Participant Submission | CXCons"
+description: "Submit company event details and participant list for processing by Circlex Consultancy."
 ---
 <main>
   <section id="hero">
     <h1>Event Participant List</h1>
     <p>Submit company details and participant list for processing.</p>
     <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:18px;">
-      <a href="/programs/finder/" class="button" style="background:#12425c; box-shadow:none;">
-        Program Finder
-      </a>
-      <a href="/programs/request-custom-programs/" class="button">
-        Custom In-House Programs
-      </a>
+      <a href="/programs/finder/" class="button">Program Finder</a>
+      <a href="/programs/request-custom-programs/" class="button" style="background:#12425c; box-shadow:none;">Custom In-House Programs</a>
     </div>
   </section>
 
   <div class="content-wrapper">
-    <div class="card" style="text-align:left; max-width:980px; margin:0 auto;">
+    <div class="card" style="text-align:left; max-width:980px; margin:0 auto; padding:36px 40px;">
       <form id="participantForm">
-        <h2 style="color:#12425c; margin-top:0;">Event details</h2>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px;">
-          <input type="text" name="company_name" placeholder="Company Name *" required>
-          <input type="text" name="pic_name" placeholder="PIC Name *" required>
-          <input type="text" name="event_title" placeholder="Event Title *" required>
-          <input type="text" name="event_date"
-  placeholder="Event Date *  e.g. 27 Nov 2026 or 27–28 Nov 2026"
-  required>
+
+        <!-- Event details -->
+        <h2 style="color:#12425c; margin-top:0; margin-bottom:8px;">Event details</h2>
+        <p style="color:#64748b; font-size:0.9em; margin:0 0 20px;">Required for processing your participant list.</p>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:28px;">
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Company name *</label>
+            <input type="text" name="company_name" required
+              style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">PIC name *</label>
+            <input type="text" name="pic_name" required
+              style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Event title *</label>
+            <input type="text" name="event_title" required
+              style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Event date *</label>
+            <input type="text" name="event_date" required
+              placeholder="e.g. 27 Nov 2026 or 27–28 Nov 2026"
+              style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box;">
+          </div>
         </div>
 
-        <h2 style="color:#12425c;">Participants</h2>
-        <p style="color:#666; font-size:0.9em; margin-top:0;">
+        <hr style="border:none; border-top:1px solid #eef2f7; margin:0 0 28px;">
+
+        <!-- Participants -->
+        <h2 style="color:#12425c; margin:0 0 6px;">Participants</h2>
+        <p style="color:#64748b; font-size:0.9em; margin:0 0 16px;">
           Add participants below. Maximum 500.
         </p>
 
-        <div style="overflow-x:auto;">
+        <div style="overflow-x:auto; border:1px solid #e6ebf0; border-radius:10px;">
           <table id="participantTable" style="width:100%; border-collapse:collapse; font-size:0.92em;">
             <thead>
               <tr style="background:#12425c; color:#fff;">
-                <th style="padding:10px; text-align:left; width:48px;">#</th>
-                <th style="padding:10px; text-align:left;">Name *</th>
-                <th style="padding:10px; text-align:left;">IC *</th>
-                <th style="padding:10px; text-align:left; width:140px;">Gender *</th>
-                <th style="padding:10px; width:70px;"></th>
+                <th style="padding:12px 10px; text-align:left; width:48px;">#</th>
+                <th style="padding:12px 10px; text-align:left;">Name *</th>
+                <th style="padding:12px 10px; text-align:left;">IC *</th>
+                <th style="padding:12px 10px; text-align:left; width:140px;">Gender *</th>
+                <th style="padding:12px 10px; width:70px;"></th>
               </tr>
             </thead>
             <tbody id="participantBody"></tbody>
           </table>
         </div>
 
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin:16px 0 12px;">
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin:16px 0 10px;">
           <button type="button" id="addRowBtn" class="button" style="background:#12425c; box-shadow:none;">Add row</button>
           <button type="button" id="add10Btn" class="button" style="background:#334155; box-shadow:none;">Add 10 rows</button>
           <button type="button" id="clearRowsBtn" class="button" style="background:#64748b; box-shadow:none;">Clear all rows</button>
         </div>
+        <p id="rowCount" style="color:#94a3b8; font-size:0.85em; margin:0 0 20px;"></p>
 
-        <p id="rowCount" style="color:#666; font-size:0.85em;"></p>
-
-        <!-- Bulk paste: collapsed, low visibility -->
-        <div style="margin:22px 0 18px; border:1px solid #e6ebf0; border-radius:8px; overflow:hidden;">
+        <!-- Bulk paste -->
+        <div style="margin:0 0 22px; border:1px solid #e6ebf0; border-radius:10px; overflow:hidden;">
           <button
             type="button"
             id="bulkToggleBtn"
             aria-expanded="false"
-            style="width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; background:#f8fafc; border:none; cursor:pointer; font:inherit; color:#334155; text-align:left;"
+            style="width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px; background:#f8fafc; border:none; cursor:pointer; font:inherit; color:#334155; text-align:left;"
           >
             <span style="font-size:0.92em;">
               Optional: bulk paste from Excel
@@ -72,9 +89,8 @@ description: Internal form for company event participant list submission.
             </span>
             <span id="bulkChevron" style="color:#64748b; font-size:1.1em; transition:transform 0.2s ease;">›</span>
           </button>
-
-          <div id="bulkPanel" style="display:none; padding:14px; border-top:1px solid #e6ebf0; background:#fff;">
-            <p style="color:#666; font-size:0.86em; margin:0 0 10px;">
+          <div id="bulkPanel" style="display:none; padding:16px; border-top:1px solid #e6ebf0; background:#fff;">
+            <p style="color:#64748b; font-size:0.86em; margin:0 0 12px; line-height:1.6;">
               Paste from Excel / Google Sheets. One participant per line.<br>
               Formats: <code>Name &nbsp; IC &nbsp; Gender</code> or <code>Name, IC, Gender</code><br>
               Gender: <strong>Male</strong> / <strong>Female</strong> / <strong>M</strong> / <strong>F</strong>
@@ -83,7 +99,7 @@ description: Internal form for company event participant list submission.
               rows="6"
               placeholder="Ahmad Bin Ali	900101145678	Male
 Siti Aminah, 880202085432, Female"
-              style="width:100%; padding:12px; box-sizing:border-box; margin-bottom:10px; font-family:inherit;"></textarea>
+              style="width:100%; padding:12px 14px; box-sizing:border-box; margin-bottom:12px; font-family:inherit; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;"></textarea>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
               <button type="button" id="importBulkBtn" class="button" style="background:#12425c; box-shadow:none;">Import paste into table</button>
               <button type="button" id="clearBulkBtn" class="button" style="background:#334155; box-shadow:none;">Clear paste box</button>
@@ -92,7 +108,7 @@ Siti Aminah, 880202085432, Female"
         </div>
 
         <button type="submit" id="submitBtn"
-          style="width:100%; padding:14px; font-size:1em; background:#12425c; color:#fff; border:none; border-radius:6px; cursor:pointer; margin-top:8px;">
+          style="width:100%; padding:15px; font-size:1em; background:#12425c; color:#fff; border:none; border-radius:8px; cursor:pointer; font-weight:600;">
           Submit list
         </button>
       </form>
@@ -111,7 +127,6 @@ Siti Aminah, 880202085432, Female"
   const bulkToggleBtn = document.getElementById("bulkToggleBtn");
   const bulkPanel = document.getElementById("bulkPanel");
   const bulkChevron = document.getElementById("bulkChevron");
-
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxm_poeE0aF6E54UprfNE38qTQPQOKeBZBA2HeO6qju8ntBfqwJcJo-JnSlHEJT-1hy/exec";
 
   function renumber() {
@@ -125,22 +140,26 @@ Siti Aminah, 880202085432, Female"
     if (body.children.length >= MAX_ROWS) return false;
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td style="padding:8px; border-bottom:1px solid #eee;" class="idx"></td>
-      <td style="padding:8px; border-bottom:1px solid #eee;">
-        <input type="text" class="p-name" placeholder="Full name" required style="width:100%; padding:8px; box-sizing:border-box;">
+      <td style="padding:10px; border-bottom:1px solid #eef2f7;" class="idx"></td>
+      <td style="padding:10px; border-bottom:1px solid #eef2f7;">
+        <input type="text" class="p-name" placeholder="Full name" required
+          style="width:100%; padding:10px 12px; box-sizing:border-box; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
       </td>
-      <td style="padding:8px; border-bottom:1px solid #eee;">
-        <input type="text" class="p-ic" placeholder="IC number" required style="width:100%; padding:8px; box-sizing:border-box;">
+      <td style="padding:10px; border-bottom:1px solid #eef2f7;">
+        <input type="text" class="p-ic" placeholder="IC number" required
+          style="width:100%; padding:10px 12px; box-sizing:border-box; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
       </td>
-      <td style="padding:8px; border-bottom:1px solid #eee;">
-        <select class="p-gender" required style="width:100%; padding:8px;">
+      <td style="padding:10px; border-bottom:1px solid #eef2f7;">
+        <select class="p-gender" required
+          style="width:100%; padding:10px 12px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
           <option value="">Select</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
         </select>
       </td>
-      <td style="padding:8px; border-bottom:1px solid #eee; text-align:center;">
-        <button type="button" class="remove-btn" style="background:none; border:1px solid #ddd; border-radius:4px; padding:4px 8px; cursor:pointer;">✕</button>
+      <td style="padding:10px; border-bottom:1px solid #eef2f7; text-align:center;">
+        <button type="button" class="remove-btn"
+          style="background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:6px 10px; cursor:pointer; color:#64748b;">✕</button>
       </td>
     `;
     if (data) {
@@ -205,7 +224,6 @@ Siti Aminah, 880202085432, Female"
       return tr.querySelector(".p-name").value.trim() || tr.querySelector(".p-ic").value.trim();
     });
     if (!existingFilled.length) body.innerHTML = "";
-
     let added = 0;
     let skipped = 0;
     for (const row of parsed) {
@@ -279,7 +297,8 @@ Siti Aminah, 880202085432, Female"
 
     submitBtn.disabled = true;
     submitBtn.textContent = "Submitting...";
-       try {
+
+    try {
       const res = await fetch(SCRIPT_URL, {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
@@ -288,7 +307,6 @@ Siti Aminah, 880202085432, Female"
       const text = await res.text();
       let data = {};
       try { data = JSON.parse(text); } catch (_) {}
-
       if (data.result === "success") {
         alert("Submitted successfully. Our team will receive the participant list.");
         form.reset();
