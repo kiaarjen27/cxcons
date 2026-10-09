@@ -140,28 +140,28 @@ Siti Aminah, 880202085432, Female"
     if (body.children.length >= MAX_ROWS) return false;
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td style="padding:10px; border-bottom:1px solid #eef2f7;" class="idx"></td>
-      <td style="padding:10px; border-bottom:1px solid #eef2f7;">
-        <input type="text" class="p-name" placeholder="Full name" required
-          style="width:100%; padding:10px 12px; box-sizing:border-box; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
-      </td>
-      <td style="padding:10px; border-bottom:1px solid #eef2f7;">
-        <input type="text" class="p-ic" placeholder="IC number" required
-          style="width:100%; padding:10px 12px; box-sizing:border-box; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
-      </td>
-      <td style="padding:10px; border-bottom:1px solid #eef2f7;">
-        <select class="p-gender" required
-          style="width:100%; padding:10px 12px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
-          <option value="">Select</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
-      </td>
-      <td style="padding:10px; border-bottom:1px solid #eef2f7; text-align:center;">
-        <button type="button" class="remove-btn"
-          style="background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:6px 10px; cursor:pointer; color:#64748b;">✕</button>
-      </td>
-    `;
+  <td style="padding:10px; border-bottom:1px solid #eef2f7;" class="idx"></td>
+  <td style="padding:10px; border-bottom:1px solid #eef2f7;">
+    <input type="text" class="p-name" placeholder="Full name"
+      style="width:100%; padding:10px 12px; box-sizing:border-box; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+  </td>
+  <td style="padding:10px; border-bottom:1px solid #eef2f7;">
+    <input type="text" class="p-ic" placeholder="IC number"
+      style="width:100%; padding:10px 12px; box-sizing:border-box; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+  </td>
+  <td style="padding:10px; border-bottom:1px solid #eef2f7;">
+    <select class="p-gender"
+      style="width:100%; padding:10px 12px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+      <option value="">Select</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+  </td>
+  <td style="padding:10px; border-bottom:1px solid #eef2f7; text-align:center;">
+    <button type="button" class="remove-btn"
+      style="background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:6px 10px; cursor:pointer; color:#64748b;">✕</button>
+  </td>
+`;
     if (data) {
       tr.querySelector(".p-name").value = data.name || "";
       tr.querySelector(".p-ic").value = data.ic || "";
@@ -256,14 +256,14 @@ Siti Aminah, 880202085432, Female"
   document.getElementById("clearRowsBtn").addEventListener("click", () => {
     if (!confirm("Clear all participant rows?")) return;
     body.innerHTML = "";
-    for (let i = 0; i < 5; i++) addRow();
+    addRow();
   });
   document.getElementById("importBulkBtn").addEventListener("click", importBulk);
   document.getElementById("clearBulkBtn").addEventListener("click", () => {
     bulkPaste.value = "";
   });
 
-  for (let i = 0; i < 5; i++) addRow();
+  addRow();
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -312,7 +312,7 @@ Siti Aminah, 880202085432, Female"
         form.reset();
         bulkPaste.value = "";
         body.innerHTML = "";
-        for (let i = 0; i < 1; i++) addRow();
+        addRow();
       } else {
         alert("Submission failed: " + (data.message || "Unknown error. Check Apps Script Executions."));
       }
