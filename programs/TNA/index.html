@@ -198,10 +198,15 @@ description: "Free Training Needs Analysis for Malaysian employers. Answer a sho
         This is a planning summary, not a formal audit. Final program design should be confirmed with your HR/L&amp;D priorities and HRD Corp eligibility where relevant.
       </p>
 
-      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:28px;">
+<div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:28px;">
         <a href="/programs/finder/" class="button">Open Program Finder</a>
         <a href="/programs/request-custom-programs/" class="button" style="background:#12425c; box-shadow:none;">Request custom pathway</a>
         <a href="/contact/" class="button" style="background:#334155; box-shadow:none;">Talk to CXCons</a>
+      </div>
+
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:20px;">
+        <button type="button" id="tnaDownloadCsv" class="button" style="background:#12425c; box-shadow:none;">Download Excel (CSV)</button>
+        <button type="button" id="tnaPrintPdf" class="button" style="background:#334155; box-shadow:none;">Print / Save as PDF</button>
       </div>
     </div>
 
@@ -210,8 +215,8 @@ description: "Free Training Needs Analysis for Malaysian employers. Answer a sho
 
 <script>
 (function () {
-  // Optional: email copy to you + client. Leave blank to skip email.
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwyta6vN6CV6BJHHYnG_otT6cMP8HCLO9pJi2rN9MFqTDCbNwooXsgPlD6YrCrjq6Rk/exec"; // e.g. "https://script.google.com/macros/s/XXXX/exec"
+  // Optional: CXCons notification only (leave "" to skip email)
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyoLfS44wE6SG38WS6KmZH1vYJDxCcfcQSbd-fsAZiST-ErfqVoDdWSsv3U3CzNkT3Wuw/exec"; // e.g. "https://script.google.com/macros/s/XXXX/exec"
 
   const CATALOG = {
     compliance: {
@@ -332,12 +337,15 @@ description: "Free Training Needs Analysis for Malaysian employers. Answer a sho
     "Retention": ["wellness", "leadership", "team"]
   };
 
+  window.__tnaLastPlan = null;
+
   const form = document.getElementById("tnaForm");
   const results = document.getElementById("tnaResults");
   const submitBtn = document.getElementById("tnaSubmit");
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
+
     const gaps = Array.from(form.querySelectorAll('input[name="gap"]:checked')).map(i => i.value);
     if (!gaps.length) {
       alert("Please select at least one gap area.");
@@ -349,7 +357,6 @@ description: "Free Training Needs Analysis for Malaysian employers. Answer a sho
     const ranked = [];
     const seen = new Set();
 
-    // Pressure-aligned gaps first, then remaining selections
     [...boosted.filter(g => gaps.includes(g)), ...gaps].forEach(g => {
       if (!seen.has(g) && CATALOG[g]) {
         seen.add(g);
@@ -364,54 +371,72 @@ description: "Free Training Needs Analysis for Malaysian employers. Answer a sho
     const horizon = form.horizon.value;
 
     document.getElementById("tnaIntro").textContent =
-      `Based on ${company || "your organisation"}’s inputs (${audience}, ${format}, horizon: ${horizon}), ` +
-      `these are the priority training directions to review first` +
+      "Based on " + (company || "your organisation") + "’s inputs (" + audience + ", " + format + ", horizon: " + horizon + "), " +
+      "these are the priority training directions to review first" +
       (hrdc === "Yes" ? " — with HRDC claimable structuring where eligible." : ".");
 
-    const list = document.getElementById("tnaPriorities");
-    list.innerHTML = ranked.map((g, i) =>
-      `<li><strong>${CATALOG[g].title}</strong> — ${CATALOG[g].why}</li>`
+    document.getElementById("tnaPriorities").innerHTML = ranked.map(g =>
+      "<li><strong>" + CATALOG[g].title + "</strong> — " + CATALOG[g].why + "</li>"
     ).join("");
 
-    const sug = document.getElementById("tnaSuggestions");
-    sug.innerHTML = ranked.map(g => {
-  const item = CATALOG[g];
-  const links = item.modules.map(m =>
-    `<a href="${m.url}" class="button" style="background:#12425c; box-shadow:none; padding:6px 12px; font-size:0.85em; margin:0 8px 8px 0; display:inline-block;">${m.name}</a>`
-  ).join("");
-  return `
-    <div style="padding:14px 16px; background:#f8fafc; border:1px solid #eef2f7; border-radius:10px;">
-      <div style="font-weight:700; color:#12425c; margin-bottom:6px;">${item.title}</div>
-      <div style="font-size:0.9em; color:#555; margin-bottom:12px;">${item.why}</div>
-      <div style="margin-bottom:8px;">${links}</div>
-      <a href="/programs/finder/?module=${encodeURIComponent(item.search)}"
-         style="font-size:0.82em; color:#94a3b8; text-decoration:underline;">
-        Search more in Program Finder
-      </a>
-    </div>`;
-}).join("");
+    document.getElementById("tnaSuggestions").innerHTML = ranked.map(g => {
+      const item = CATALOG[g];
+      const links = item.modules.map(m =>
+        '<a href="' + m.url + '" class="button" style="background:#12425c; box-shadow:none; padding:6px 12px; font-size:0.85em; margin:0 8px 8px 0; display:inline-block;">' + m.name + "</a>"
+      ).join("");
+      return (
+        '<div style="padding:14px 16px; background:#f8fafc; border:1px solid #eef2f7; border-radius:10px;">' +
+          '<div style="font-weight:700; color:#12425c; margin-bottom:6px;">' + item.title + "</div>" +
+          '<div style="font-size:0.9em; color:#555; margin-bottom:12px;">' + item.why + "</div>" +
+          '<div style="margin-bottom:8px;">' + links + "</div>" +
+          '<a href="/programs/finder/?module=' + encodeURIComponent(item.search) + '" style="font-size:0.82em; color:#94a3b8; text-decoration:underline;">Search more in Program Finder</a>' +
+        "</div>"
+      );
+    }).join("");
+
+    // Save plan for download
+    window.__tnaLastPlan = {
+      company: company,
+      audience: audience,
+      format: format,
+      horizon: horizon,
+      hrdc: hrdc,
+      pressure: pressure,
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      phone: (form.phone && form.phone.value.trim()) || "",
+      company_size: form.company_size.value,
+      industry: form.industry.value,
+      notes: (form.notes && form.notes.value.trim()) || "",
+      priorities: ranked.map(g => CATALOG[g].title),
+      details: ranked.map(g => ({
+        area: CATALOG[g].title,
+        why: CATALOG[g].why,
+        modules: CATALOG[g].modules.map(m => m.name).join("; ")
+      })),
+      generatedAt: new Date().toLocaleString()
+    };
 
     results.style.display = "block";
     results.scrollIntoView({ behavior: "smooth", block: "start" });
 
-    // Optional email notify
+    // Optional: email CXCons only (never the client)
     if (SCRIPT_URL) {
       const payload = {
         form_type: "TNA V1",
-        name: form.name.value.trim(),
-        email: form.email.value.trim(),
-        phone: form.phone.value.trim(),
-        company,
-        company_size: form.company_size.value,
-        industry: form.industry.value,
-        audience,
-        format,
-        gaps: ranked.map(g => CATALOG[g].title).join(", "),
-        pressure,
-        horizon,
-        hrdc,
-        email_copy: form.email_copy.value,
-        notes: form.notes.value.trim()
+        name: window.__tnaLastPlan.name,
+        email: window.__tnaLastPlan.email,
+        phone: window.__tnaLastPlan.phone,
+        company: company,
+        company_size: window.__tnaLastPlan.company_size,
+        industry: window.__tnaLastPlan.industry,
+        audience: audience,
+        format: format,
+        gaps: window.__tnaLastPlan.priorities.join(", "),
+        pressure: pressure,
+        horizon: horizon,
+        hrdc: hrdc,
+        notes: window.__tnaLastPlan.notes
       };
       submitBtn.disabled = true;
       try {
@@ -420,9 +445,69 @@ description: "Free Training Needs Analysis for Malaysian employers. Answer a sho
           headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify(payload)
         });
-      } catch (_) {}
+      } catch (err) {
+        console.error(err);
+      }
       submitBtn.disabled = false;
     }
   });
+
+  // Download Excel (CSV)
+  const csvBtn = document.getElementById("tnaDownloadCsv");
+  if (csvBtn) {
+    csvBtn.addEventListener("click", function () {
+      const plan = window.__tnaLastPlan;
+      if (!plan) {
+        alert("Generate a plan first.");
+        return;
+      }
+      const rows = [
+        ["Field", "Value"],
+        ["Company", plan.company],
+        ["Contact name", plan.name],
+        ["Email", plan.email],
+        ["Phone", plan.phone],
+        ["Company size", plan.company_size],
+        ["Industry", plan.industry],
+        ["Audience", plan.audience],
+        ["Format", plan.format],
+        ["Horizon", plan.horizon],
+        ["HRDC interest", plan.hrdc],
+        ["Business pressure", plan.pressure],
+        ["Notes", plan.notes],
+        ["Generated at", plan.generatedAt],
+        [],
+        ["Priority area", "Why it matters", "Suggested modules"]
+      ];
+      plan.details.forEach(function (d) {
+        rows.push([d.area, d.why, d.modules]);
+      });
+
+      const csv = rows.map(function (r) {
+        return r.map(function (c) {
+          return '"' + String(c == null ? "" : c).replace(/"/g, '""') + '"';
+        }).join(",");
+      }).join("\n");
+
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "CXCons-TNA-" + (plan.company || "plan").replace(/[^\w\-]+/g, "_") + ".csv";
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+  }
+
+  // Print / Save as PDF
+  const pdfBtn = document.getElementById("tnaPrintPdf");
+  if (pdfBtn) {
+    pdfBtn.addEventListener("click", function () {
+      if (!window.__tnaLastPlan) {
+        alert("Generate a plan first.");
+        return;
+      }
+      window.print();
+    });
+  }
 })();
 </script>
