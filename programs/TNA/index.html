@@ -1,1 +1,426 @@
-empty content
+---
+layout: default
+title: "Training Needs Analysis (TNA) | CXCons Malaysia"
+description: "Free Training Needs Analysis for Malaysian employers. Answer a short set of questions to clarify team skill gaps and map priorities to HRDC-ready corporate training pathways with CXCons."
+---
+<main>
+  <section id="hero">
+    <h1>Training Needs Analysis</h1>
+    <p>
+      Clarify your team’s training priorities in minutes.
+      Get a practical gap summary and suggested program directions — built for Malaysian employers.
+    </p>
+    <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:18px;">
+      <a href="#tna-form" class="button">Start TNA</a>
+      <a href="/programs/finder/" class="button" style="background:#12425c; box-shadow:none;">Program Finder</a>
+      <a href="/programs/request-custom-programs/" class="button" style="background:#334155; box-shadow:none;">Custom Programs</a>
+    </div>
+  </section>
+
+  <div class="content-wrapper">
+
+    <div class="card" style="border-left:5px solid #12425c; text-align:left; margin-bottom:28px;">
+      <h2 style="color:#12425c; margin-top:0;">What this TNA does</h2>
+      <p style="color:#555; margin-bottom:0;">
+        This is a short planning tool — not a long survey. You describe your organisation and current pressures;
+        we return a clear priority view and suggested training directions you can explore in our library of 1,700+ modules.
+      </p>
+    </div>
+
+    <!-- FORM -->
+    <div class="card" style="text-align:left; max-width:920px; margin:0 auto 28px; padding:36px 40px;" id="tna-form">
+      <h2 style="color:#12425c; margin-top:0;">Company &amp; contact</h2>
+      <p style="color:#64748b; font-size:0.9em; margin:0 0 18px;">So we can send you the summary if you want a copy.</p>
+
+      <form id="tnaForm">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:22px;">
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Your name *</label>
+            <input type="text" name="name" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Work email *</label>
+            <input type="email" name="email" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Company name *</label>
+            <input type="text" name="company" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Phone (optional)</label>
+            <input type="tel" name="phone" style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box;">
+          </div>
+        </div>
+
+        <hr style="border:none; border-top:1px solid #eef2f7; margin:8px 0 24px;">
+
+        <h2 style="color:#12425c; margin:0 0 16px;">Organisation snapshot</h2>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:22px;">
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Company size *</label>
+            <select name="company_size" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+              <option value="">Select</option>
+              <option value="1-20">1–20 employees</option>
+              <option value="21-50">21–50</option>
+              <option value="51-200">51–200</option>
+              <option value="201-500">201–500</option>
+              <option value="500+">500+</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Industry *</label>
+            <select name="industry" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+              <option value="">Select</option>
+              <option value="Manufacturing">Manufacturing</option>
+              <option value="Services">Services</option>
+              <option value="Finance / Banking">Finance / Banking</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="IT / Technology">IT / Technology</option>
+              <option value="Retail / FMCG">Retail / FMCG</option>
+              <option value="Construction / Property">Construction / Property</option>
+              <option value="Education">Education</option>
+              <option value="Logistics / Supply Chain">Logistics / Supply Chain</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Main audience for training *</label>
+            <select name="audience" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+              <option value="">Select</option>
+              <option value="All staff">All staff</option>
+              <option value="Executives / Managers">Executives / Managers</option>
+              <option value="Supervisors / Team leads">Supervisors / Team leads</option>
+              <option value="HR / Admin">HR / Admin</option>
+              <option value="Sales / Commercial">Sales / Commercial</option>
+              <option value="Operations / Technical">Operations / Technical</option>
+              <option value="Mixed groups">Mixed groups</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Preferred format *</label>
+            <select name="format" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+              <option value="">Select</option>
+              <option value="In-house">In-house (at our premise)</option>
+              <option value="Public programs">Public programs</option>
+              <option value="Mixed">Mixed (public + in-house)</option>
+              <option value="Coaching">Coaching / 1-to-1</option>
+              <option value="Not sure">Not sure yet</option>
+            </select>
+          </div>
+        </div>
+
+        <hr style="border:none; border-top:1px solid #eef2f7; margin:8px 0 24px;">
+
+        <h2 style="color:#12425c; margin:0 0 8px;">Where do you feel the biggest gaps? *</h2>
+        <p style="color:#94a3b8; font-size:0.82em; margin:0 0 14px;">Select all that apply</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; margin-bottom:22px; font-size:0.92em; color:#334155;">
+          <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="gap" value="compliance"> Compliance &amp; employment law</label>
+          <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="gap" value="osh"> Safety / OSH</label>
+          <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="gap" value="leadership"> Leadership &amp; supervision</label>
+          <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="gap" value="communication"> Communication &amp; presentation</label>
+          <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="gap" value="team"> Teamwork &amp; collaboration</label>
+          <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="gap" value="sales"> Sales &amp; customer handling</label>
+          <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="gap" value="finance"> Finance for non-finance / Excel</label>
+          <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="gap" value="quality"> Quality / ISO / process</label>
+          <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="gap" value="digital"> Digital skills / AI at work</label>
+          <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="gap" value="wellness"> Mental health / stress / wellness</label>
+          <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="gap" value="hr"> HR operations / payroll / DI</label>
+          <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="gap" value="ethics"> Integrity / anti-bribery</label>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:22px;">
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Top business pressure right now *</label>
+            <select name="pressure" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+              <option value="">Select</option>
+              <option value="Performance">Need better performance / productivity</option>
+              <option value="Compliance">Compliance / audit readiness</option>
+              <option value="Retention">Retention / engagement</option>
+              <option value="Leadership bench">Building leadership bench</option>
+              <option value="New systems">New systems / digital change</option>
+              <option value="Customer">Customer or service quality</option>
+              <option value="Safety">Safety incidents / risk</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Planning horizon *</label>
+            <select name="horizon" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+              <option value="">Select</option>
+              <option value="This quarter">This quarter</option>
+              <option value="Next 6 months">Next 6 months</option>
+              <option value="This year">This year</option>
+              <option value="Exploring only">Exploring only</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">HRDC claim interest *</label>
+            <select name="hrdc" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+              <option value="">Select</option>
+              <option value="Yes">Yes — prefer claimable where possible</option>
+              <option value="Maybe">Maybe / need guidance</option>
+              <option value="No">No — direct payment is fine</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Email me this summary *</label>
+            <select name="email_copy" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+              <option value="Yes">Yes</option>
+              <option value="No">No — on-screen only</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-bottom:22px;">
+          <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Anything else we should know? (optional)</label>
+          <textarea name="notes" rows="3" placeholder="e.g. upcoming audit, new managers, specific department focus..."
+            style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box; resize:vertical;"></textarea>
+        </div>
+
+        <button type="submit" id="tnaSubmit"
+          style="width:100%; padding:15px; font-size:1em; background:#12425c; color:#fff; border:none; border-radius:8px; cursor:pointer; font-weight:600;">
+          Generate my training priority plan
+        </button>
+      </form>
+    </div>
+
+    <!-- RESULTS (hidden until submit) -->
+    <div id="tnaResults" class="card" style="display:none; text-align:left; max-width:920px; margin:0 auto 28px; padding:36px 40px; border-left:5px solid #12425c;">
+      <h2 style="color:#12425c; margin-top:0;">Your priority plan</h2>
+      <p id="tnaIntro" style="color:#555;"></p>
+
+      <h3 style="color:#12425c; font-size:1.05em;">Priority focus areas</h3>
+      <ol id="tnaPriorities" style="color:#334155; line-height:1.8; padding-left:20px;"></ol>
+
+      <h3 style="color:#12425c; font-size:1.05em; margin-top:22px;">Suggested program directions</h3>
+      <div id="tnaSuggestions" style="display:grid; gap:12px;"></div>
+
+      <p style="color:#64748b; font-size:0.88em; margin:22px 0 0;">
+        This is a planning summary, not a formal audit. Final program design should be confirmed with your HR/L&amp;D priorities and HRD Corp eligibility where relevant.
+      </p>
+
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:28px;">
+        <a href="/programs/finder/" class="button">Open Program Finder</a>
+        <a href="/programs/request-custom-programs/" class="button" style="background:#12425c; box-shadow:none;">Request custom pathway</a>
+        <a href="/contact/" class="button" style="background:#334155; box-shadow:none;">Talk to CXCons</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script>
+(function () {
+  // Optional: email copy to you + client. Leave blank to skip email.
+  const SCRIPT_URL = ""; // e.g. "https://script.google.com/macros/s/XXXX/exec"
+
+  const CATALOG = {
+    compliance: {
+      title: "Compliance & employment law",
+      why: "Reduces legal and operational risk when policies, managers, and day-to-day practice are aligned.",
+      modules: [
+        { name: "Mastering Employment Act", url: "/programs/modules/mastering-employment-act/" },
+        { name: "One Day Domestic Inquiry", url: "/programs/finder/?module=" + encodeURIComponent("One Day Domestic Inquiry") }
+      ],
+      search: "Employment Act"
+    },
+    osh: {
+      title: "Safety / OSH",
+      why: "Supports safer systems of work and clearer accountability on site and in the workplace.",
+      modules: [
+        { name: "Chemical Handling Safety & Spill Response", url: "/programs/finder/?module=" + encodeURIComponent("Chemical Handling") },
+        { name: "Basics of First Aider (BOFA), CPR and AED", url: "/programs/modules/basics-of-first-aider-bofa-cpr-aed/" }
+      ],
+      search: "OSH"
+    },
+    leadership: {
+      title: "Leadership & supervision",
+      why: "Strengthens decision-making, team direction, and consistency from supervisors upward.",
+      modules: [
+        { name: "Effective Leadership", url: "/programs/modules/effective-leadership/" },
+        { name: "Corporate Leadership & Wellness", url: "/programs/modules/corporate-leadership-wellness/" }
+      ],
+      search: "Leadership"
+    },
+    communication: {
+      title: "Communication & presentation",
+      why: "Improves clarity in meetings, stakeholder updates, and professional presence.",
+      modules: [
+        { name: "Public Speaking & Presentation Skills Mastery", url: "/programs/finder/?module=" + encodeURIComponent("Public Speaking") },
+        { name: "Corporate Communication", url: "/programs/modules/corporate-communication/" }
+      ],
+      search: "Communication"
+    },
+    team: {
+      title: "Teamwork & collaboration",
+      why: "Builds trust and cross-function cooperation when delivery depends on shared effort.",
+      modules: [
+        { name: "Team Building programs", url: "/solutions/team-building/" },
+        { name: "Request team building design", url: "/programs/team-building-request/" }
+      ],
+      search: "Team Building"
+    },
+    sales: {
+      title: "Sales & customer handling",
+      why: "Tightens commercial discipline and customer-facing consistency.",
+      modules: [
+        { name: "Mastering Sales Excellence", url: "/programs/modules/mastering-sales-excellence/" }
+      ],
+      search: "Sales"
+    },
+    finance: {
+      title: "Finance literacy & Excel",
+      why: "Helps non-finance roles read numbers and work faster with data.",
+      modules: [
+        { name: "Finance for Non Finance", url: "/programs/modules/finance-for-non-finance/" },
+        { name: "Excel 365 Functions & Formulas", url: "/programs/modules/excel-365-functions-formulas/" }
+      ],
+      search: "Excel"
+    },
+    quality: {
+      title: "Quality / ISO / process",
+      why: "Supports audit readiness and structured problem-solving on the floor.",
+      modules: [
+        { name: "ISO 9001 Internal Audit pathways", url: "/programs/finder/?module=" + encodeURIComponent("ISO 9001") },
+        { name: "7 QC Tools", url: "/programs/modules/7-qc-tools/" }
+      ],
+      search: "ISO"
+    },
+    digital: {
+      title: "Digital skills / AI at work",
+      why: "Raises day-to-day productivity with practical AI and modern workplace tools.",
+      modules: [
+        { name: "AI at Work", url: "/programs/modules/ai-at-work/" },
+        { name: "One Day AI Powered Microsoft Excel", url: "/programs/modules/one-day-ai-powered-microsoft-excel/" }
+      ],
+      search: "AI"
+    },
+    wellness: {
+      title: "Mental health / stress / wellness",
+      why: "Supports resilience and sustainable performance under workload pressure.",
+      modules: [
+        { name: "Mental Health Awareness (C.A.R.E)", url: "/programs/modules/mental-health-awareness-care/" },
+        { name: "One Day Combat Work Stress", url: "/programs/modules/one-day-combat-work-stress/" }
+      ],
+      search: "Mental Health"
+    },
+    hr: {
+      title: "HR operations",
+      why: "Strengthens core HR processes that affect compliance, payroll accuracy, and employee trust.",
+      modules: [
+        { name: "Payroll Administration", url: "/programs/finder/?module=" + encodeURIComponent("Payroll") },
+        { name: "Behavioral Based Interviewing Skills", url: "/programs/modules/behavioral-based-interviewing-skills/" }
+      ],
+      search: "HR"
+    },
+    ethics: {
+      title: "Integrity / anti-bribery",
+      why: "Reinforces ethical conduct and reporting culture across roles.",
+      modules: [
+        { name: "One Day Anti Bribery & Corruption (ABC)", url: "/programs/modules/one-day-anti-bribery-corruption-abc/" }
+      ],
+      search: "Anti Bribery"
+    }
+  };
+
+  const PRESSURE_BOOST = {
+    "Compliance": ["compliance", "ethics", "osh"],
+    "Safety": ["osh", "compliance"],
+    "Leadership bench": ["leadership", "communication", "team"],
+    "Performance": ["leadership", "team", "digital", "finance"],
+    "Customer": ["sales", "communication"],
+    "New systems": ["digital", "communication"],
+    "Retention": ["wellness", "leadership", "team"]
+  };
+
+  const form = document.getElementById("tnaForm");
+  const results = document.getElementById("tnaResults");
+  const submitBtn = document.getElementById("tnaSubmit");
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const gaps = Array.from(form.querySelectorAll('input[name="gap"]:checked')).map(i => i.value);
+    if (!gaps.length) {
+      alert("Please select at least one gap area.");
+      return;
+    }
+
+    const pressure = form.pressure.value;
+    const boosted = PRESSURE_BOOST[pressure] || [];
+    const ranked = [];
+    const seen = new Set();
+
+    // Pressure-aligned gaps first, then remaining selections
+    [...boosted.filter(g => gaps.includes(g)), ...gaps].forEach(g => {
+      if (!seen.has(g) && CATALOG[g]) {
+        seen.add(g);
+        ranked.push(g);
+      }
+    });
+
+    const company = form.company.value.trim();
+    const audience = form.audience.value;
+    const format = form.format.value;
+    const hrdc = form.hrdc.value;
+    const horizon = form.horizon.value;
+
+    document.getElementById("tnaIntro").textContent =
+      `Based on ${company || "your organisation"}’s inputs (${audience}, ${format}, horizon: ${horizon}), ` +
+      `these are the priority training directions to review first` +
+      (hrdc === "Yes" ? " — with HRDC claimable structuring where eligible." : ".");
+
+    const list = document.getElementById("tnaPriorities");
+    list.innerHTML = ranked.map((g, i) =>
+      `<li><strong>${CATALOG[g].title}</strong> — ${CATALOG[g].why}</li>`
+    ).join("");
+
+    const sug = document.getElementById("tnaSuggestions");
+    sug.innerHTML = ranked.map(g => {
+      const item = CATALOG[g];
+      const links = item.modules.map(m =>
+        `<a href="${m.url}" style="color:#12425c; font-weight:600; text-decoration:none; margin-right:12px;">${m.name} →</a>`
+      ).join("");
+      return `
+        <div style="padding:14px 16px; background:#f8fafc; border:1px solid #eef2f7; border-radius:10px;">
+          <div style="font-weight:700; color:#12425c; margin-bottom:6px;">${item.title}</div>
+          <div style="font-size:0.9em; color:#555; margin-bottom:10px;">${item.why}</div>
+          <div style="font-size:0.9em;">${links}
+            <a href="/programs/finder/?module=${encodeURIComponent(item.search)}" style="color:#64748b;">Search Finder</a>
+          </div>
+        </div>`;
+    }).join("");
+
+    results.style.display = "block";
+    results.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    // Optional email notify
+    if (SCRIPT_URL) {
+      const payload = {
+        form_type: "TNA V1",
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        phone: form.phone.value.trim(),
+        company,
+        company_size: form.company_size.value,
+        industry: form.industry.value,
+        audience,
+        format,
+        gaps: ranked.map(g => CATALOG[g].title).join(", "),
+        pressure,
+        horizon,
+        hrdc,
+        email_copy: form.email_copy.value,
+        notes: form.notes.value.trim()
+      };
+      submitBtn.disabled = true;
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+      } catch (_) {}
+      submitBtn.disabled = false;
+    }
+  });
+})();
+</script>
