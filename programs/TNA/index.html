@@ -415,34 +415,40 @@ description: "Free Training Needs Analysis for Malaysian employers. Answer a sho
 
     // Optional: email CXCons only (never the client)
     if (SCRIPT_URL) {
-      const payload = {
-        form_type: "TNA V1",
-        name: window.__tnaLastPlan.name,
-        email: window.__tnaLastPlan.email,
-        phone: window.__tnaLastPlan.phone,
-        company: company,
-        company_size: window.__tnaLastPlan.company_size,
-        industry: window.__tnaLastPlan.industry,
-        audience: audience,
-        format: format,
-        gaps: window.__tnaLastPlan.priorities.join(", "),
-        pressure: pressure,
-        horizon: horizon,
-        hrdc: hrdc,
-        notes: window.__tnaLastPlan.notes
-      };
-      submitBtn.disabled = true;
-      try {
-        await fetch(SCRIPT_URL, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(payload)
-        });
-      } catch (err) {
-        console.error(err);
-      }
-      submitBtn.disabled = false;
-    }
+  const plan = window.__tnaLastPlan;
+  const payload = {
+    form_type: "TNA V1",
+    name: plan.name,
+    email: plan.email,
+    phone: plan.phone,
+    company: plan.company,
+    company_size: plan.company_size,
+    industry: plan.industry,
+    audience: plan.audience,
+    format: plan.format,
+    pressure: plan.pressure,
+    horizon: plan.horizon,
+    hrdc: plan.hrdc,
+    notes: plan.notes,
+    generated_at: plan.generatedAt,
+    priorities: plan.priorities.join(" | "),
+    // Full results for email
+    plan_details: plan.details.map(function (d, i) {
+      return (i + 1) + ". " + d.area + "\n   Why: " + d.why + "\n   Modules: " + d.modules;
+    }).join("\n\n")
+  };
+  submitBtn.disabled = true;
+  try {
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
+  } catch (err) {
+    console.error(err);
+  }
+  submitBtn.disabled = false;
+}
   });
 
   // Download Excel (CSV)
