@@ -564,6 +564,11 @@ h2, h3 {
   display: block;
 }
 
+@media print {
+  header, footer, #hero, #tna-form, .site-footer, nav { display: none !important; }
+  #tnaResults { display: block !important; border: none !important; box-shadow: none !important; }
+}
+
 /* This makes the text next to the GIF fill the remaining space */
 .expandable-content p {
   flex: 1;
