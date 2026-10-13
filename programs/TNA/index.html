@@ -3,13 +3,13 @@ layout: default
 title: "Training Needs Analysis (TNA) | CXCons Malaysia"
 description: "Free Training Needs Analysis for Malaysian employers. Identify skill gaps and map HRDC-ready training pathways with CXCons."
 ---
+
 <main>
   <section id="hero">
     <h1>Training Needs Analysis</h1>
-    <p>
-      Clarify your team’s training priorities in minutes.
-      Get a practical gap summary and suggested program directions — built for Malaysian employers.
-    </p>
+<p style="color:#94a3b8; font-size:0.9em; max-width:640px; margin:12px auto 0;">
+  A practical TNA links a business goal to skill gaps and a simple who / what / when plan—before budget goes to the wrong programmes.
+</p>    
     <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:18px;">
       <a href="#tna-form" class="button">Start TNA</a>
       <a href="/programs/finder/" class="button" style="background:#12425c; box-shadow:none;">Program Finder</a>
@@ -112,6 +112,12 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
 
         <hr style="border:none; border-top:1px solid #eef2f7; margin:8px 0 24px;">
 
+        <h2 style="color:#12425c; margin:0 0 8px;">Business goal *</h2>
+        <p style="color:#94a3b8; font-size:0.82em; margin:0 0 10px;">What should improve if training works?</p>
+        <input type="text" name="business_goal" required
+          placeholder="e.g. Reduce compliance errors · Improve supervisor consistency · Raise service quality"
+          style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box; margin-bottom:22px;">
+
         <h2 style="color:#12425c; margin:0 0 8px;">Where do you feel the biggest gaps? *</h2>
         <p style="color:#94a3b8; font-size:0.82em; margin:0 0 14px;">Select all that apply</p>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; margin-bottom:22px; font-size:0.92em; color:#334155;">
@@ -127,6 +133,79 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
           <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="gap" value="wellness"> Mental health / stress / wellness</label>
           <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="gap" value="hr"> HR operations / payroll / DI</label>
           <label style="display:flex; gap:8px; align-items:center; padding:10px 12px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="gap" value="ethics"> Integrity / anti-bribery</label>
+        </div>
+
+        <h2 style="color:#12425c; margin:0 0 8px;">Gap type (optional)</h2>
+        <p style="color:#94a3b8; font-size:0.82em; margin:0 0 14px;">What kind of gap is this mainly?</p>
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:22px; font-size:0.92em; color:#334155;">
+          <label style="display:flex; gap:8px; align-items:center; padding:10px 14px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="gap_type" value="Knowledge"> Knowledge</label>
+          <label style="display:flex; gap:8px; align-items:center; padding:10px 14px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="gap_type" value="Skill"> Skill</label>
+          <label style="display:flex; gap:8px; align-items:center; padding:10px 14px; background:#f8fafc; border:1px solid #eef2f7; border-radius:8px;"><input type="checkbox" name="gap_type" value="Behaviour"> Behaviour</label>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:22px;">
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Current level in these areas *</label>
+            <select name="current_level" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+              <option value="">Select</option>
+              <option value="Beginner">Beginner</option>
+              <option value="Developing">Developing</option>
+              <option value="Solid">Solid</option>
+              <option value="Strong">Strong</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Top business pressure right now *</label>
+            <select name="pressure" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+              <option value="">Select</option>
+              <option value="Performance">Need better performance / productivity</option>
+              <option value="Compliance">Compliance / audit readiness</option>
+              <option value="Retention">Retention / engagement</option>
+              <option value="Leadership bench">Building leadership bench</option>
+              <option value="New systems">New systems / digital change</option>
+              <option value="Customer">Customer or service quality</option>
+              <option value="Safety">Safety incidents / risk</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Planning horizon *</label>
+            <select name="horizon" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+              <option value="">Select</option>
+              <option value="This quarter">This quarter</option>
+              <option value="Next 6 months">Next 6 months</option>
+              <option value="This year">This year</option>
+              <option value="Exploring only">Exploring only</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">HRDC claim interest *</label>
+            <select name="hrdc" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+              <option value="">Select</option>
+              <option value="Yes">Yes — prefer claimable where possible</option>
+              <option value="Maybe">Maybe / need guidance</option>
+              <option value="No">No — direct payment is fine</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Email me the report *</label>
+            <select name="email_copy" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+              <option value="Yes" selected>Yes — send to my email</option>
+              <option value="No">No — on-screen / download only</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-bottom:22px;">
+          <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">What would “better” look like in 90 days? (optional)</label>
+          <input type="text" name="success_signal"
+            placeholder="e.g. Fewer process errors · Managers handle DI more consistently · Higher internal survey scores"
+            style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box;">
+        </div>
+
+        <div style="margin-bottom:22px;">
+          <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Anything else we should know? (optional)</label>
+          <textarea name="notes" rows="3" placeholder="e.g. upcoming audit, new managers, specific department focus..."
+            style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box; resize:vertical;"></textarea>
         </div>
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:22px;">
@@ -185,9 +264,14 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
     </div>
 
     <!-- RESULTS (hidden until submit) -->
-    <div id="tnaResults" class="card" style="display:none; text-align:left; max-width:920px; margin:0 auto 28px; padding:36px 40px; border-left:5px solid #12425c;">
+        <div id="tnaResults" class="card" style="display:none; text-align:left; max-width:920px; margin:0 auto 28px; padding:36px 40px; border-left:5px solid #12425c;">
       <h2 style="color:#12425c; margin-top:0;">Your priority plan</h2>
       <p id="tnaIntro" style="color:#555;"></p>
+
+      <div style="padding:14px 16px; background:#f8fafc; border:1px solid #eef2f7; border-radius:10px; margin-bottom:20px;">
+        <div style="font-size:0.8em; color:#64748b; margin-bottom:4px;">Business goal</div>
+        <div id="tnaGoal" style="font-weight:600; color:#12425c;"></div>
+      </div>
 
       <h3 style="color:#12425c; font-size:1.05em;">Priority focus areas</h3>
       <ol id="tnaPriorities" style="color:#334155; line-height:1.8; padding-left:20px;"></ol>
@@ -195,15 +279,21 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
       <h3 style="color:#12425c; font-size:1.05em; margin-top:22px;">Suggested program directions</h3>
       <div id="tnaSuggestions" style="display:grid; gap:12px;"></div>
 
+      <h3 style="color:#12425c; font-size:1.05em; margin-top:22px;">Draft training plan</h3>
+      <div id="tnaPlan" style="padding:14px 16px; background:#f8fafc; border:1px solid #eef2f7; border-radius:10px; color:#334155; font-size:0.95em; line-height:1.7;"></div>
+
       <p style="color:#64748b; font-size:0.88em; margin:22px 0 0;">
-        This is a planning summary, not a formal audit. Final program design should be confirmed with your HR/L&amp;D priorities and HRD Corp eligibility where relevant.
+        This is a structured planning TNA for prioritisation. Deeper methods (surveys, observation, tests) can refine it with your managers.
+        After training is delivered, measure learning impact with our
+        <a href="/forms/output-assessment/" target="_blank" rel="noopener noreferrer" style="color:#12425c;">Output Assessment (OA)</a>
+        form where applicable.
       </p>
 
-<div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:28px;">
-  <a href="/programs/finder/" class="button" target="_blank" rel="noopener noreferrer">Open Program Finder</a>
-  <a href="/programs/team-building-request/" class="button" target="_blank" rel="noopener noreferrer">Request Team Building</a>
-  <a href="/programs/request-custom-programs/" class="button" target="_blank" rel="noopener noreferrer" style="background:#12425c; box-shadow:none;">Request custom pathway</a>
-</div>
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:28px;">
+        <a href="/programs/finder/" class="button" target="_blank" rel="noopener noreferrer">Open Program Finder</a>
+        <a href="/programs/request-custom-programs/" class="button" target="_blank" rel="noopener noreferrer" style="background:#12425c; box-shadow:none;">Request custom pathway</a>
+        <a href="/contact/" class="button" target="_blank" rel="noopener noreferrer" style="background:#334155; box-shadow:none;">Talk to CXCons</a>
+      </div>
 
       <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:20px;">
         <button type="button" id="tnaDownloadCsv" class="button" style="background:#12425c; box-shadow:none;">Download Excel (CSV)</button>
@@ -216,8 +306,7 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
 
 <script>
 (function () {
-  // Optional: CXCons notification only (leave "" to skip email)
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzbqq1TJsNB4XfMkWUwp7lIHs9hcfk4EMET27eLiyS97o5b093HZQfnuIDh_bENFcQ1Mg/exec"; // e.g. "https://script.google.com/macros/s/XXXX/exec"
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztEvsAZjBnvQXAZ1cGzST2XDIElV4Zdm8zfs82bp5d4np79c3MUn2e7mIvXyZTAZUAxQ/exec"; // your Apps Script /exec URL
 
   const CATALOG = {
     compliance: {
@@ -347,20 +436,21 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const gaps = Array.from(form.querySelectorAll('input[name="gap"]:checked')).map(i => i.value);
+    const gaps = Array.from(form.querySelectorAll('input[name="gap"]:checked')).map(function (i) { return i.value; });
     if (!gaps.length) {
       alert("Please select at least one gap area.");
       return;
     }
 
+    const gapTypes = Array.from(form.querySelectorAll('input[name="gap_type"]:checked')).map(function (i) { return i.value; });
     const pressure = form.pressure.value;
     const boosted = PRESSURE_BOOST[pressure] || [];
     const ranked = [];
-    const seen = new Set();
+    const seen = {};
 
-    [...boosted.filter(g => gaps.includes(g)), ...gaps].forEach(g => {
-      if (!seen.has(g) && CATALOG[g]) {
-        seen.add(g);
+    boosted.filter(function (g) { return gaps.indexOf(g) !== -1; }).concat(gaps).forEach(function (g) {
+      if (!seen[g] && CATALOG[g]) {
+        seen[g] = true;
         ranked.push(g);
       }
     });
@@ -370,32 +460,51 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
     const format = form.format.value;
     const hrdc = form.hrdc.value;
     const horizon = form.horizon.value;
+    const businessGoal = form.business_goal.value.trim();
+    const currentLevel = form.current_level.value;
+    const successSignal = (form.success_signal && form.success_signal.value.trim()) || "";
+
+    document.getElementById("tnaGoal").textContent = businessGoal;
 
     document.getElementById("tnaIntro").textContent =
-      "Based on " + (company || "your organisation") + "’s inputs (" + audience + ", " + format + ", horizon: " + horizon + "), " +
-      "these are the priority training directions to review first" +
+      "Based on " + (company || "your organisation") + " (“" + audience + "”, " + format + ", horizon: " + horizon +
+      ", current level: " + currentLevel + "), these are the priority training directions to review first" +
       (hrdc === "Yes" ? " — with HRDC claimable structuring where eligible." : ".");
 
-    document.getElementById("tnaPriorities").innerHTML = ranked.map(g =>
-      "<li><strong>" + CATALOG[g].title + "</strong> — " + CATALOG[g].why + "</li>"
-    ).join("");
+    document.getElementById("tnaPriorities").innerHTML = ranked.map(function (g) {
+      return "<li><strong>" + CATALOG[g].title + "</strong> — " + CATALOG[g].why + "</li>";
+    }).join("");
 
-    document.getElementById("tnaSuggestions").innerHTML = ranked.map(g => {
+    document.getElementById("tnaSuggestions").innerHTML = ranked.map(function (g) {
       const item = CATALOG[g];
-      const links = item.modules.map(m =>
-        '<a href="' + m.url + '" class="button" style="background:#12425c; box-shadow:none; padding:6px 12px; font-size:0.85em; margin:0 8px 8px 0; display:inline-block;">' + m.name + "</a>"
-      ).join("");
+      const links = item.modules.map(function (m) {
+        return '<a href="' + m.url + '" class="button" target="_blank" rel="noopener noreferrer" style="background:#12425c; box-shadow:none; padding:6px 12px; font-size:0.85em; margin:0 8px 8px 0; display:inline-block;">' + m.name + "</a>";
+      }).join("");
       return (
         '<div style="padding:14px 16px; background:#f8fafc; border:1px solid #eef2f7; border-radius:10px;">' +
           '<div style="font-weight:700; color:#12425c; margin-bottom:6px;">' + item.title + "</div>" +
           '<div style="font-size:0.9em; color:#555; margin-bottom:12px;">' + item.why + "</div>" +
           '<div style="margin-bottom:8px;">' + links + "</div>" +
-          '<a href="/programs/finder/?module=' + encodeURIComponent(item.search) + '" style="font-size:0.82em; color:#94a3b8; text-decoration:underline;">Search more in Program Finder</a>' +
+          '<a href="/programs/finder/?module=' + encodeURIComponent(item.search) + '" target="_blank" rel="noopener noreferrer" style="font-size:0.82em; color:#94a3b8; text-decoration:underline;">Search more in Program Finder</a>' +
         "</div>"
       );
     }).join("");
 
-    // Save plan for download
+    const topAreas = ranked.slice(0, 3).map(function (g) { return CATALOG[g].title; }).join("; ");
+    const measureText = successSignal || "Manager feedback + post-training assessment (e.g. Output Assessment / OA)";
+    const gapTypeText = gapTypes.length ? gapTypes.join(", ") : "Not specified";
+
+    document.getElementById("tnaPlan").innerHTML =
+      "<strong>Who:</strong> " + audience + "<br>" +
+      "<strong>Goal:</strong> " + businessGoal + "<br>" +
+      "<strong>What (priority):</strong> " + topAreas + "<br>" +
+      "<strong>Gap type:</strong> " + gapTypeText + "<br>" +
+      "<strong>Current level:</strong> " + currentLevel + "<br>" +
+      "<strong>When:</strong> " + horizon + "<br>" +
+      "<strong>How:</strong> " + format +
+      (hrdc === "Yes" ? " · Prefer HRDC claimable where eligible" : "") + "<br>" +
+      "<strong>Success measure:</strong> " + measureText;
+
     window.__tnaLastPlan = {
       company: company,
       audience: audience,
@@ -403,63 +512,82 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
       horizon: horizon,
       hrdc: hrdc,
       pressure: pressure,
+      business_goal: businessGoal,
+      current_level: currentLevel,
+      gap_types: gapTypeText,
+      success_signal: successSignal,
       name: form.name.value.trim(),
       email: form.email.value.trim(),
       phone: (form.phone && form.phone.value.trim()) || "",
       company_size: form.company_size.value,
       industry: form.industry.value,
       notes: (form.notes && form.notes.value.trim()) || "",
-      priorities: ranked.map(g => CATALOG[g].title),
-      details: ranked.map(g => ({
-        area: CATALOG[g].title,
-        why: CATALOG[g].why,
-        modules: CATALOG[g].modules.map(m => m.name).join("; ")
-      })),
+      email_copy: form.email_copy.value,
+      priorities: ranked.map(function (g) { return CATALOG[g].title; }),
+      details: ranked.map(function (g) {
+        return {
+          area: CATALOG[g].title,
+          why: CATALOG[g].why,
+          modules: CATALOG[g].modules.map(function (m) { return m.name; }).join("; ")
+        };
+      }),
+      plan_text:
+        "Who: " + audience +
+        " | Goal: " + businessGoal +
+        " | What: " + topAreas +
+        " | Gap type: " + gapTypeText +
+        " | Level: " + currentLevel +
+        " | When: " + horizon +
+        " | How: " + format +
+        " | Measure: " + measureText,
       generatedAt: new Date().toLocaleString()
     };
 
     results.style.display = "block";
     results.scrollIntoView({ behavior: "smooth", block: "start" });
 
-    // Optional: email CXCons only (never the client)
     if (SCRIPT_URL) {
-  const plan = window.__tnaLastPlan;
-  const payload = {
-    form_type: "TNA V1",
-    name: plan.name,
-    email: plan.email,
-    phone: plan.phone,
-    company: plan.company,
-    company_size: plan.company_size,
-    industry: plan.industry,
-    audience: plan.audience,
-    format: plan.format,
-    pressure: plan.pressure,
-    horizon: plan.horizon,
-    hrdc: plan.hrdc,
-    notes: plan.notes,
-    generated_at: plan.generatedAt,
-    priorities: plan.priorities.join(" | "),
-    // Full results for email
-    plan_details: plan.details.map(function (d, i) {
-      return (i + 1) + ". " + d.area + "\n   Why: " + d.why + "\n   Modules: " + d.modules;
-    }).join("\n\n")
-  };
-  submitBtn.disabled = true;
-  try {
-    await fetch(SCRIPT_URL, {
-      method: "POST",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(payload)
-    });
-  } catch (err) {
-    console.error(err);
-  }
-  submitBtn.disabled = false;
-}
+      const plan = window.__tnaLastPlan;
+      const payload = {
+        form_type: "TNA V1.1",
+        name: plan.name,
+        email: plan.email,
+        phone: plan.phone,
+        company: plan.company,
+        company_size: plan.company_size,
+        industry: plan.industry,
+        audience: plan.audience,
+        format: plan.format,
+        pressure: plan.pressure,
+        horizon: plan.horizon,
+        hrdc: plan.hrdc,
+        notes: plan.notes,
+        email_copy: plan.email_copy,
+        business_goal: plan.business_goal,
+        current_level: plan.current_level,
+        gap_types: plan.gap_types,
+        success_signal: plan.success_signal,
+        generated_at: plan.generatedAt,
+        priorities: plan.priorities.join(" | "),
+        plan_details: plan.details.map(function (d, i) {
+          return (i + 1) + ". " + d.area + "\n   Why: " + d.why + "\n   Modules: " + d.modules;
+        }).join("\n\n"),
+        plan_summary: plan.plan_text
+      };
+      submitBtn.disabled = true;
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.error(err);
+      }
+      submitBtn.disabled = false;
+    }
   });
 
-  // Download Excel (CSV)
   const csvBtn = document.getElementById("tnaDownloadCsv");
   if (csvBtn) {
     csvBtn.addEventListener("click", function () {
@@ -478,9 +606,14 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
         ["Industry", plan.industry],
         ["Audience", plan.audience],
         ["Format", plan.format],
+        ["Business goal", plan.business_goal],
+        ["Current level", plan.current_level],
+        ["Gap types", plan.gap_types],
         ["Horizon", plan.horizon],
         ["HRDC interest", plan.hrdc],
         ["Business pressure", plan.pressure],
+        ["Success signal", plan.success_signal],
+        ["Draft plan", plan.plan_text],
         ["Notes", plan.notes],
         ["Generated at", plan.generatedAt],
         [],
@@ -505,7 +638,6 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
     });
   }
 
-  // Print / Save as PDF
   const pdfBtn = document.getElementById("tnaPrintPdf");
   if (pdfBtn) {
     pdfBtn.addEventListener("click", function () {
