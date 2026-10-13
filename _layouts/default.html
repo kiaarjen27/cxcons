@@ -535,6 +535,63 @@ h2, h3 {
   margin-bottom: -3px;
 }
 
+
+
+
+@media print {
+  /* Hide site chrome and the form */
+  header,
+  footer,
+  #navOverlay,
+  .hamburger-button,
+  #hero,
+  #tna-form,
+  .site-footer,
+  .content-wrapper > .card:first-of-type {
+    display: none !important;
+  }
+
+  /* Keep only results */
+  body {
+    background: #fff !important;
+    color: #111 !important;
+    font-size: 11pt !important;
+  }
+
+  #tnaResults {
+    display: block !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 12px 16px !important;
+    border: none !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+  }
+
+  .tna-print-header {
+    display: block !important;
+  }
+
+  /* Buttons not useful on paper */
+  #tnaResults a.button,
+  #tnaDownloadCsv,
+  #tnaPrintPdf {
+    display: none !important;
+  }
+
+  /* Optional: make module names plain text-friendly */
+  #tnaSuggestions a {
+    color: #12425c !important;
+    text-decoration: none !important;
+  }
+
+  @page {
+    margin: 15mm;
+  }
+}
+
+
+    
 /* ---------- Pulse / extras ---------- */
 .post-title {
   display: block;
