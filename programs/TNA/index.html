@@ -7,7 +7,8 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
 <main>
   <section id="hero">
     <h1>Training Needs Analysis</h1>
-<p style="color:#94a3b8; font-size:0.9em; max-width:640px; margin:12px auto 0;">
+    <p></p> Clarify team skill gaps and map priority training directions in minutes. </p>
+    <p style="color:#94a3b8; font-size:0.9em; max-width:640px; margin:12px auto 0;">
   A practical TNA links a business goal to skill gaps and a simple who / what / when plan—before budget goes to the wrong programmes.
 </p>    
     <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:18px;">
@@ -208,53 +209,6 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
             style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box; resize:vertical;"></textarea>
         </div>
 
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:22px;">
-          <div>
-            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Top business pressure right now *</label>
-            <select name="pressure" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
-              <option value="">Select</option>
-              <option value="Performance">Need better performance / productivity</option>
-              <option value="Compliance">Compliance / audit readiness</option>
-              <option value="Retention">Retention / engagement</option>
-              <option value="Leadership bench">Building leadership bench</option>
-              <option value="New systems">New systems / digital change</option>
-              <option value="Customer">Customer or service quality</option>
-              <option value="Safety">Safety incidents / risk</option>
-            </select>
-          </div>
-          <div>
-            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Planning horizon *</label>
-            <select name="horizon" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
-              <option value="">Select</option>
-              <option value="This quarter">This quarter</option>
-              <option value="Next 6 months">Next 6 months</option>
-              <option value="This year">This year</option>
-              <option value="Exploring only">Exploring only</option>
-            </select>
-          </div>
-<div>
-  <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">HRDC claim interest *</label>
-  <select name="hrdc" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
-    <option value="">Select</option>
-    <option value="Yes">Yes — prefer claimable where possible</option>
-    <option value="Maybe">Maybe / need guidance</option>
-    <option value="No">No — direct payment is fine</option>
-  </select>
-</div>
-<div>
-  <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Email me the report *</label>
-  <select name="email_copy" required style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
-    <option value="Yes" selected>Yes — send to my email</option>
-    <option value="No">No — on-screen / download only</option>
-  </select>
-</div>
-        </div>
-
-        <div style="margin-bottom:22px;">
-          <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Anything else we should know? (optional)</label>
-          <textarea name="notes" rows="3" placeholder="e.g. upcoming audit, new managers, specific department focus..."
-            style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box; resize:vertical;"></textarea>
-        </div>
 
         <button type="submit" id="tnaSubmit"
           style="width:100%; padding:15px; font-size:1em; background:#12425c; color:#fff; border:none; border-radius:8px; cursor:pointer; font-weight:600;">
@@ -282,12 +236,9 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
       <h3 style="color:#12425c; font-size:1.05em; margin-top:22px;">Draft training plan</h3>
       <div id="tnaPlan" style="padding:14px 16px; background:#f8fafc; border:1px solid #eef2f7; border-radius:10px; color:#334155; font-size:0.95em; line-height:1.7;"></div>
 
-      <p style="color:#64748b; font-size:0.88em; margin:22px 0 0;">
-        This is a structured planning TNA for prioritisation. Deeper methods (surveys, observation, tests) can refine it with your managers.
-        After training is delivered, measure learning impact with our
-        <a href="/forms/output-assessment/" target="_blank" rel="noopener noreferrer" style="color:#12425c;">Output Assessment (OA)</a>
-        form where applicable.
-      </p>
+<p style="color:#64748b; font-size:0.88em; margin:22px 0 0;">
+  This is a structured planning TNA for prioritisation. Deeper methods (surveys, observation, manager input) can refine it further inside your organisation.
+</p>
 
       <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:28px;">
         <a href="/programs/finder/" class="button" target="_blank" rel="noopener noreferrer">Open Program Finder</a>
@@ -306,7 +257,7 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
 
 <script>
 (function () {
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztEvsAZjBnvQXAZ1cGzST2XDIElV4Zdm8zfs82bp5d4np79c3MUn2e7mIvXyZTAZUAxQ/exec"; // your Apps Script /exec URL
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyUbjuNlJWTzhV6sR27pRMJIZol_AC5TPtnDYgGShT52-P0tybvKYOibgnXrKnPtphlZg/exec"; // your Apps Script /exec URL
 
   const CATALOG = {
     compliance: {
