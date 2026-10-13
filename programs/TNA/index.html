@@ -567,13 +567,21 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
     }
   });
 
-  const csvBtn = document.getElementById("tnaDownloadCsv");
+const csvBtn = document.getElementById("tnaDownloadCsv");
   if (csvBtn) {
     csvBtn.addEventListener("click", function () {
       const plan = window.__tnaLastPlan;
-      if (!plan) return;
-      // CSV logic omitted for brevity, logic remains identical to your version
-      alert("Downloading...");
+      if (!plan) { alert("Generate a plan first."); return; }
+      
+      let csvContent = "data:text/csv;charset=utf-8,Field,Value\n";
+      csvContent += `Company,${plan.company}\nGoal,${plan.business_goal}\nPlan,${plan.plan_text.replace(/,/g, ";")}`;
+      
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "TNA_Plan.csv");
+      document.body.appendChild(link);
+      link.click();
     });
   }
 
