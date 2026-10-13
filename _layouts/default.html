@@ -539,49 +539,57 @@ h2, h3 {
 
 
 @media print {
-  header,
-  footer,
-  #navOverlay,
-  .hamburger-button,
-  #hero,
-  #tna-form,
-  #tnaIntroCard,
-  .site-footer {
-    display: none !important;
-  }
-
-  /* Keep only results */
-  body {
-    background: #fff !important;
-    color: #111 !important;
-    font-size: 11pt !important;
-  }
-
-  #tnaResults {
-    display: block !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 12px 16px !important;
-    border: none !important;
-    box-shadow: none !important;
-    page-break-inside: avoid;
-  }
-
-  .tna-print-header {
-    display: block !important;
-  }
-
-  /* Buttons not useful on paper */
-  #tnaResults a.button,
+  /* 1. Hide everything that shouldn't be on a report */
+  header, 
+  footer, 
+  #navOverlay, 
+  .hamburger-button, 
+  #hero, 
+  #tna-form, 
+  #tnaIntroCard, 
+  .site-footer,
+  .button,
+  .x-btn-primary,
+  .x-btn-ghost,
   #tnaDownloadCsv,
   #tnaPrintPdf {
     display: none !important;
+    visibility: hidden !important;
   }
 
-  /* Optional: make module names plain text-friendly */
+  /* 2. Force the Results area to display */
+  #tnaResults {
+    display: block !important;
+    visibility: visible !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* 3. Ensure the Print Header is visible */
+  .tna-print-header {
+    display: block !important;
+    visibility: visible !important;
+    margin-bottom: 30px !important;
+  }
+
+  /* 4. Text and Page formatting */
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 11pt !important;
+    padding: 20px !important;
+  }
+
+  h2, h3 { color: #12425c !important; }
+
+  /* 5. Cleanup for links */
   #tnaSuggestions a {
     color: #12425c !important;
     text-decoration: none !important;
+    border: none !important;
   }
 
   @page {
