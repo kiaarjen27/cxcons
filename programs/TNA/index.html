@@ -524,8 +524,16 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
       generatedAt: new Date().toLocaleString()
     };
 
-    results.style.display = "block";
+        results.style.display = "block";
     results.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    var printDateEl = document.getElementById("tnaPrintDate");
+    if (printDateEl) {
+      printDateEl.textContent = new Date().toLocaleString();
+    }
+
+    if (SCRIPT_URL) {
+      // ... fetch payload ...
 
     if (SCRIPT_URL) {
       const plan = window.__tnaLastPlan;
