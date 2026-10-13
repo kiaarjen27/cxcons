@@ -21,8 +21,9 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
 
   <div class="content-wrapper">
 
-    <div class="card" style="border-left:5px solid #12425c; text-align:left; margin-bottom:28px;">
+    <div id="tnaIntroCard" class="card" style="border-left:5px solid #12425c; text-align:left; margin-bottom:28px;">
       <h2 style="color:#12425c; margin-top:0;">What this TNA does</h2>
+      
       <p style="color:#555; margin-bottom:0;">
         This is a short planning tool — not a long survey. You describe your organisation and current pressures;
         we return a clear priority view and suggested training directions you can explore in our library of 1,700+ modules.
@@ -221,6 +222,27 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
       </form>
     </div>
 
+
+          <!-- Visible only when printing -->
+      <div class="tna-print-header" style="display:none;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; border-bottom:2px solid #12425c; padding-bottom:12px; margin-bottom:18px;">
+          <div>
+            <img src="https://raw.githubusercontent.com/kiaarjen27/cxcons-assets/d40525b37591257a68d5195b0d604e442e3dd577/logo.webp"
+                 alt="CXCons" style="height:36px; width:auto;">
+            <div style="margin-top:8px; font-size:12px; color:#334155; line-height:1.5;">
+              Circlex Consultancy (CXCons)<br>
+              HRDC-registered training provider · Malaysia<br>
+              admin@cxcons.com · www.cxcons.com
+            </div>
+          </div>
+          <div style="text-align:right; font-size:12px; color:#64748b; line-height:1.5;">
+            <strong style="color:#12425c; font-size:14px;">Training Needs Analysis</strong><br>
+            Confidential planning summary<br>
+            <span id="tnaPrintDate"></span>
+          </div>
+        </div>
+      </div>
+    
     <!-- RESULTS (hidden until submit) -->
         <div id="tnaResults" class="card" style="display:none; text-align:left; max-width:920px; margin:0 auto 28px; padding:36px 40px; border-left:5px solid #12425c;">
       <h2 style="color:#12425c; margin-top:0;">Your priority plan</h2>
