@@ -29,18 +29,33 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
   .tna-print-header { display: block !important; }
   #tnaResults a.button,
   #tnaDownloadCsv,
-  #tnaPrintPdf { display: none !important; }
+  #tnaPrintPdf,
+  #tnaRequestPathway { display: none !important; }
   #tnaSuggestions a { color: #12425c !important; text-decoration: underline !important; }
   @page { margin: 12mm; }
 }
+.tna-bar-track {
+  height: 6px;
+  background: #e8eef3;
+  border-radius: 4px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+.tna-bar-fill {
+  height: 100%;
+  background: #12425c;
+  border-radius: 4px;
+}
 </style>
-
 <main>
   <section id="hero">
     <h1>Training Needs Analysis (TNA)</h1>
     <p style="margin-bottom:8px;">Clarify team skill gaps and map priority training directions in minutes.</p>
-    <p style="color:#94a3b8; font-size:0.9em; max-width:640px; margin:0 auto 0;">
+    <p style="color:#94a3b8; font-size:0.9em; max-width:640px; margin:0 auto;">
       A practical TNA links a business goal to skill gaps and a simple who / what / when plan—before budget goes to the wrong programmes.
+    </p>
+    <p style="margin-top:18px; font-size:0.9em; color:#cbd5e1; letter-spacing:0.02em;">
+      1 Assess &nbsp;→&nbsp; 2 Prioritise &nbsp;→&nbsp; 3 Request pathway
     </p>
     <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:28px;">
       <a href="#tna-form" class="button">Start TNA</a>
@@ -61,7 +76,7 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
 
     <div class="card" style="text-align:left; max-width:920px; margin:0 auto 28px; padding:36px 40px;" id="tna-form">
       <h2 style="color:#12425c; margin-top:0;">Company &amp; contact</h2>
-      <p style="color:#64748b; font-size:0.9em; margin:0 0 18px;">So we can send you the summary if you want a copy.</p>
+      <p style="color:#64748b; font-size:0.9em; margin:0 0 18px;">For your plan and, if you request it, a training pathway follow-up.</p>
       <form id="tnaForm">
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:22px;">
           <div>
@@ -79,6 +94,16 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
           <div>
             <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Phone (optional)</label>
             <input type="tel" name="phone" style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Your role (optional)</label>
+            <select name="role" style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
+              <option value="">Select</option>
+              <option value="HR">HR</option>
+              <option value="L&D / Training">L&amp;D / Training</option>
+              <option value="Operations">Operations</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
         </div>
 
@@ -266,24 +291,42 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
 
       <h2 style="color:#12425c; margin-top:0;">Your priority plan</h2>
       <p id="tnaIntro" style="color:#555;"></p>
+
       <div style="padding:14px 16px; background:#f8fafc; border:1px solid #eef2f7; border-radius:10px; margin-bottom:20px;">
         <div style="font-size:0.8em; color:#64748b; margin-bottom:4px;">Business goal</div>
         <div id="tnaGoal" style="font-weight:600; color:#12425c;"></div>
       </div>
+
       <h3 style="color:#12425c; font-size:1.05em;">Priority focus areas</h3>
-      <ol id="tnaPriorities" style="color:#334155; line-height:1.8; padding-left:20px;"></ol>
+      <div id="tnaPriorities" style="display:grid; gap:12px; margin-bottom:8px;"></div>
+
       <h3 style="color:#12425c; font-size:1.05em; margin-top:22px;">Suggested program directions</h3>
       <div id="tnaSuggestions" style="display:grid; gap:12px;"></div>
+
       <h3 style="color:#12425c; font-size:1.05em; margin-top:22px;">Draft training plan</h3>
       <div id="tnaPlan" style="padding:14px 16px; background:#f8fafc; border:1px solid #eef2f7; border-radius:10px; color:#334155; font-size:0.95em; line-height:1.7;"></div>
+
       <p style="color:#64748b; font-size:0.88em; margin:22px 0 0;">
         This is a structured planning TNA for prioritisation. Deeper methods (surveys, observation, manager input) can refine it further inside your organisation.
       </p>
-      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:28px;">
-        <a href="/programs/finder/" class="button" target="_blank" rel="noopener noreferrer">Open Program Finder</a>
-        <a href="/programs/request-custom-programs/" class="button" target="_blank" rel="noopener noreferrer" style="background:#12425c; box-shadow:none;">Request custom pathway</a>
-        <a href="/contact/" class="button" target="_blank" rel="noopener noreferrer" style="background:#334155; box-shadow:none;">Talk to CXCons</a>
+
+      <!-- Primary conversion -->
+      <div style="margin-top:28px; padding:20px; background:#f0f7fb; border:1px solid #d8e8f2; border-radius:10px; text-align:center;">
+        <p style="margin:0 0 12px; color:#334155; font-size:0.95em;">
+          Ready for a concrete training pathway based on this plan?
+        </p>
+        <button type="button" id="tnaRequestPathway" class="button" style="min-width:240px;">
+          Request training pathway
+        </button>
+        <p id="tnaPathwayStatus" style="margin:12px 0 0; font-size:0.88em; color:#64748b;"></p>
       </div>
+
+      <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-top:22px;">
+        <a href="/programs/finder/" target="_blank" rel="noopener noreferrer" style="font-size:0.9em; color:#12425c; text-decoration:underline;">Open Program Finder</a>
+        <a href="/programs/request-custom-programs/" target="_blank" rel="noopener noreferrer" style="font-size:0.9em; color:#12425c; text-decoration:underline;">Custom programmes</a>
+        <a href="/contact/" target="_blank" rel="noopener noreferrer" style="font-size:0.9em; color:#12425c; text-decoration:underline;">Contact CXCons</a>
+      </div>
+
       <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:20px;">
         <button type="button" id="tnaDownloadCsv" class="button" style="background:#12425c; box-shadow:none;">Download Excel (CSV)</button>
         <button type="button" id="tnaPrintPdf" class="button" style="background:#334155; box-shadow:none;">Print / Save as PDF</button>
@@ -419,11 +462,58 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
     "Role redesign": ["leadership", "hr", "communication", "finance"]
   };
 
+  const BAR_WIDTHS = ["92%", "78%", "64%", "52%", "42%", "36%", "30%", "26%", "22%", "18%", "16%", "14%"];
+
   window.__tnaLastPlan = null;
 
   const form = document.getElementById("tnaForm");
   const results = document.getElementById("tnaResults");
   const submitBtn = document.getElementById("tnaSubmit");
+  const pathwayBtn = document.getElementById("tnaRequestPathway");
+  const pathwayStatus = document.getElementById("tnaPathwayStatus");
+
+  function buildPayload(formType) {
+    const plan = window.__tnaLastPlan;
+    if (!plan) return null;
+    return {
+      form_type: formType,
+      name: plan.name,
+      email: plan.email,
+      phone: plan.phone,
+      role: plan.role,
+      company: plan.company,
+      company_size: plan.company_size,
+      industry: plan.industry,
+      audience: plan.audience,
+      format: plan.format,
+      pressure: plan.pressure,
+      horizon: plan.horizon,
+      hrdc: plan.hrdc,
+      notes: plan.notes,
+      email_copy: plan.email_copy,
+      business_goal: plan.business_goal,
+      current_level: plan.current_level,
+      gap_types: plan.gap_types,
+      success_signal: plan.success_signal,
+      generated_at: plan.generatedAt,
+      priorities: plan.priorities.join(" | "),
+      plan_details: plan.details.map(function (d, i) {
+        return (i + 1) + ". " + d.area + "\n   Why: " + d.why + "\n   Modules: " + d.modules;
+      }).join("\n\n"),
+      plan_summary: plan.plan_text
+    };
+  }
+
+  function postPlan(formType) {
+    if (!SCRIPT_URL) return Promise.resolve();
+    const payload = buildPayload(formType);
+    if (!payload) return Promise.resolve();
+    return fetch(SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
+  }
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
@@ -454,6 +544,7 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
     const businessGoal = form.business_goal.value.trim();
     const currentLevel = form.current_level.value;
     const successSignal = (form.success_signal && form.success_signal.value.trim()) || "";
+    const role = (form.role && form.role.value) || "";
 
     document.getElementById("tnaGoal").textContent = businessGoal;
     document.getElementById("tnaIntro").textContent =
@@ -461,23 +552,33 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
       ", current level: " + currentLevel + "), these are the priority training directions to review first" +
       (hrdc === "Yes" ? " — with HRDC claimable structuring where eligible." : ".");
 
-    document.getElementById("tnaPriorities").innerHTML = ranked.map(function (g) {
-      return "<li><strong>" + CATALOG[g].title + "</strong> — " + CATALOG[g].why + "</li>";
+    document.getElementById("tnaPriorities").innerHTML = ranked.map(function (g, i) {
+      const w = BAR_WIDTHS[i] || "20%";
+      return (
+        '<div style="padding:14px 16px; background:#f8fafc; border:1px solid #eef2f7; border-radius:10px;">' +
+          '<div style="display:flex; justify-content:space-between; gap:12px; align-items:baseline;">' +
+            '<div><strong style="color:#12425c;">' + (i + 1) + ". " + CATALOG[g].title + "</strong></div>" +
+            '<div style="font-size:0.78em; color:#94a3b8; white-space:nowrap;">Priority</div>' +
+          "</div>" +
+          '<div style="font-size:0.9em; color:#555; margin-top:6px;">' + CATALOG[g].why + "</div>" +
+          '<div class="tna-bar-track"><div class="tna-bar-fill" style="width:' + w + ';"></div></div>' +
+        "</div>"
+      );
     }).join("");
 
     document.getElementById("tnaSuggestions").innerHTML = ranked.map(function (g) {
       const item = CATALOG[g];
       const links = item.modules.map(function (m) {
         if (m.url) {
-          return '<a href="' + m.url + '" class="button" target="_blank" rel="noopener noreferrer" style="background:#12425c; box-shadow:none; padding:6px 12px; font-size:0.85em; margin:0 8px 8px 0; display:inline-block;">' + m.name + "</a>";
+          return '<a href="' + m.url + '" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin:0 10px 8px 0; font-size:0.88em; color:#12425c; text-decoration:underline;">' + m.name + "</a>";
         }
-        return '<span style="display:inline-block; padding:6px 12px; margin:0 8px 8px 0; font-size:0.85em; color:#334155; background:#f1f5f9; border-radius:6px;">' + m.name + "</span>";
+        return '<span style="display:inline-block; margin:0 10px 8px 0; font-size:0.88em; color:#64748b;">' + m.name + "</span>";
       }).join("");
       return (
         '<div style="padding:14px 16px; background:#f8fafc; border:1px solid #eef2f7; border-radius:10px;">' +
           '<div style="font-weight:700; color:#12425c; margin-bottom:6px;">' + item.title + "</div>" +
-          '<div style="font-size:0.9em; color:#555; margin-bottom:12px;">' + item.why + "</div>" +
-          '<div style="margin-bottom:8px;">' + links + "</div>" +
+          '<div style="font-size:0.9em; color:#555; margin-bottom:10px;">' + item.why + "</div>" +
+          '<div>' + links + "</div>" +
           '<a href="/programs/finder/?module=' + encodeURIComponent(item.search) + '" target="_blank" rel="noopener noreferrer" style="font-size:0.82em; color:#94a3b8; text-decoration:underline;">Search more in Program Finder</a>' +
         "</div>"
       );
@@ -512,6 +613,7 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
       name: form.name.value.trim(),
       email: form.email.value.trim(),
       phone: (form.phone && form.phone.value.trim()) || "",
+      role: role,
       company_size: form.company_size.value,
       industry: form.industry.value,
       notes: (form.notes && form.notes.value.trim()) || "",
@@ -536,53 +638,45 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
       generatedAt: new Date().toLocaleString()
     };
 
+    pathwayStatus.textContent = "";
+    pathwayBtn.disabled = false;
+    pathwayBtn.textContent = "Request training pathway";
+
     results.style.display = "block";
     results.scrollIntoView({ behavior: "smooth", block: "start" });
 
     var printDateEl = document.getElementById("tnaPrintDate");
-    if (printDateEl) {
-      printDateEl.textContent = new Date().toLocaleString();
-    }
+    if (printDateEl) printDateEl.textContent = new Date().toLocaleString();
 
-    if (SCRIPT_URL) {
-      const plan = window.__tnaLastPlan;
-      const payload = {
-        form_type: "TNA V1.1",
-        name: plan.name,
-        email: plan.email,
-        phone: plan.phone,
-        company: plan.company,
-        company_size: plan.company_size,
-        industry: plan.industry,
-        audience: plan.audience,
-        format: plan.format,
-        pressure: plan.pressure,
-        horizon: plan.horizon,
-        hrdc: plan.hrdc,
-        notes: plan.notes,
-        email_copy: plan.email_copy,
-        business_goal: plan.business_goal,
-        current_level: plan.current_level,
-        gap_types: plan.gap_types,
-        success_signal: plan.success_signal,
-        generated_at: plan.generatedAt,
-        priorities: plan.priorities.join(" | "),
-        plan_details: plan.details.map(function (d, i) {
-          return (i + 1) + ". " + d.area + "\n   Why: " + d.why + "\n   Modules: " + d.modules;
-        }).join("\n\n"),
-        plan_summary: plan.plan_text
-      };
-      submitBtn.disabled = true;
-      try {
-        await fetch(SCRIPT_URL, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(payload)
-        });
-      } catch (err) {
-        console.error(err);
-      }
-      submitBtn.disabled = false;
+    // Internal notify on generate (full plan)
+    submitBtn.disabled = true;
+    try {
+      await postPlan("TNA V1.1");
+    } catch (err) {
+      console.error(err);
+    }
+    submitBtn.disabled = false;
+  });
+
+  pathwayBtn.addEventListener("click", async function () {
+    if (!window.__tnaLastPlan) {
+      alert("Generate a plan first.");
+      return;
+    }
+    pathwayBtn.disabled = true;
+    pathwayBtn.textContent = "Sending...";
+    pathwayStatus.textContent = "";
+    try {
+      await postPlan("TNA Pathway Request");
+      pathwayStatus.style.color = "#166534";
+      pathwayStatus.textContent = "Request sent. CXCons will follow up with pathway options based on this plan.";
+      pathwayBtn.textContent = "Request sent";
+    } catch (err) {
+      console.error(err);
+      pathwayStatus.style.color = "#b91c1c";
+      pathwayStatus.textContent = "Could not send. Please try again or email admin@cxcons.com.";
+      pathwayBtn.disabled = false;
+      pathwayBtn.textContent = "Request training pathway";
     }
   });
 
@@ -598,6 +692,7 @@ description: "Free Training Needs Analysis for Malaysian employers. Identify ski
       ["Contact name", plan.name],
       ["Email", plan.email],
       ["Phone", plan.phone],
+      ["Role", plan.role],
       ["Company size", plan.company_size],
       ["Industry", plan.industry],
       ["Audience", plan.audience],
