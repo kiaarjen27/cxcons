@@ -1195,5 +1195,123 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
   });
 });
 </script>
+
+<!-- CXCons quick actions -->
+<style>
+  .cx-fab-wrap {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 9999;
+    font-family: 'Open Sans', Arial, sans-serif;
+  }
+  .cx-fab {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: #12425c;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    box-shadow: 0 8px 24px rgba(18, 66, 92, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .cx-fab:hover { background: #0e3549; transform: scale(1.04); }
+  .cx-fab[aria-expanded="true"] { background: #0e3549; }
+  .cx-fab-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 66px;
+    width: 240px;
+    background: #fff;
+    border: 1px solid #e6ebf0;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(15, 39, 64, 0.18);
+    overflow: hidden;
+  }
+  .cx-fab-menu.open { display: block; }
+  .cx-fab-menu a {
+    display: block;
+    padding: 12px 16px;
+    color: #1f2937;
+    text-decoration: none;
+    font-size: 0.92em;
+    font-weight: 600;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .cx-fab-menu a:last-child { border-bottom: none; }
+  .cx-fab-menu a:hover {
+    background: #f4f7f9;
+    color: #12425c;
+  }
+  .cx-fab-head {
+    padding: 10px 16px 8px;
+    font-size: 0.75em;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #64748b;
+    background: #f8fafc;
+    border-bottom: 1px solid #eef2f6;
+  }
+  @media (max-width: 480px) {
+    .cx-fab-wrap { right: 14px; bottom: 14px; }
+    .cx-fab-menu { width: min(240px, calc(100vw - 28px)); }
+  }
+</style>
+
+<div class="cx-fab-wrap" id="cxFabWrap">
+  <div class="cx-fab-menu" id="cxFabMenu" role="menu" aria-label="Quick links">
+    <div class="cx-fab-head">Quick links</div>
+    <a href="/programs/finder/" role="menuitem">Program Finder</a>
+    <a href="/programs/TNA/" role="menuitem">Training Needs Analysis</a>
+    <a href="/programs/request-custom-programs/" role="menuitem">Request custom program</a>
+    <a href="/programs/team-building-request/" role="menuitem">Request team building</a>
+  </div>
+  <button type="button" class="cx-fab" id="cxFabBtn" aria-expanded="false" aria-controls="cxFabMenu" title="Quick links">
+    +
+  </button>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById("cxFabBtn");
+  var menu = document.getElementById("cxFabMenu");
+  var wrap = document.getElementById("cxFabWrap");
+  if (!btn || !menu || !wrap) return;
+
+  function closeMenu() {
+    menu.classList.remove("open");
+    btn.setAttribute("aria-expanded", "false");
+    btn.textContent = "+";
+  }
+  function openMenu() {
+    menu.classList.add("open");
+    btn.setAttribute("aria-expanded", "true");
+    btn.textContent = "×";
+  }
+
+  btn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    if (menu.classList.contains("open")) closeMenu();
+    else openMenu();
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!wrap.contains(e.target)) closeMenu();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeMenu();
+  });
+})();
+</script>
+
 </body>
 </html>
