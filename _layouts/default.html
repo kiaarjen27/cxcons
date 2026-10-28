@@ -1196,7 +1196,7 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
 });
 </script>
 
-<!-- CXCons quick actions -->
+<!-- CXCons quick actions + chat -->
 <style>
   .cx-fab-wrap {
     position: fixed;
@@ -1260,9 +1260,130 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
     background: #f8fafc;
     border-bottom: 1px solid #eef2f6;
   }
+
+  /* Chat widget — left of quick links */
+  #cxChatFab {
+    position: fixed;
+    right: 82px;
+    bottom: 18px;
+    z-index: 9998;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: #12425c;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(15, 39, 64, 0.28);
+    font-size: 22px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #cxChatFab:hover { background: #0d3144; }
+  #cxChatPanel {
+    display: none;
+    position: fixed;
+    right: 18px;
+    bottom: 84px;
+    z-index: 10000;
+    width: min(360px, calc(100vw - 24px));
+    height: 480px;
+    background: #fff;
+    border: 1px solid #e6ebf0;
+    border-radius: 14px;
+    box-shadow: 0 16px 48px rgba(15, 39, 64, 0.18);
+    flex-direction: column;
+    overflow: hidden;
+    font-family: 'Open Sans', Arial, sans-serif;
+  }
+  #cxChatPanel.open { display: flex; }
+  #cxChatHead {
+    background: #12425c;
+    color: #fff;
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #cxChatHead strong { font-size: 14px; }
+  #cxChatHead span { font-size: 11px; opacity: 0.85; display: block; margin-top: 2px; }
+  #cxChatClose {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  #cxChatLog {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+    background: #f8fafc;
+  }
+  .cx-bubble {
+    max-width: 88%;
+    margin-bottom: 10px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .cx-bot {
+    background: #fff;
+    border: 1px solid #e6ebf0;
+    color: #1f2937;
+  }
+  .cx-user {
+    background: #12425c;
+    color: #fff;
+    margin-left: auto;
+  }
+  #cxChatForm {
+    border-top: 1px solid #e6ebf0;
+    padding: 10px;
+    background: #fff;
+    display: flex;
+    gap: 8px;
+  }
+  #cxChatInput {
+    flex: 1;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    outline: none;
+  }
+  #cxChatSend {
+    background: #12425c;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0 14px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  #cxChatSend:disabled { opacity: 0.55; cursor: default; }
+  .cx-link-btn {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: #12425c;
+    color: #fff !important;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
   @media (max-width: 480px) {
     .cx-fab-wrap { right: 14px; bottom: 14px; }
     .cx-fab-menu { width: min(240px, calc(100vw - 28px)); }
+    #cxChatFab { right: 76px; bottom: 14px; }
+    #cxChatPanel { right: 12px; bottom: 78px; height: min(480px, calc(100vh - 100px)); }
   }
 </style>
 
@@ -1279,6 +1400,23 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
   </button>
 </div>
 
+<button type="button" id="cxChatFab" aria-label="Open chat" title="Chat with CXCons">💬</button>
+
+<div id="cxChatPanel" role="dialog" aria-label="CXCons chat">
+  <div id="cxChatHead">
+    <div>
+      <strong>CXCons</strong>
+      <span>Training support</span>
+    </div>
+    <button type="button" id="cxChatClose" aria-label="Close">×</button>
+  </div>
+  <div id="cxChatLog"></div>
+  <form id="cxChatForm" autocomplete="on">
+    <input id="cxChatInput" type="text" placeholder="Type a message..." maxlength="500">
+    <button type="submit" id="cxChatSend">Send</button>
+  </form>
+</div>
+
 <script>
 (function () {
   var btn = document.getElementById("cxFabBtn");
@@ -1286,12 +1424,12 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
   var wrap = document.getElementById("cxFabWrap");
   if (!btn || !menu || !wrap) return;
 
-  function closeMenu() {
+  function closeFabMenu() {
     menu.classList.remove("open");
     btn.setAttribute("aria-expanded", "false");
     btn.textContent = "+";
   }
-  function openMenu() {
+  function openFabMenu() {
     menu.classList.add("open");
     btn.setAttribute("aria-expanded", "true");
     btn.textContent = "×";
@@ -1299,17 +1437,154 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
 
   btn.addEventListener("click", function (e) {
     e.stopPropagation();
-    if (menu.classList.contains("open")) closeMenu();
-    else openMenu();
+    if (menu.classList.contains("open")) closeFabMenu();
+    else openFabMenu();
   });
 
   document.addEventListener("click", function (e) {
-    if (!wrap.contains(e.target)) closeMenu();
+    if (!wrap.contains(e.target)) closeFabMenu();
   });
 
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") closeMenu();
+    if (e.key === "Escape") closeFabMenu();
   });
+})();
+</script>
+
+<script>
+(function () {
+  // Paste your chat Apps Script /exec URL here
+  const SCRIPT_URL = "YOUR_CHAT_SCRIPT_URL";
+
+  const fab = document.getElementById("cxChatFab");
+  const panel = document.getElementById("cxChatPanel");
+  const closeBtn = document.getElementById("cxChatClose");
+  const log = document.getElementById("cxChatLog");
+  const form = document.getElementById("cxChatForm");
+  const input = document.getElementById("cxChatInput");
+  const sendBtn = document.getElementById("cxChatSend");
+  if (!fab || !panel || !form) return;
+
+  let step = "welcome";
+  let needText = "";
+  let transcript = [];
+
+  function addBubble(text, who, asHtml) {
+    const div = document.createElement("div");
+    div.className = "cx-bubble " + (who === "user" ? "cx-user" : "cx-bot");
+    if (asHtml) div.innerHTML = text;
+    else div.textContent = text;
+    log.appendChild(div);
+    log.scrollTop = log.scrollHeight;
+    const plain = asHtml ? text.replace(/<[^>]+>/g, " ") : text;
+    transcript.push((who === "user" ? "Client: " : "CXCons: ") + plain);
+  }
+
+  function openChat() {
+    panel.classList.add("open");
+    if (step === "welcome") startFlow();
+    setTimeout(function () { input.focus(); }, 80);
+  }
+
+  function closeChat() {
+    panel.classList.remove("open");
+  }
+
+  function startFlow() {
+    step = "waiting";
+    addBubble("Hi — thanks for reaching out to Circlex Consultancy (CXCons).", "bot");
+    addBubble("One of our consultants will assist you shortly. Please hold on a moment.", "bot");
+    input.disabled = true;
+    sendBtn.disabled = true;
+
+    setTimeout(function () {
+      if (step !== "waiting") return;
+      step = "ask_need";
+      addBubble("While you wait, could you briefly tell us what you need? For example: a module brochure, in-house training, or team building.", "bot");
+      input.disabled = false;
+      sendBtn.disabled = false;
+      input.placeholder = "What do you need?";
+      input.focus();
+    }, 5000);
+  }
+
+  function looksLikeEmail(s) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+  }
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const text = (input.value || "").trim();
+    if (!text) return;
+    input.value = "";
+    addBubble(text, "user");
+
+    if (step === "ask_need") {
+      needText = text;
+      step = "collect_contact";
+      addBubble("Thank you. Our team isn’t available for live chat right now, but we’ll follow up by email.", "bot");
+      addBubble("Please leave your full name and email address (you can send them in one message).", "bot");
+      input.placeholder = "Name and email...";
+      return;
+    }
+
+    if (step === "collect_contact") {
+      let name = "";
+      let email = "";
+      const parts = text.split(/[\s,;]+/).filter(Boolean);
+      const emailToken = parts.find(looksLikeEmail);
+      if (emailToken) {
+        email = emailToken;
+        name = text.replace(emailToken, "").replace(/[,\s;]+/g, " ").trim();
+      } else if (looksLikeEmail(text)) {
+        email = text;
+      }
+
+      if (!email) {
+        addBubble("Please include a valid email address so we can reach you.", "bot");
+        return;
+      }
+
+      step = "sending";
+      input.disabled = true;
+      sendBtn.disabled = true;
+      addBubble("Sending your message…", "bot");
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({
+            name: name || "Visitor",
+            email: email,
+            need: needText,
+            transcript: transcript.join("\n"),
+            page: window.location.href
+          })
+        });
+        step = "done";
+        addBubble(
+          "Received — thank you. Our team will get back to you at <strong>" + email + "</strong>." +
+          '<br><a class="cx-link-btn" href="/programs/finder/">Browse Program Finder</a>',
+          "bot",
+          true
+        );
+        input.placeholder = "Chat closed";
+      } catch (err) {
+        step = "collect_contact";
+        input.disabled = false;
+        sendBtn.disabled = false;
+        addBubble("Something went wrong. Please email admin@cxcons.com or try again.", "bot");
+      }
+    }
+  });
+
+  fab.addEventListener("click", function (e) {
+    e.stopPropagation();
+    if (panel.classList.contains("open")) closeChat();
+    else openChat();
+  });
+  closeBtn.addEventListener("click", closeChat);
 })();
 </script>
 
