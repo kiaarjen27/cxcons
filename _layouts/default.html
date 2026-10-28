@@ -1348,6 +1348,7 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
     display: flex;
     gap: 8px;
   }
+  #cxChatForm.hidden { display: none !important; }
   #cxChatInput {
     flex: 1;
     border: 1px solid #d0d7de;
@@ -1367,6 +1368,40 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
     cursor: pointer;
   }
   #cxChatSend:disabled { opacity: 0.55; cursor: default; }
+  #cxChatContact {
+    display: none;
+    border-top: 1px solid #e6ebf0;
+    padding: 12px;
+    background: #fff;
+    flex-direction: column;
+    gap: 8px;
+  }
+  #cxChatContact.open { display: flex; }
+  #cxChatContact input {
+    width: 100%;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    outline: none;
+    box-sizing: border-box;
+  }
+  #cxChatContact input:focus {
+    border-color: #12425c;
+    box-shadow: 0 0 0 3px rgba(18, 66, 92, 0.12);
+  }
+  #cxChatContactSubmit {
+    background: #12425c;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+  }
+  #cxChatContactSubmit:disabled { opacity: 0.55; cursor: default; }
   .cx-link-btn {
     display: inline-block;
     margin-top: 8px;
@@ -1415,6 +1450,11 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
     <input id="cxChatInput" type="text" placeholder="Type a message..." maxlength="500">
     <button type="submit" id="cxChatSend">Send</button>
   </form>
+  <form id="cxChatContact" autocomplete="on">
+    <input id="cxChatName" type="text" name="name" placeholder="Full name *" required maxlength="120">
+    <input id="cxChatEmail" type="email" name="email" placeholder="Email address *" required maxlength="160">
+    <button type="submit" id="cxChatContactSubmit">Submit</button>
+  </form>
 </div>
 
 <script>
@@ -1454,7 +1494,7 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
 <script>
 (function () {
   // Paste your chat Apps Script /exec URL here
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz1L7xFCLgFGg8M5BtcwcXojn69rrhp6TIstneYpRNmmZmhPEaXCHttQZZMMroaCYXE/exec";
+  const SCRIPT_URL = "YOUR_CHAT_SCRIPT_URL";
 
   const fab = document.getElementById("cxChatFab");
   const panel = document.getElementById("cxChatPanel");
@@ -1463,7 +1503,11 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
   const form = document.getElementById("cxChatForm");
   const input = document.getElementById("cxChatInput");
   const sendBtn = document.getElementById("cxChatSend");
-  if (!fab || !panel || !form) return;
+  const contactForm = document.getElementById("cxChatContact");
+  const nameInput = document.getElementById("cxChatName");
+  const emailInput = document.getElementById("cxChatEmail");
+  const contactSubmit = document.getElementById("cxChatContactSubmit");
+  if (!fab || !panel || !form || !contactForm) return;
 
   let step = "welcome";
   let needText = "";
@@ -1480,10 +1524,24 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
     transcript.push((who === "user" ? "Client: " : "CXCons: ") + plain);
   }
 
+  function showMessageBar() {
+    form.classList.remove("hidden");
+    contactForm.classList.remove("open");
+  }
+
+  function showContactFields() {
+    form.classList.add("hidden");
+    contactForm.classList.add("open");
+    nameInput.value = "";
+    emailInput.value = "";
+    contactSubmit.disabled = false;
+    contactSubmit.textContent = "Submit";
+    setTimeout(function () { nameInput.focus(); }, 50);
+  }
+
   function openChat() {
     panel.classList.add("open");
     if (step === "welcome") startFlow();
-    setTimeout(function () { input.focus(); }, 80);
   }
 
   function closeChat() {
@@ -1492,6 +1550,7 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
 
   function startFlow() {
     step = "waiting";
+    showMessageBar();
     addBubble("Hi — thanks for reaching out to Circlex Consultancy (CXCons).", "bot");
     addBubble("One of our consultants will assist you shortly. Please hold on a moment.", "bot");
     input.disabled = true;
@@ -1508,74 +1567,63 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
     }, 5000);
   }
 
-  function looksLikeEmail(s) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
-  }
-
-  form.addEventListener("submit", async function (e) {
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
+    if (step !== "ask_need") return;
     const text = (input.value || "").trim();
     if (!text) return;
     input.value = "";
     addBubble(text, "user");
+    needText = text;
+    step = "collect_contact";
+    addBubble("Thank you. Our team isn’t available for live chat right now, but we’ll follow up by email.", "bot");
+    addBubble("Please fill in your name and email below, then submit.", "bot");
+    showContactFields();
+  });
 
-    if (step === "ask_need") {
-      needText = text;
-      step = "collect_contact";
-      addBubble("Thank you. Our team isn’t available for live chat right now, but we’ll follow up by email.", "bot");
-      addBubble("Please leave your full name and email address (you can send them in one message).", "bot");
-      input.placeholder = "Name and email...";
+  contactForm.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    if (step !== "collect_contact") return;
+
+    const name = (nameInput.value || "").trim();
+    const email = (emailInput.value || "").trim();
+    if (!name || !email) {
+      addBubble("Please enter both your name and email address.", "bot");
       return;
     }
 
-    if (step === "collect_contact") {
-      let name = "";
-      let email = "";
-      const parts = text.split(/[\s,;]+/).filter(Boolean);
-      const emailToken = parts.find(looksLikeEmail);
-      if (emailToken) {
-        email = emailToken;
-        name = text.replace(emailToken, "").replace(/[,\s;]+/g, " ").trim();
-      } else if (looksLikeEmail(text)) {
-        email = text;
-      }
+    step = "sending";
+    contactSubmit.disabled = true;
+    contactSubmit.textContent = "Sending…";
+    addBubble("Name: " + name + " · Email: " + email, "user");
+    addBubble("Sending your message…", "bot");
 
-      if (!email) {
-        addBubble("Please include a valid email address so we can reach you.", "bot");
-        return;
-      }
-
-      step = "sending";
-      input.disabled = true;
-      sendBtn.disabled = true;
-      addBubble("Sending your message…", "bot");
-
-      try {
-        await fetch(SCRIPT_URL, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify({
-            name: name || "Visitor",
-            email: email,
-            need: needText,
-            transcript: transcript.join("\n"),
-            page: window.location.href
-          })
-        });
-        step = "done";
-        addBubble(
-          "Received — thank you. Our team will get back to you at <strong>" + email + "</strong>." +
-          '<br><a class="cx-link-btn" href="/programs/finder/">Browse Program Finder</a>',
-          "bot",
-          true
-        );
-        input.placeholder = "Chat closed";
-      } catch (err) {
-        step = "collect_contact";
-        input.disabled = false;
-        sendBtn.disabled = false;
-        addBubble("Something went wrong. Please email admin@cxcons.com or try again.", "bot");
-      }
+    try {
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          need: needText,
+          transcript: transcript.join("\n"),
+          page: window.location.href
+        })
+      });
+      step = "done";
+      contactForm.classList.remove("open");
+      form.classList.add("hidden");
+      addBubble(
+        "Received — thank you. Our team will get back to you at <strong>" + email + "</strong>." +
+        '<br><a class="cx-link-btn" href="/programs/finder/">Browse Program Finder</a>',
+        "bot",
+        true
+      );
+    } catch (err) {
+      step = "collect_contact";
+      contactSubmit.disabled = false;
+      contactSubmit.textContent = "Submit";
+      addBubble("Something went wrong. Please email admin@cxcons.com or try again.", "bot");
     }
   });
 
