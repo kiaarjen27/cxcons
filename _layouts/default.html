@@ -1377,7 +1377,8 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
     gap: 8px;
   }
   #cxChatContact.open { display: flex; }
-  #cxChatContact input {
+  #cxChatContact input,
+  #cxChatContact textarea {
     width: 100%;
     border: 1px solid #d0d7de;
     border-radius: 8px;
@@ -1385,8 +1386,14 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
     font-size: 13px;
     outline: none;
     box-sizing: border-box;
+    font-family: inherit;
   }
-  #cxChatContact input:focus {
+  #cxChatContact textarea {
+    min-height: 72px;
+    resize: vertical;
+  }
+  #cxChatContact input:focus,
+  #cxChatContact textarea:focus {
     border-color: #12425c;
     box-shadow: 0 0 0 3px rgba(18, 66, 92, 0.12);
   }
@@ -1453,6 +1460,7 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
   <form id="cxChatContact" autocomplete="on">
     <input id="cxChatName" type="text" name="name" placeholder="Full name *" required maxlength="120">
     <input id="cxChatEmail" type="email" name="email" placeholder="Email address *" required maxlength="160">
+    <textarea id="cxChatMessage" name="message" placeholder="Message (optional)" maxlength="1000" rows="3"></textarea>
     <button type="submit" id="cxChatContactSubmit">Submit</button>
   </form>
 </div>
@@ -1494,7 +1502,7 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
 <script>
 (function () {
   // Paste your chat Apps Script /exec URL here
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz1L7xFCLgFGg8M5BtcwcXojn69rrhp6TIstneYpRNmmZmhPEaXCHttQZZMMroaCYXE/exec";
+  const SCRIPT_URL = "YOUR_CHAT_SCRIPT_URL";
 
   const fab = document.getElementById("cxChatFab");
   const panel = document.getElementById("cxChatPanel");
@@ -1506,6 +1514,7 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
   const contactForm = document.getElementById("cxChatContact");
   const nameInput = document.getElementById("cxChatName");
   const emailInput = document.getElementById("cxChatEmail");
+  const messageInput = document.getElementById("cxChatMessage");
   const contactSubmit = document.getElementById("cxChatContactSubmit");
   if (!fab || !panel || !form || !contactForm) return;
 
@@ -1534,6 +1543,7 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
     contactForm.classList.add("open");
     nameInput.value = "";
     emailInput.value = "";
+    if (messageInput) messageInput.value = "";
     contactSubmit.disabled = false;
     contactSubmit.textContent = "Submit";
     setTimeout(function () { nameInput.focus(); }, 50);
@@ -1587,6 +1597,7 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
 
     const name = (nameInput.value || "").trim();
     const email = (emailInput.value || "").trim();
+    const message = messageInput ? (messageInput.value || "").trim() : "";
     if (!name || !email) {
       addBubble("Please enter both your name and email address.", "bot");
       return;
@@ -1596,6 +1607,7 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
     contactSubmit.disabled = true;
     contactSubmit.textContent = "Sending…";
     addBubble("Name: " + name + " · Email: " + email, "user");
+    if (message) addBubble(message, "user");
     addBubble("Sending your message…", "bot");
 
     try {
@@ -1605,6 +1617,7 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
         body: JSON.stringify({
           name: name,
           email: email,
+          message: message,
           need: needText,
           transcript: transcript.join("\n"),
           page: window.location.href
