@@ -37,6 +37,69 @@ description: "Frequently asked questions about CXCons HRDC claimable training, P
       </div>
     </div>
 
+        <!-- FAQ search -->
+    <div class="card" style="text-align:left; margin-bottom:22px;">
+      <label for="faqSearch" style="display:block; font-weight:600; color:#12425c; margin-bottom:8px;">
+        Search FAQs
+      </label>
+      <input
+        id="faqSearch"
+        type="search"
+        placeholder="e.g. claim rejected, attendance, invoice, team building, TNA..."
+        style="width:100%; max-width:520px; padding:12px 14px; border:1px solid #d0d7de; border-radius:8px; font-size:0.95em; box-sizing:border-box;"
+      >
+      <p id="faqSearchStatus" class="muted" style="margin:8px 0 0; font-size:0.85em; color:#888;"></p>
+    </div>
+
+<script>
+(function () {
+  const input = document.getElementById("faqSearch");
+  const status = document.getElementById("faqSearchStatus");
+  if (!input) return;
+
+  // Each Q&A is a <details> inside .card
+  const items = Array.from(document.querySelectorAll(".content-wrapper details"));
+  const sections = Array.from(document.querySelectorAll(".content-wrapper .card[id]"));
+
+  function filterFaq() {
+    const term = (input.value || "").trim().toLowerCase();
+    let visible = 0;
+
+    items.forEach((el) => {
+      const text = (el.textContent || "").toLowerCase();
+      const show = !term || text.includes(term);
+      el.style.display = show ? "" : "none";
+      if (show) visible += 1;
+    });
+
+    // Hide whole section cards that have zero visible answers (keep quick links / search / CTA)
+    sections.forEach((card) => {
+      if (card.id === "about" || card.querySelector("details")) {
+        const any = Array.from(card.querySelectorAll("details")).some(
+          (d) => d.style.display !== "none"
+        );
+        // only hide cards that contain FAQ details
+        if (card.querySelector("details")) {
+          card.style.display = any || !term ? "" : "none";
+          if (!term) card.style.display = "";
+        }
+      }
+    });
+
+    if (!term) {
+      status.textContent = "";
+      sections.forEach((c) => { if (c.querySelector("details")) c.style.display = ""; });
+      return;
+    }
+    status.textContent = visible
+      ? visible + " matching question" + (visible > 1 ? "s" : "")
+      : "No matches — try another keyword (e.g. rejected, attendance, grant, brochure)";
+  }
+
+  input.addEventListener("input", filterFaq);
+})();
+</script>
+
     <!-- ABOUT -->
     <div class="card" id="about" style="text-align:left; margin-bottom:22px;">
       <h2 style="color:#12425c; margin-top:0;">About CXCons</h2>
