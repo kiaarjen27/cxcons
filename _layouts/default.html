@@ -599,6 +599,148 @@ h2, h3 {
 
 
     
+
+/* ---------- Subscribe (footer + soft modal) ---------- */
+.cx-subscribe-strip {
+  max-width: 1100px;
+  margin: 0 auto 8px;
+  padding: 22px 22px 6px;
+}
+.cx-subscribe-card {
+  background: #f8fafc;
+  border: 1px solid #e8eef3;
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 18px;
+}
+.cx-subscribe-copy {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+.cx-subscribe-copy strong {
+  display: block;
+  color: #0f2740;
+  font-size: 0.98em;
+  margin-bottom: 4px;
+  letter-spacing: -0.2px;
+}
+.cx-subscribe-copy span {
+  display: block;
+  color: #64748b;
+  font-size: 0.84em;
+  line-height: 1.5;
+}
+.cx-subscribe-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  flex: 1 1 280px;
+}
+.cx-subscribe-form input[type="email"] {
+  flex: 1 1 180px;
+  min-width: 160px;
+  padding: 11px 12px;
+  border: 1px solid #d8dee6;
+  border-radius: 7px;
+  font-size: 0.9em;
+  font-family: inherit;
+  background: #fff;
+}
+.cx-subscribe-form input[type="email"]:focus {
+  outline: none;
+  border-color: #12425c;
+  box-shadow: 0 0 0 3px rgba(18, 66, 92, 0.12);
+}
+.cx-subscribe-form button {
+  background: #12425c;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 11px 16px;
+  font-weight: 700;
+  font-size: 0.86em;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.cx-subscribe-form button:hover { background: #0d3144; transform: translateY(-1px); }
+.cx-subscribe-form button:disabled { opacity: 0.6; cursor: default; transform: none; }
+.cx-subscribe-note {
+  width: 100%;
+  margin: 0;
+  font-size: 0.75em;
+  color: #94a3b8;
+  line-height: 1.45;
+}
+.cx-subscribe-status {
+  width: 100%;
+  margin: 0;
+  font-size: 0.82em;
+  color: #166534;
+  display: none;
+}
+.cx-subscribe-status.err { color: #b91c1c; }
+
+/* Soft modal */
+#cxSubOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 13, 24, 0.45);
+  z-index: 12050;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+#cxSubOverlay.open { display: flex; }
+#cxSubModal {
+  width: min(420px, 100%);
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #e8eef3;
+  box-shadow: 0 24px 60px rgba(15, 39, 64, 0.22);
+  padding: 22px 22px 18px;
+  position: relative;
+  font-family: 'Open Sans', Arial, sans-serif;
+}
+#cxSubModal h3 {
+  margin: 0 0 8px;
+  color: #0f2740;
+  font-size: 1.15em;
+  letter-spacing: -0.3px;
+}
+#cxSubModal p.cx-sub-lead {
+  margin: 0 0 14px;
+  color: #64748b;
+  font-size: 0.9em;
+  line-height: 1.55;
+}
+#cxSubClose {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  color: #94a3b8;
+  cursor: pointer;
+}
+#cxSubClose:hover { color: #0f2740; }
+#cxSubModal .cx-subscribe-form { flex: none; width: 100%; }
+#cxSubModal .cx-subscribe-form input[type="email"] { flex: 1 1 100%; }
+#cxSubModal .cx-subscribe-form button { width: 100%; }
+
+@media (max-width: 768px) {
+  .cx-subscribe-card { padding: 16px; }
+  /* Keep footer strip on mobile; modal still available but less aggressive timing in JS */
+}
+
 /* ---------- Pulse / extras ---------- */
 .post-title {
   display: block;
@@ -1648,6 +1790,123 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
     else openChat();
   });
   closeBtn.addEventListener("click", closeChat);
+})();
+</script>
+
+
+<script>
+(function () {
+  // Deploy Apps Script web app and paste /exec URL here
+  var SUBSCRIBE_URL = "https://script.google.com/macros/s/PASTE_SUBSCRIBE_SCRIPT_ID/exec";
+  var STORAGE_KEY = "cxcons_subscribe_seen_v1";
+  var SEEN_DAYS = 21;
+
+  function alreadySeen() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return false;
+      var t = parseInt(raw, 10);
+      if (!t) return false;
+      return (Date.now() - t) < SEEN_DAYS * 24 * 60 * 60 * 1000;
+    } catch (e) { return false; }
+  }
+  function markSeen() {
+    try { localStorage.setItem(STORAGE_KEY, String(Date.now())); } catch (e) {}
+  }
+
+  var overlay = document.getElementById("cxSubOverlay");
+  var closeBtn = document.getElementById("cxSubClose");
+
+  function openModal() {
+    if (!overlay || alreadySeen()) return;
+    if (window.innerWidth < 640) return; // footer strip only on small screens
+    overlay.classList.add("open");
+    overlay.setAttribute("aria-hidden", "false");
+    markSeen();
+  }
+  function closeModal() {
+    if (!overlay) return;
+    overlay.classList.remove("open");
+    overlay.setAttribute("aria-hidden", "true");
+  }
+
+  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+  if (overlay) {
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay) closeModal();
+    });
+  }
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeModal();
+  });
+
+  // Soft triggers: 45s dwell OR exit-intent (desktop)
+  if (!alreadySeen()) {
+    setTimeout(openModal, 45000);
+    document.addEventListener("mouseout", function (e) {
+      if (e.clientY > 0) return;
+      if (e.relatedTarget || e.toElement) return;
+      openModal();
+    });
+  }
+
+  function setStatus(form, msg, isErr) {
+    var el = form.querySelector(".cx-subscribe-status");
+    if (!el) return;
+    el.style.display = "block";
+    el.textContent = msg;
+    el.className = "cx-subscribe-status" + (isErr ? " err" : "");
+  }
+
+  document.querySelectorAll("form[data-cx-subscribe]").forEach(function (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var emailInput = form.querySelector('input[name="email"]');
+      var btn = form.querySelector('button[type="submit"]');
+      var email = (emailInput && emailInput.value || "").trim();
+      if (!email || email.indexOf("@") < 1) {
+        setStatus(form, "Please enter a valid work email.", true);
+        return;
+      }
+      if (!SUBSCRIBE_URL || SUBSCRIBE_URL.indexOf("PASTE_SUBSCRIBE") !== -1) {
+        setStatus(form, "Subscribe endpoint not configured yet.", true);
+        return;
+      }
+      btn.disabled = true;
+      var prev = btn.textContent;
+      btn.textContent = "Sending…";
+      fetch(SUBSCRIBE_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({
+          email: email,
+          source: form.getAttribute("data-cx-subscribe") || "web",
+          page: window.location.href,
+          ts: new Date().toISOString()
+        })
+      })
+        .then(function (res) { return res.text(); })
+        .then(function (text) {
+          var data = {};
+          try { data = JSON.parse(text); } catch (err) {}
+          if (data.result === "success") {
+            setStatus(form, "Thank you — you’re subscribed.", false);
+            form.reset();
+            markSeen();
+            setTimeout(closeModal, 900);
+          } else {
+            setStatus(form, data.message || "Could not subscribe. Please try again.", true);
+          }
+        })
+        .catch(function () {
+          setStatus(form, "Could not subscribe. Please try again.", true);
+        })
+        .finally(function () {
+          btn.disabled = false;
+          btn.textContent = prev;
+        });
+    });
+  });
 })();
 </script>
 
