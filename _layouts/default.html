@@ -1251,6 +1251,21 @@ article.card {
 
   </div>
 
+  <div class="cx-subscribe-strip">
+    <div class="cx-subscribe-card">
+      <div class="cx-subscribe-copy">
+        <strong>Employer updates from CXCons</strong>
+        <span>Public training schedules, practical HRDC notes, and selected new programmes — occasional, useful emails only.</span>
+      </div>
+      <form class="cx-subscribe-form" data-cx-subscribe="footer" novalidate>
+        <input type="email" name="email" placeholder="Work email" required autocomplete="email">
+        <button type="submit">Subscribe</button>
+        <p class="cx-subscribe-note">By subscribing you agree to receive emails from Circlex Consultancy. Unsubscribe anytime. See our <a href="/privacy-statement/" style="color:#64748b;">Privacy Statement</a>.</p>
+        <p class="cx-subscribe-status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
   <div class="footer-bottom">
     <div class="footer-bottom-links">
       <a href="/privacy-statement/">Privacy</a>
@@ -1571,6 +1586,22 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
     #cxChatPanel { right: 12px; bottom: 78px; height: min(480px, calc(100vh - 100px)); }
   }
 </style>
+
+
+<!-- Soft subscribe modal (exit-intent / delayed, once) -->
+<div id="cxSubOverlay" role="dialog" aria-modal="true" aria-labelledby="cxSubTitle" aria-hidden="true">
+  <div id="cxSubModal">
+    <button type="button" id="cxSubClose" aria-label="Close">×</button>
+    <h3 id="cxSubTitle">Stay ahead on training planning</h3>
+    <p class="cx-sub-lead">Get public schedule updates, practical HRDC notes for employers, and selected new CXCons programmes — no clutter.</p>
+    <form class="cx-subscribe-form" data-cx-subscribe="modal" novalidate>
+      <input type="email" name="email" placeholder="Work email" required autocomplete="email">
+      <button type="submit">Subscribe</button>
+      <p class="cx-subscribe-note">Occasional emails from Circlex Consultancy. Unsubscribe anytime.</p>
+      <p class="cx-subscribe-status" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
 
 <div class="cx-fab-wrap" id="cxFabWrap">
   <div class="cx-fab-menu" id="cxFabMenu" role="menu" aria-label="Quick links">
