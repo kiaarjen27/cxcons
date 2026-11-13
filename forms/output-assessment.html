@@ -313,20 +313,9 @@ description: "Official HRD Corp Output Assessment form for training feedback —
            style="display:inline-block; margin-bottom:14px;">
           ${lang === "bm" ? "Tinggalkan Ulasan Google" : "Leave a Google Review"}
         </a>
-        <div style="margin-top:8px;">
-          <button type="button" id="oaResetBtn"
-            style="background:none; border:none; color:#64748b; cursor:pointer; font-size:0.9em; text-decoration:underline;">
-            ${lang === "bm" ? "Hantar penilaian lain" : "Submit another assessment"}
-          </button>
-        </div>
+
       `;
       card.appendChild(thankYou);
-      document.getElementById("oaResetBtn").addEventListener("click", () => {
-        thankYou.remove();
-        form.reset();
-        form.style.display = "block";
-        applyLang();
-      });
 
     } catch (err) {
       console.error(err);
