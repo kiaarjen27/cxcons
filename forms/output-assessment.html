@@ -281,59 +281,56 @@ description: "Official HRD Corp Output Assessment form for training feedback —
       }
     };
 
+    
     submitBtn.disabled = true;
     try {
-      const res = await fetch(SCRIPT_URL, {
+      await fetch(SCRIPT_URL, {
         method: "POST",
+        mode: "no-cors",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(payload)
       });
-      const text = await res.text();
-      let data = {};
-      try { data = JSON.parse(text); } catch (_) {}
-      if (data.result === "success") {
-  // Hide form, show thank-you + review CTA
-  form.style.display = "none";
-  const card = form.closest(".card");
-  const thankYou = document.createElement("div");
-  thankYou.style.textAlign = "center";
-  thankYou.style.padding = "24px 10px 10px";
-  thankYou.innerHTML = `
-    <h2 style="color:#12425c; margin:0 0 10px;">
-      ${lang === "bm" ? "Terima kasih" : "Thank you"}
-    </h2>
-    <p style="color:#555; margin:0 0 22px; line-height:1.6;">
-      ${lang === "bm"
-        ? "Penilaian anda telah dihantar. Jika sesi hari ini membantu, sila tinggalkan ulasan Google ringkas untuk Circlex."
-        : "Your assessment has been submitted. If today’s session was useful, a short Google review helps Circlex a lot."}
-    </p>
-    <a href="https://g.page/r/CYH-I-KKKA56EBM/review"
-       class="button"
-       target="_blank"
-       rel="noopener noreferrer"
-       style="display:inline-block; margin-bottom:14px;">
-      ${lang === "bm" ? "Tinggalkan Ulasan Google" : "Leave a Google Review"}
-    </a>
-    <div style="margin-top:8px;">
-      <button type="button" id="oaResetBtn"
-        style="background:none; border:none; color:#64748b; cursor:pointer; font-size:0.9em; text-decoration:underline;">
-        ${lang === "bm" ? "Hantar penilaian lain" : "Submit another assessment"}
-      </button>
-    </div>
-  `;
-  card.appendChild(thankYou);
-  document.getElementById("oaResetBtn").addEventListener("click", () => {
-    thankYou.remove();
-    form.reset();
-    form.style.display = "block";
-    applyLang();
-  });
-} else {
-  alert("Failed: " + (data.message || "Unknown error"));
-}
+
+      // Hide form, show thank-you + review CTA
+      form.style.display = "none";
+      const card = form.closest(".card");
+      const thankYou = document.createElement("div");
+      thankYou.style.textAlign = "center";
+      thankYou.style.padding = "24px 10px 10px";
+      thankYou.innerHTML = `
+        <h2 style="color:#12425c; margin:0 0 10px;">
+          ${lang === "bm" ? "Terima kasih" : "Thank you"}
+        </h2>
+        <p style="color:#555; margin:0 0 22px; line-height:1.6;">
+          ${lang === "bm"
+            ? "Penilaian anda telah dihantar. Jika sesi hari ini membantu, sila tinggalkan ulasan Google ringkas untuk Circlex."
+            : "Your assessment has been submitted. If today’s session was useful, a short Google review helps Circlex a lot."}
+        </p>
+        <a href="https://g.page/r/CYH-I-KKKA56EBM/review"
+           class="button"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="display:inline-block; margin-bottom:14px;">
+          ${lang === "bm" ? "Tinggalkan Ulasan Google" : "Leave a Google Review"}
+        </a>
+        <div style="margin-top:8px;">
+          <button type="button" id="oaResetBtn"
+            style="background:none; border:none; color:#64748b; cursor:pointer; font-size:0.9em; text-decoration:underline;">
+            ${lang === "bm" ? "Hantar penilaian lain" : "Submit another assessment"}
+          </button>
+        </div>
+      `;
+      card.appendChild(thankYou);
+      document.getElementById("oaResetBtn").addEventListener("click", () => {
+        thankYou.remove();
+        form.reset();
+        form.style.display = "block";
+        applyLang();
+      });
+
     } catch (err) {
       console.error(err);
-      alert("Submission failed. Please try again.");
+      alert("Submission failed. Please check your connection and try again.");
     } finally {
       submitBtn.disabled = false;
     }
