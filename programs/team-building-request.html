@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Request Corporate Team Building Malaysia | HRDC Claimable"
-description: "Request a corporate team building program in Malaysia with CXCons. Share group size, preferred theme, and outcomes. HRDC claimable options available."
+description: "Request a corporate team building program in Malaysia with CXCons. Choose duration, theme, group size, venue preference, and expected outcomes. HRDC claimable options available."
 ---
 <main>
   <section id="hero">
@@ -28,7 +28,7 @@ description: "Request a corporate team building program in Malaysia with CXCons.
         collaboration, trust, communication, momentum, and team performance.
       </p>
       <p style="color:#555; margin-bottom:0;">
-        Share the essentials below. Our team will respond with suitable format and venue direction.
+        Share the essentials below. Optional sections can be left blank if you prefer us to recommend.
       </p>
     </div>
 
@@ -65,7 +65,7 @@ description: "Request a corporate team building program in Malaysia with CXCons.
 
         <hr style="border:none; border-top:1px solid #eef2f7; margin:8px 0 28px;">
 
-        <!-- Program basics — streamlined -->
+        <!-- Program basics -->
         <div style="margin-bottom:28px;">
           <h3 style="color:#12425c; margin:0 0 14px; font-size:1em;">Program basics</h3>
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
@@ -81,7 +81,7 @@ description: "Request a corporate team building program in Malaysia with CXCons.
               </select>
             </div>
             <div>
-              <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Preferred duration</label>
+              <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Preferred duration <span style="color:#94a3b8;">(optional)</span></label>
               <select name="duration" style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
                 <option value="">Select or leave blank</option>
                 <option value="Half day">Half day</option>
@@ -91,11 +91,11 @@ description: "Request a corporate team building program in Malaysia with CXCons.
               </select>
             </div>
             <div>
-              <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Estimated timing</label>
+              <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Estimated timing <span style="color:#94a3b8;">(optional)</span></label>
               <input type="text" name="event_date" placeholder="e.g. Q1 2027 / March / TBD" style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
             </div>
             <div>
-              <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Payment preference</label>
+              <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Payment preference <span style="color:#94a3b8;">(optional)</span></label>
               <select name="payment" style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
                 <option value="">Select or leave blank</option>
                 <option value="HRDC Claimable">HRDC Claimable</option>
@@ -108,7 +108,7 @@ description: "Request a corporate team building program in Malaysia with CXCons.
 
         <hr style="border:none; border-top:1px solid #eef2f7; margin:8px 0 28px;">
 
-        <!-- Theme — softer, optional -->
+        <!-- Theme — optional -->
         <div style="margin-bottom:28px;">
           <h3 style="color:#12425c; margin:0 0 8px; font-size:1em;">Preferred direction <span style="font-weight:500; color:#94a3b8; font-size:0.85em;">(optional)</span></h3>
           <p style="color:#94a3b8; font-size:0.82em; margin:0 0 14px;">Select any that fit — or skip and we will recommend</p>
@@ -124,7 +124,7 @@ description: "Request a corporate team building program in Malaysia with CXCons.
 
         <hr style="border:none; border-top:1px solid #eef2f7; margin:8px 0 28px;">
 
-        <!-- Location — simplified -->
+        <!-- Location — optional -->
         <div style="margin-bottom:28px;">
           <h3 style="color:#12425c; margin:0 0 8px; font-size:1em;">Preferred area / venue <span style="font-weight:500; color:#94a3b8; font-size:0.85em;">(optional)</span></h3>
           <p style="color:#94a3b8; font-size:0.82em; margin:0 0 14px;">Choose a direction, or leave blank for recommendation</p>
@@ -171,7 +171,7 @@ description: "Request a corporate team building program in Malaysia with CXCons.
 
         <hr style="border:none; border-top:1px solid #eef2f7; margin:8px 0 28px;">
 
-        <!-- Logistics — softer -->
+        <!-- Logistics — optional -->
         <div style="margin-bottom:28px;">
           <h3 style="color:#12425c; margin:0 0 14px; font-size:1em;">Logistics <span style="font-weight:500; color:#94a3b8; font-size:0.85em;">(optional)</span></h3>
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
@@ -197,7 +197,7 @@ description: "Request a corporate team building program in Malaysia with CXCons.
         </div>
 
         <div style="margin-bottom:22px;">
-          <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Additional notes</label>
+          <label style="display:block; font-size:0.8em; color:#64748b; margin-bottom:6px;">Additional notes <span style="color:#94a3b8;">(optional)</span></label>
           <textarea name="message" rows="3" placeholder="Budget range, intensity preference, accessibility needs, or anything else we should know" style="width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; resize:vertical;"></textarea>
         </div>
 
@@ -253,7 +253,6 @@ description: "Request a corporate team building program in Malaysia with CXCons.
     }
   });
 
-  // Same Apps Script endpoint as before — handles both full and short forms
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw_TPqxgiLBkgyf1ZrISOBWd4ltMegd-ZvLA5A3eqLfnyTw5FHytTBttXwL7cEYaK_Avw/exec";
 
   form.addEventListener("submit", function (e) {
