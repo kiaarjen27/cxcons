@@ -1279,7 +1279,7 @@ article.card {
 
 <script>
 // Contact form
-const scriptURL = "https://script.google.com/macros/s/AKfycbxgh3r1vzslcDMm35tluTiUjzVjcYtPUzuh-VM2AMR1Ft4lS54yliNQU-2xgjvnGgb_/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbwlygUNCTJltOgXx0B5wtntQKb34e3Ufpu9aDBVWItoyNfI34ALwruNCuIX0B2QVQA/exec";
 const form = document.getElementById("contactForm");
 if (form) {
   form.addEventListener("submit", e => {
@@ -1828,7 +1828,7 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
 <script>
 (function () {
   // Deploy Apps Script web app and paste /exec URL here
-  var SUBSCRIBE_URL = "https://script.google.com/macros/s/AKfycbzfLAv-ybpc-Yf76cT9kvY1mo_XqUY5Unbi6kyjwSFgiWhejPFJ0kEwaMAWMMpvKI6bVA/exec";
+  var SUBSCRIBE_URL = "https://script.google.com/macros/s/AKfycbylX0h1ZR5mxdGpc0Pl4rmoFBsnOyz3JQLuOAMDU6w04oeJOSC7sO9YePiRkWSGGOZInA/exec";
   var STORAGE_KEY = "cxcons_subscribe_seen_v1";
   var SEEN_DAYS = 21;
 
@@ -1937,6 +1937,269 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
           btn.textContent = prev;
         });
     });
+  });
+})();
+</script>
+
+
+
+<!--
+  SHORT TEAM BUILDING INTEREST FORM
+  Paste into default.html (or homepage) just before </body>
+  Uses the same Apps Script endpoint as the full form.
+-->
+
+<style>
+  #cxTbOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 13, 24, 0.5);
+    z-index: 13000;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+  }
+  #cxTbOverlay.open { display: flex; }
+  #cxTbModal {
+    width: min(440px, 100%);
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid #e8eef3;
+    box-shadow: 0 24px 60px rgba(15, 39, 64, 0.22);
+    padding: 24px 22px 20px;
+    position: relative;
+    font-family: 'Open Sans', Arial, sans-serif;
+  }
+  #cxTbModal h3 {
+    margin: 0 0 6px;
+    color: #0f2740;
+    font-size: 1.2em;
+    letter-spacing: -0.3px;
+  }
+  #cxTbModal .cx-tb-lead {
+    margin: 0 0 18px;
+    color: #64748b;
+    font-size: 0.9em;
+    line-height: 1.55;
+  }
+  #cxTbClose {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    line-height: 1;
+    color: #94a3b8;
+    cursor: pointer;
+  }
+  #cxTbClose:hover { color: #0f2740; }
+  #cxTbForm label {
+    display: block;
+    font-size: 0.8em;
+    color: #64748b;
+    margin-bottom: 5px;
+  }
+  #cxTbForm input,
+  #cxTbForm select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #f8fafc;
+    font-size: 0.92em;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+    font-family: inherit;
+  }
+  #cxTbForm input:focus,
+  #cxTbForm select:focus {
+    outline: none;
+    border-color: #12425c;
+    box-shadow: 0 0 0 3px rgba(18, 66, 92, 0.12);
+  }
+  #cxTbForm button[type="submit"] {
+    width: 100%;
+    padding: 13px;
+    background: #12425c;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95em;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+  #cxTbForm button[type="submit"]:hover { background: #0d3144; }
+  #cxTbForm button[type="submit"]:disabled { opacity: 0.65; cursor: default; }
+  #cxTbStatus {
+    display: none;
+    margin-top: 12px;
+    font-size: 0.88em;
+    color: #166534;
+  }
+  #cxTbStatus.err { color: #b91c1c; }
+  .cx-tb-note {
+    margin: 10px 0 0;
+    font-size: 0.75em;
+    color: #94a3b8;
+    line-height: 1.45;
+  }
+</style>
+
+<div id="cxTbOverlay" role="dialog" aria-modal="true" aria-labelledby="cxTbTitle" aria-hidden="true">
+  <div id="cxTbModal">
+    <button type="button" id="cxTbClose" aria-label="Close">×</button>
+    <h3 id="cxTbTitle">Request Team Building</h3>
+    <p class="cx-tb-lead">Leave your details and we will come back with suitable options for your group.</p>
+    <form id="cxTbForm" novalidate>
+      <label for="cxTbName">Full name *</label>
+      <input id="cxTbName" name="name" type="text" required autocomplete="name" placeholder="Your name">
+
+      <label for="cxTbCompany">Company *</label>
+      <input id="cxTbCompany" name="company" type="text" required autocomplete="organization" placeholder="Company name">
+
+      <label for="cxTbEmail">Work email *</label>
+      <input id="cxTbEmail" name="email" type="email" required autocomplete="email" placeholder="name@company.com">
+
+      <label for="cxTbPhone">Phone / WhatsApp *</label>
+      <input id="cxTbPhone" name="phone" type="tel" required autocomplete="tel" placeholder="01x-xxx xxxx">
+
+      <label for="cxTbPax">Approximate group size *</label>
+      <select id="cxTbPax" name="pax_range" required>
+        <option value="">Select range</option>
+        <option value="10-20">10 – 20</option>
+        <option value="21-40">21 – 40</option>
+        <option value="41-80">41 – 80</option>
+        <option value="81-150">81 – 150</option>
+        <option value="150+">150+</option>
+      </select>
+
+      <label for="cxTbArea">Preferred area <span style="color:#94a3b8; font-weight:400;">(optional)</span></label>
+      <select id="cxTbArea" name="location">
+        <option value="">Recommend for us</option>
+        <option value="Klang Valley">Klang Valley</option>
+        <option value="Selangor (outside KL)">Selangor (outside KL)</option>
+        <option value="Penang">Penang</option>
+        <option value="Johor">Johor</option>
+        <option value="Other / Not sure">Other / Not sure</option>
+      </select>
+
+      <button type="submit">Send Request</button>
+      <p class="cx-tb-note">We typically reply within 1 business day. No obligation.</p>
+      <p id="cxTbStatus" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<script>
+(function () {
+  var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw_TPqxgiLBkgyf1ZrISOBWd4ltMegd-ZvLA5A3eqLfnyTw5FHytTBttXwL7cEYaK_Avw/exec";
+  var STORAGE_KEY = "cxcons_tb_short_seen_v1";
+  var SEEN_DAYS = 14;
+
+  var overlay = document.getElementById("cxTbOverlay");
+  var closeBtn = document.getElementById("cxTbClose");
+  var form = document.getElementById("cxTbForm");
+  var statusEl = document.getElementById("cxTbStatus");
+  if (!overlay || !form) return;
+
+  function alreadySeen() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return false;
+      var t = parseInt(raw, 10);
+      return (Date.now() - t) < SEEN_DAYS * 24 * 60 * 60 * 1000;
+    } catch (e) { return false; }
+  }
+  function markSeen() {
+    try { localStorage.setItem(STORAGE_KEY, String(Date.now())); } catch (e) {}
+  }
+
+  function openModal() {
+    if (!overlay) return;
+    overlay.classList.add("open");
+    overlay.setAttribute("aria-hidden", "false");
+  }
+  function closeModal() {
+    if (!overlay) return;
+    overlay.classList.remove("open");
+    overlay.setAttribute("aria-hidden", "true");
+  }
+
+  // Public helper so you can open from any CTA
+  window.cxOpenTeamBuildingForm = openModal;
+
+  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+  overlay.addEventListener("click", function (e) {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeModal();
+  });
+
+  // Optional soft trigger on homepage only (uncomment if desired)
+  // if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
+  //   if (!alreadySeen()) {
+  //     setTimeout(function () { openModal(); markSeen(); }, 25000);
+  //   }
+  // }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = (form.name.value || "").trim();
+    var company = (form.company.value || "").trim();
+    var email = (form.email.value || "").trim();
+    var phone = (form.phone.value || "").trim();
+    var pax = form.pax_range.value;
+    var location = form.location.value;
+
+    if (!name || !company || !email || !phone || !pax) {
+      statusEl.style.display = "block";
+      statusEl.className = "err";
+      statusEl.textContent = "Please complete the required fields.";
+      return;
+    }
+
+    var btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+    statusEl.style.display = "none";
+
+    var payload = {
+      form_type: "Team Building Short",
+      name: name,
+      email: email,
+      phone: phone,
+      company: company,
+      pax_range: pax,
+      location: location || "Recommend for us",
+      page: window.location.href
+    };
+
+    fetch(SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    })
+      .then(function () {
+        statusEl.style.display = "block";
+        statusEl.className = "";
+        statusEl.textContent = "Thank you — we will be in touch shortly.";
+        form.reset();
+        markSeen();
+        setTimeout(closeModal, 1400);
+      })
+      .catch(function () {
+        statusEl.style.display = "block";
+        statusEl.className = "err";
+        statusEl.textContent = "Could not send. Please email admin@cxcons.com.";
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btn.textContent = "Send Request";
+      });
   });
 })();
 </script>
