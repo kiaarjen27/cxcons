@@ -1441,42 +1441,50 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
   }
   #cxChatFab:hover { background: #0d3144; }
 
-  /* Team Building FAB — third floating button */
+
+  /* Team Building FAB — attention button */
   #cxTbFab {
     position: fixed;
     right: 146px;
     bottom: 18px;
     z-index: 9997;
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    background: #12425c;
+    min-width: 58px;
+    height: 58px;
+    padding: 0 10px;
+    border-radius: 29px;
+    background: #fd000c;
     color: #fff;
     border: none;
     cursor: pointer;
-    box-shadow: 0 8px 24px rgba(18, 66, 92, 0.32);
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
+    box-shadow: 0 8px 24px rgba(253, 0, 12, 0.38);
+    font-family: 'Open Sans', Arial, sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 6px;
-    font-family: 'Open Sans', Arial, sans-serif;
-    transition: transform 0.15s ease, background 0.15s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    animation: cxTbPulse 2.4s ease-in-out infinite;
   }
-  #cxTbFab:hover { background: #0d3144; transform: scale(1.04); }
+  #cxTbFab:hover {
+    background: #e0000b;
+    transform: scale(1.06);
+    box-shadow: 0 12px 28px rgba(253, 0, 12, 0.45);
+    animation: none;
+  }
   #cxTbFab span {
     display: block;
     font-size: 11px;
     font-weight: 800;
-    line-height: 1.2;
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+  }
+  @keyframes cxTbPulse {
+    0%, 100% { box-shadow: 0 8px 24px rgba(253, 0, 12, 0.38); }
+    50% { box-shadow: 0 8px 28px rgba(253, 0, 12, 0.55), 0 0 0 8px rgba(253, 0, 12, 0.12); }
   }
 
   @media (max-width: 480px) {
-    #cxTbFab { right: 138px; bottom: 14px; width: 50px; height: 50px; font-size: 11px; }
+    #cxTbFab { right: 126px; bottom: 14px; min-width: 52px; height: 52px; padding: 0 8px; }
   }
 
   #cxChatPanel {
@@ -1622,7 +1630,7 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
     .cx-fab-wrap { right: 14px; bottom: 14px; }
     .cx-fab-menu { width: min(240px, calc(100vw - 28px)); }
     #cxChatFab { right: 70px; bottom: 14px; width: 50px; height: 50px; }
-    #cxTbFab { right: 126px; bottom: 14px; width: 50px; height: 50px; }
+    #cxTbFab { right: 126px; bottom: 14px; min-width: 52px; height: 52px; padding: 0 8px; }
     #cxChatPanel { right: 12px; bottom: 78px; height: min(480px, calc(100vh - 100px)); }
   }
 </style>
@@ -1660,7 +1668,7 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
 
 
 <button type="button" id="cxTbFab" aria-label="Request team building" title="Request Team Building" onclick="cxOpenTeamBuildingForm();">
-  <span>Team<br>Build</span>
+  <span>Team<br>Building</span>
 </button>
 
 <button type="button" id="cxChatFab" aria-label="Open chat" title="Chat with CXCons">💬</button>
