@@ -1442,15 +1442,15 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
   #cxChatFab:hover { background: #0d3144; }
 
 
-  /* Team Building FAB — attention button */
+  /* Session FAB — In-house + Team building (one button) */
   #cxTbFab {
     position: fixed;
     right: 146px;
     bottom: 18px;
     z-index: 9997;
-    min-width: 58px;
+    min-width: 72px;
     height: 58px;
-    padding: 0 10px;
+    padding: 6px 12px;
     border-radius: 29px;
     background: #fd000c;
     color: #fff;
@@ -1471,12 +1471,50 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
     box-shadow: 0 12px 28px rgba(253, 0, 12, 0.45);
     animation: none;
   }
+  #cxTbFab[aria-expanded="true"] {
+    background: #b80009;
+    animation: none;
+  }
   #cxTbFab span {
     display: block;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 800;
-    line-height: 1.15;
+    line-height: 1.2;
     letter-spacing: 0.01em;
+  }
+  #cxSessionMenu {
+    display: none;
+    position: fixed;
+    right: 146px;
+    bottom: 84px;
+    z-index: 9998;
+    width: 220px;
+    background: #fff;
+    border: 1px solid #e8eef3;
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgba(15, 39, 64, 0.18);
+    overflow: hidden;
+    font-family: 'Open Sans', Arial, sans-serif;
+  }
+  #cxSessionMenu.open { display: block; }
+  #cxSessionMenu button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: #fff;
+    border: none;
+    border-bottom: 1px solid #eef2f6;
+    padding: 14px 16px;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #0f2740;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  #cxSessionMenu button:last-child { border-bottom: none; }
+  #cxSessionMenu button:hover {
+    background: #f8fafc;
+    color: #fd000c;
   }
   @keyframes cxTbPulse {
     0%, 100% { box-shadow: 0 8px 24px rgba(253, 0, 12, 0.38); }
@@ -1484,7 +1522,9 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
   }
 
   @media (max-width: 480px) {
-    #cxTbFab { right: 126px; bottom: 14px; min-width: 52px; height: 52px; padding: 0 8px; }
+    #cxTbFab { right: 126px; bottom: 14px; min-width: 64px; height: 52px; padding: 4px 8px; }
+    #cxTbFab span { font-size: 9px; }
+    #cxSessionMenu { right: 70px; bottom: 74px; width: min(220px, calc(100vw - 28px)); }
   }
 
   #cxChatPanel {
@@ -1630,7 +1670,7 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
     .cx-fab-wrap { right: 14px; bottom: 14px; }
     .cx-fab-menu { width: min(240px, calc(100vw - 28px)); }
     #cxChatFab { right: 70px; bottom: 14px; width: 50px; height: 50px; }
-    #cxTbFab { right: 126px; bottom: 14px; min-width: 52px; height: 52px; padding: 0 8px; }
+    #cxTbFab { right: 126px; bottom: 14px; min-width: 64px; height: 52px; padding: 4px 8px; }
     #cxChatPanel { right: 12px; bottom: 78px; height: min(480px, calc(100vh - 100px)); }
   }
 </style>
@@ -1657,6 +1697,7 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
     <a href="/programs/finder/" role="menuitem">Program Finder</a>
     <a href="/programs/TNA/" role="menuitem">Training Needs Analysis</a>
     <a href="/programs/request-custom-programs/" role="menuitem">Request custom program</a>
+    <a href="#" onclick="cxOpenInHouseForm(); return false;" role="menuitem">Request in-house (quick)</a>
     <a href="#" onclick="cxOpenTeamBuildingForm(); return false;" role="menuitem">Request team building (quick)</a>
     <a href="/programs/team-building-request/" role="menuitem">Full team building form</a>
     <a href="/faq/">FAQ</a>
@@ -1667,9 +1708,13 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
 </div>
 
 
-<button type="button" id="cxTbFab" aria-label="Request team building" title="Request Team Building" onclick="cxOpenTeamBuildingForm();">
-  <span>Team<br>Building</span>
+<button type="button" id="cxTbFab" aria-label="In-house or Team building request" title="In-house / Team building" aria-expanded="false" aria-controls="cxSessionMenu">
+  <span>In-house<br>Team building</span>
 </button>
+<div id="cxSessionMenu" role="menu" aria-label="Choose request type">
+  <button type="button" role="menuitem" id="cxSessionInhouse">In-house training</button>
+  <button type="button" role="menuitem" id="cxSessionTeamBuilding">Team building</button>
+</div>
 
 <button type="button" id="cxChatFab" aria-label="Open chat" title="Chat with CXCons">💬</button>
 
@@ -2193,12 +2238,7 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
     if (e.key === "Escape") closeModal();
   });
 
-  // Soft auto-open on homepage only (once per 14 days)
-  if (window.location.pathname === "/" || window.location.pathname === "/index.html" || window.location.pathname === "") {
-    if (!alreadySeen()) {
-      setTimeout(function () { openModal(); markSeen(); }, 20000);
-    }
-  }
+  // Homepage auto-open is handled by the dual session FAB menu
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -2255,6 +2295,312 @@ document.querySelectorAll('.chevron-toggle').forEach(toggle => {
         btn.textContent = "Send Request";
       });
   });
+})();
+</script>
+
+
+<!-- SHORT IN-HOUSE TRAINING INTEREST FORM -->
+<style>
+  #cxIhOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 13, 24, 0.5);
+    z-index: 13000;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+  }
+  #cxIhOverlay.open { display: flex; }
+  #cxIhModal {
+    width: min(440px, 100%);
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid #e8eef3;
+    box-shadow: 0 24px 60px rgba(15, 39, 64, 0.22);
+    padding: 24px 22px 20px;
+    position: relative;
+    font-family: 'Open Sans', Arial, sans-serif;
+  }
+  #cxIhModal h3 {
+    margin: 0 0 6px;
+    color: #0f2740;
+    font-size: 1.2em;
+    letter-spacing: -0.3px;
+  }
+  #cxIhModal .cx-ih-lead {
+    margin: 0 0 18px;
+    color: #64748b;
+    font-size: 0.9em;
+    line-height: 1.55;
+  }
+  #cxIhClose {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    line-height: 1;
+    color: #94a3b8;
+    cursor: pointer;
+  }
+  #cxIhClose:hover { color: #0f2740; }
+  #cxIhForm label {
+    display: block;
+    font-size: 0.8em;
+    color: #64748b;
+    margin-bottom: 5px;
+  }
+  #cxIhForm input,
+  #cxIhForm select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #f8fafc;
+    font-size: 0.92em;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+    font-family: inherit;
+  }
+  #cxIhForm input:focus,
+  #cxIhForm select:focus {
+    outline: none;
+    border-color: #12425c;
+    box-shadow: 0 0 0 3px rgba(18, 66, 92, 0.12);
+  }
+  #cxIhForm button[type="submit"] {
+    width: 100%;
+    padding: 13px;
+    background: #12425c;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95em;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+  #cxIhForm button[type="submit"]:hover { background: #0d3144; }
+  #cxIhForm button[type="submit"]:disabled { opacity: 0.65; cursor: default; }
+  #cxIhStatus {
+    display: none;
+    margin-top: 12px;
+    font-size: 0.88em;
+    color: #166534;
+  }
+  #cxIhStatus.err { color: #b91c1c; }
+  .cx-ih-note {
+    margin: 10px 0 0;
+    font-size: 0.75em;
+    color: #94a3b8;
+    line-height: 1.45;
+  }
+</style>
+
+<div id="cxIhOverlay" role="dialog" aria-modal="true" aria-labelledby="cxIhTitle" aria-hidden="true">
+  <div id="cxIhModal">
+    <button type="button" id="cxIhClose" aria-label="Close">×</button>
+    <h3 id="cxIhTitle">Request In-House Training</h3>
+    <p class="cx-ih-lead">Tell us roughly what you need — we will follow up with a focused outline for your team.</p>
+    <form id="cxIhForm" novalidate>
+      <label for="cxIhName">Full name *</label>
+      <input id="cxIhName" name="name" type="text" required autocomplete="name" placeholder="Your name">
+
+      <label for="cxIhCompany">Company *</label>
+      <input id="cxIhCompany" name="company" type="text" required autocomplete="organization" placeholder="Company name">
+
+      <label for="cxIhEmail">Work email *</label>
+      <input id="cxIhEmail" name="email" type="email" required autocomplete="email" placeholder="name@company.com">
+
+      <label for="cxIhPhone">Phone / WhatsApp *</label>
+      <input id="cxIhPhone" name="phone" type="tel" required autocomplete="tel" placeholder="01x-xxx xxxx">
+
+      <label for="cxIhPax">Approximate group size *</label>
+      <select id="cxIhPax" name="pax_range" required>
+        <option value="">Select range</option>
+        <option value="5-10">5 – 10</option>
+        <option value="11-20">11 – 20</option>
+        <option value="21-40">21 – 40</option>
+        <option value="41-80">41 – 80</option>
+        <option value="80+">80+</option>
+      </select>
+
+      <label for="cxIhDuration">Preferred duration *</label>
+      <select id="cxIhDuration" name="duration" required>
+        <option value="">Select duration</option>
+        <option value="Half Day">Half Day</option>
+        <option value="1 Day">1 Day</option>
+        <option value="2 Days">2 Days</option>
+        <option value="Not sure yet">Not sure yet</option>
+      </select>
+
+      <label for="cxIhTopic">Topic or need <span style="color:#94a3b8; font-weight:400;">(optional)</span></label>
+      <input id="cxIhTopic" name="topic" type="text" placeholder="e.g. Leadership, Employment Act, Excel">
+
+      <button type="submit">Send Request</button>
+      <p class="cx-ih-note">We typically reply within 1 business day. No obligation.</p>
+      <p id="cxIhStatus" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<script>
+(function () {
+  var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw_TPqxgiLBkgyf1ZrISOBWd4ltMegd-ZvLA5A3eqLfnyTw5FHytTBttXwL7cEYaK_Avw/exec";
+  var overlay = document.getElementById("cxIhOverlay");
+  var closeBtn = document.getElementById("cxIhClose");
+  var form = document.getElementById("cxIhForm");
+  var statusEl = document.getElementById("cxIhStatus");
+  if (!overlay || !form) return;
+
+  function openModal() {
+    overlay.classList.add("open");
+    overlay.setAttribute("aria-hidden", "false");
+  }
+  function closeModal() {
+    overlay.classList.remove("open");
+    overlay.setAttribute("aria-hidden", "true");
+  }
+  window.cxOpenInHouseForm = openModal;
+
+  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+  overlay.addEventListener("click", function (e) {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && overlay.classList.contains("open")) closeModal();
+  });
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = (form.name.value || "").trim();
+    var company = (form.company.value || "").trim();
+    var email = (form.email.value || "").trim();
+    var phone = (form.phone.value || "").trim();
+    var pax = form.pax_range.value;
+    var duration = form.duration.value;
+    var topic = (form.topic.value || "").trim();
+
+    if (!name || !company || !email || !phone || !pax || !duration) {
+      statusEl.style.display = "block";
+      statusEl.className = "err";
+      statusEl.textContent = "Please complete the required fields.";
+      return;
+    }
+
+    var btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+    statusEl.style.display = "none";
+
+    var payload = {
+      form_type: "In-House Short",
+      name: name,
+      email: email,
+      phone: phone,
+      company: company,
+      pax_range: pax,
+      duration: duration,
+      topic: topic || "—",
+      page: window.location.href
+    };
+
+    fetch(SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    })
+      .then(function () {
+        statusEl.style.display = "block";
+        statusEl.className = "";
+        statusEl.textContent = "Thank you — we will be in touch shortly.";
+        form.reset();
+        setTimeout(closeModal, 1400);
+      })
+      .catch(function () {
+        statusEl.style.display = "block";
+        statusEl.className = "err";
+        statusEl.textContent = "Could not send. Please email admin@cxcons.com.";
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btn.textContent = "Send Request";
+      });
+  });
+})();
+</script>
+
+<script>
+(function () {
+  var fab = document.getElementById("cxTbFab");
+  var menu = document.getElementById("cxSessionMenu");
+  if (!fab || !menu) return;
+
+  function closeMenu() {
+    menu.classList.remove("open");
+    fab.setAttribute("aria-expanded", "false");
+  }
+  function openMenu() {
+    menu.classList.add("open");
+    fab.setAttribute("aria-expanded", "true");
+  }
+  function toggleMenu() {
+    if (menu.classList.contains("open")) closeMenu();
+    else openMenu();
+  }
+
+  fab.addEventListener("click", function (e) {
+    e.stopPropagation();
+    toggleMenu();
+  });
+  document.addEventListener("click", function (e) {
+    if (!menu.contains(e.target) && e.target !== fab && !fab.contains(e.target)) {
+      closeMenu();
+    }
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeMenu();
+  });
+
+  var btnIh = document.getElementById("cxSessionInhouse");
+  var btnTb = document.getElementById("cxSessionTeamBuilding");
+  if (btnIh) {
+    btnIh.addEventListener("click", function () {
+      closeMenu();
+      if (typeof window.cxOpenInHouseForm === "function") window.cxOpenInHouseForm();
+    });
+  }
+  if (btnTb) {
+    btnTb.addEventListener("click", function () {
+      closeMenu();
+      if (typeof window.cxOpenTeamBuildingForm === "function") window.cxOpenTeamBuildingForm();
+    });
+  }
+
+  // Soft auto-open choice menu on homepage only (once per 14 days)
+  var STORAGE_KEY = "cxcons_session_fab_seen_v1";
+  var SEEN_DAYS = 14;
+  function alreadySeen() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return false;
+      return (Date.now() - parseInt(raw, 10)) < SEEN_DAYS * 24 * 60 * 60 * 1000;
+    } catch (e) { return false; }
+  }
+  function markSeen() {
+    try { localStorage.setItem(STORAGE_KEY, String(Date.now())); } catch (e) {}
+  }
+  var path = window.location.pathname || "";
+  if (path === "/" || path === "/index.html" || path === "") {
+    if (!alreadySeen()) {
+      setTimeout(function () {
+        openMenu();
+        markSeen();
+      }, 20000);
+    }
+  }
 })();
 </script>
 
